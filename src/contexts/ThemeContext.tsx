@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 
-export type Theme = 'light' | 'dark' | 'blue' | 'green' | 'purple';
+export type Theme = 'light' | 'dark' | 'blue' | 'emerald' | 'purple';
 
 interface ThemeContextType {
   theme: Theme;

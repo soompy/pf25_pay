@@ -145,7 +145,7 @@ export default function CardsPage() {
   if (authState !== 'authenticated' || !user) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-green-600"></div>
       </div>
     );
   }
@@ -187,7 +187,7 @@ export default function CardsPage() {
               </button>
               <button
                 onClick={() => setShowAddCard(true)}
-                className="flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+                className="flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors"
               >
                 <Plus className="w-4 h-4 mr-2" />
                 Add Card
@@ -213,7 +213,7 @@ export default function CardsPage() {
             >
               {/* Card */}
               <div className={`relative p-6 rounded-xl text-white overflow-hidden ${
-                card.brand === 'visa' ? 'bg-gradient-to-br from-blue-600 to-blue-800' :
+                card.brand === 'visa' ? 'bg-gradient-to-br from-green-600 to-green-800' :
                 card.brand === 'mastercard' ? 'bg-gradient-to-br from-red-600 to-red-800' :
                 card.brand === 'amex' ? 'bg-gradient-to-br from-green-600 to-green-800' :
                 'bg-gradient-to-br from-purple-600 to-purple-800'
@@ -307,7 +307,7 @@ export default function CardsPage() {
               </p>
               <button
                 onClick={() => setShowAddCard(true)}
-                className="flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+                className="flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors"
               >
                 <Plus className="w-4 h-4 mr-2" />
                 Add Card
@@ -424,7 +424,7 @@ export default function CardsPage() {
                     <input
                       {...register('name')}
                       type="text"
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                       placeholder="My Credit Card"
                     />
                     {errors.name && (
@@ -441,7 +441,7 @@ export default function CardsPage() {
                       {...register('cardNumber')}
                       type="text"
                       maxLength={19}
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white font-mono"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white font-mono"
                       placeholder="1234 5678 9012 3456"
                       onChange={(e) => {
                         const value = e.target.value.replace(/\s/g, '').replace(/(.{4})/g, '$1 ').trim();
@@ -466,7 +466,7 @@ export default function CardsPage() {
                       </label>
                       <select
                         {...register('expiryMonth', { valueAsNumber: true })}
-                        className="w-full px-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                        className="w-full px-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                       >
                         {Array.from({ length: 12 }, (_, i) => (
                           <option key={i + 1} value={i + 1}>
@@ -482,7 +482,7 @@ export default function CardsPage() {
                       </label>
                       <select
                         {...register('expiryYear', { valueAsNumber: true })}
-                        className="w-full px-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                        className="w-full px-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                       >
                         {Array.from({ length: 12 }, (_, i) => {
                           const year = new Date().getFullYear() + i;
@@ -503,7 +503,7 @@ export default function CardsPage() {
                         {...register('cvv')}
                         type="text"
                         maxLength={4}
-                        className="w-full px-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white font-mono"
+                        className="w-full px-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white font-mono"
                         placeholder="123"
                       />
                     </div>
@@ -520,7 +520,7 @@ export default function CardsPage() {
                         {...register('balance', { valueAsNumber: true })}
                         type="number"
                         step="0.01"
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                        className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                         placeholder="0.00"
                       />
                     </div>
@@ -549,7 +549,7 @@ export default function CardsPage() {
                     <button
                       type="submit"
                       disabled={isLoading}
-                      className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white px-4 py-3 rounded-lg transition-colors flex items-center justify-center"
+                      className="flex-1 bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white px-4 py-3 rounded-lg transition-colors flex items-center justify-center"
                     >
                       {isLoading ? (
                         <>

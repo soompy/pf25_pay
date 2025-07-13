@@ -202,7 +202,7 @@ export default function QRScanPage() {
   if (authState !== 'authenticated' || !user) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-green-600"></div>
       </div>
     );
   }
@@ -272,7 +272,7 @@ export default function QRScanPage() {
               </p>
               <button
                 onClick={() => window.location.reload()}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors"
+                className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg transition-colors"
               >
                 다시 시도
               </button>
@@ -295,17 +295,17 @@ export default function QRScanPage() {
                 {/* Scanning Frame */}
                 <div className="relative w-64 h-64 border-2 border-white rounded-xl">
                   {/* Corner Brackets */}
-                  <div className="absolute top-0 left-0 w-6 h-6 border-t-4 border-l-4 border-blue-400 rounded-tl-lg"></div>
-                  <div className="absolute top-0 right-0 w-6 h-6 border-t-4 border-r-4 border-blue-400 rounded-tr-lg"></div>
-                  <div className="absolute bottom-0 left-0 w-6 h-6 border-b-4 border-l-4 border-blue-400 rounded-bl-lg"></div>
-                  <div className="absolute bottom-0 right-0 w-6 h-6 border-b-4 border-r-4 border-blue-400 rounded-br-lg"></div>
+                  <div className="absolute top-0 left-0 w-6 h-6 border-t-4 border-l-4 border-green-400 rounded-tl-lg"></div>
+                  <div className="absolute top-0 right-0 w-6 h-6 border-t-4 border-r-4 border-green-400 rounded-tr-lg"></div>
+                  <div className="absolute bottom-0 left-0 w-6 h-6 border-b-4 border-l-4 border-green-400 rounded-bl-lg"></div>
+                  <div className="absolute bottom-0 right-0 w-6 h-6 border-b-4 border-r-4 border-green-400 rounded-br-lg"></div>
                   
                   {/* Scanning Line Animation */}
                   {isScanning && (
                     <motion.div
                       animate={{ y: [0, 240, 0] }}
                       transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                      className="absolute left-0 right-0 h-0.5 bg-blue-400 shadow-lg shadow-blue-400/50"
+                      className="absolute left-0 right-0 h-0.5 bg-green-400 shadow-lg shadow-green-400/50"
                     />
                   )}
                 </div>
@@ -339,7 +339,7 @@ export default function QRScanPage() {
             className="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
           >
             <div className="bg-white dark:bg-gray-800 rounded-xl p-8 text-center max-w-sm mx-4">
-              <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+              <div className="w-16 h-16 border-4 border-green-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                 처리 중...
               </h3>
@@ -375,8 +375,8 @@ export default function QRScanPage() {
             {scanResult.type === 'payment_request' && (
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/20 rounded-full flex items-center justify-center">
-                    <DollarSign className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                  <div className="w-12 h-12 bg-green-100 dark:bg-green-900/20 rounded-full flex items-center justify-center">
+                    <DollarSign className="w-6 h-6 text-green-600 dark:text-green-400" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 dark:text-white">
@@ -419,7 +419,7 @@ export default function QRScanPage() {
                   <button
                     onClick={handlePaymentRequest}
                     disabled={isLoading}
-                    className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white py-3 rounded-lg transition-colors flex items-center justify-center"
+                    className="flex-1 bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white py-3 rounded-lg transition-colors flex items-center justify-center"
                   >
                     <Zap className="w-4 h-4 mr-2" />
                     결제하기

@@ -1,0 +1,137 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="SafePay/소개" />
+
+# SafePay UI 컴포넌트 라이브러리
+
+SafePay는 **Atomic Design 패턴**을 기반으로 한 현대적인 UI 컴포넌트 라이브러리입니다.
+
+## 🎨 디자인 시스템
+
+### 컬러 팔레트
+- **Primary**: Green (#22c55e)
+- **Success**: Green (#22c55e)
+- **Warning**: Orange (#f59e0b)
+- **Error**: Red (#ef4444)
+- **Info**: Green (#22c55e)
+
+### 타이포그래피
+- **Font Family**: Inter, -apple-system, BlinkMacSystemFont, sans-serif
+- **Font Sizes**: xs(12px), sm(14px), base(16px), lg(18px), xl(20px)
+
+## 🏗️ 아키텍처
+
+### Atoms (원자)
+가장 기본적인 UI 요소들:
+- Button
+- Input
+- Badge
+- Avatar
+- Spinner
+
+### Molecules (분자)
+Atoms의 조합으로 만들어진 컴포넌트들:
+- FormField
+- SearchBox
+- Card
+- Modal
+- ThemeSwitcher
+
+### Organisms (유기체)
+복잡한 비즈니스 로직이 포함된 컴포넌트들:
+- DataTable
+- PaymentForm
+- ContactList
+- TransactionHistory
+
+## 🎯 주요 특징
+
+### 1. 타입 안전성
+모든 컴포넌트는 TypeScript로 작성되었으며, 완전한 타입 지원을 제공합니다.
+
+### 2. 접근성 (a11y)
+WCAG 가이드라인을 준수하여 모든 사용자가 사용할 수 있도록 설계되었습니다.
+
+### 3. 커스터마이징
+6가지 다른 방법으로 컴포넌트를 커스터마이징할 수 있습니다:
+- Props 기반 커스터마이징
+- CSS Variables
+- useStyleOverride Hook
+- 테마 스위처
+- Tailwind 확장 클래스
+- 전역 테마 시스템
+
+### 4. 성능 최적화
+- React.memo와 useMemo를 활용한 렌더링 최적화
+- 번들 크기 최적화를 위한 Tree Shaking 지원
+- 코드 스플리팅 지원
+
+## 🚀 사용법
+
+### 설치
+```bash
+npm install @safepay/ui
+```
+
+### 기본 사용법
+```tsx
+import { Button, Input, Card } from '@safepay/ui';
+
+function MyComponent() {
+  return (
+    <Card padding="lg">
+      <Input placeholder="이메일 주소" />
+      <Button variant="primary" size="lg">
+        로그인
+      </Button>
+    </Card>
+  );
+}
+```
+
+### 테마 사용법
+```tsx
+import { ThemeProvider, ThemeSwitcher } from '@safepay/ui';
+
+function App() {
+  return (
+    <ThemeProvider defaultTheme="light">
+      <ThemeSwitcher showCustomizer />
+      <MyComponent />
+    </ThemeProvider>
+  );
+}
+```
+
+## 📱 반응형 디자인
+
+모든 컴포넌트는 모바일 우선(Mobile-First) 접근법으로 설계되었으며, 다음 브레이크포인트를 지원합니다:
+
+- **Mobile**: < 640px
+- **Tablet**: 640px - 1024px  
+- **Desktop**: > 1024px
+
+## 🌙 다크 모드
+
+완전한 다크 모드 지원과 함께 다음 테마들을 제공합니다:
+
+- Light (기본 - Green)
+- Dark
+- Blue
+- Emerald
+- Purple
+- Custom (사용자 정의)
+
+## 🧪 테스트
+
+모든 컴포넌트는 다음과 같은 테스트를 포함합니다:
+
+- 단위 테스트 (Jest + React Testing Library)
+- 접근성 테스트 (axe-core)
+- 시각적 회귀 테스트 (Chromatic)
+
+## 📚 더 알아보기
+
+- [GitHub Repository](https://github.com/soompy/pf25_pay)
+- [Live Demo](https://safepay-lo6k9mqvt-suris-projects.vercel.app)
+- [Documentation](https://safepay-docs.vercel.app)

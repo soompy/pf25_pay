@@ -11,7 +11,7 @@ import { Palette, Sparkles, Code2, Eye } from 'lucide-react';
  * CSS 커스터마이징 방법들을 보여주는 데모 컴포넌트
  */
 export function CustomizationDemo() {
-  const [customButtonColor, setCustomButtonColor] = useState('#3b82f6');
+  const [customButtonColor, setCustomButtonColor] = useState('#22c55e');
   const [showCode, setShowCode] = useState(false);
 
   // 1. 기본 Button 컴포넌트 사용

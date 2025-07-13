@@ -44,11 +44,11 @@ const themes = [
     description: '시원한 블루 테마'
   },
   { 
-    id: 'green' as Theme, 
-    name: '그린', 
+    id: 'emerald' as Theme, 
+    name: '에메랄드', 
     icon: Eye, 
-    preview: 'bg-green-50 border-green-200',
-    description: '자연스러운 그린 테마'
+    preview: 'bg-emerald-50 border-emerald-200',
+    description: '자연스러운 에메랄드 테마'
   },
   { 
     id: 'purple' as Theme, 
@@ -94,7 +94,7 @@ export function ThemeSwitcher({
   const { theme, setTheme, applyCustomTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [showColorPicker, setShowColorPicker] = useState(false);
-  const [customColor, setCustomColor] = useState('#3b82f6');
+  const [customColor, setCustomColor] = useState('#22c55e');
 
   const handleThemeChange = (newTheme: Theme) => {
     setTheme(newTheme);
@@ -274,7 +274,7 @@ export function ThemeSwitcher({
                             value={customColor}
                             onChange={(e) => setCustomColor(e.target.value)}
                             className="flex-1 px-2 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                            placeholder="#3b82f6"
+                            placeholder="#22c55e"
                           />
                         </div>
                         <Button

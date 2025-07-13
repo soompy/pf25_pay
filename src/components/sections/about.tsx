@@ -84,7 +84,7 @@ export function AboutSection() {
                       initial={{ width: 0 }}
                       whileInView={{ width: `${skill.level}%` }}
                       transition={{ duration: 1, delay: index * 0.2 }}
-                      className="bg-blue-600 h-2 rounded-full"
+                      className="bg-green-600 h-2 rounded-full"
                     />
                   </div>
                   <p className="text-sm text-gray-600 mt-2">
@@ -109,7 +109,7 @@ export function AboutSection() {
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 className="bg-gray-50 p-6 rounded-lg"
               >
-                <div className="text-blue-600 mb-4">{feature.icon}</div>
+                <div className="text-green-600 mb-4">{feature.icon}</div>
                 <h4 className="font-semibold text-gray-900 mb-2">
                   {feature.title}
                 </h4>

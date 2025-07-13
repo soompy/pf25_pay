@@ -75,7 +75,7 @@ export default function LandingPage() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative pt-24 pb-20 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-purple-900/20">
+      <section className="relative pt-24 pb-20 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 dark:from-gray-900 dark:via-green-900/20 dark:to-teal-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <motion.div
@@ -84,7 +84,7 @@ export default function LandingPage() {
               transition={{ duration: 0.8 }}
             >
               <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
                   SafePay
                 </span>
               </h1>
@@ -104,7 +104,7 @@ export default function LandingPage() {
             >
               <button
                 onClick={() => router.push('/auth/login')}
-                className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center"
+                className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center"
               >
                 앱 체험하기
                 <ArrowRight className="w-5 h-5 ml-2" />
@@ -141,7 +141,7 @@ export default function LandingPage() {
               repeat: Infinity, 
               ease: "easeInOut" 
             }}
-            className="absolute top-20 left-10 w-16 h-16 bg-blue-200 dark:bg-blue-800 rounded-full opacity-60"
+            className="absolute top-20 left-10 w-16 h-16 bg-green-200 dark:bg-green-800 rounded-full opacity-60"
           />
           <motion.div
             animate={{ 
@@ -184,7 +184,7 @@ export default function LandingPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+                <div className="text-3xl md:text-4xl font-bold text-green-600 dark:text-green-400 mb-2">
                   {stat.value}
                 </div>
                 <div className="text-gray-600 dark:text-gray-400 font-medium">
@@ -226,7 +226,7 @@ export default function LandingPage() {
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     className={`p-6 rounded-xl cursor-pointer transition-all ${
                       currentFeature === index
-                        ? 'bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-200 dark:border-blue-700'
+                        ? 'bg-green-50 dark:bg-green-900/20 border-2 border-green-200 dark:border-green-700'
                         : 'bg-white dark:bg-gray-700 border-2 border-transparent hover:border-gray-200 dark:hover:border-gray-600'
                     }`}
                     onClick={() => setCurrentFeature(index)}
@@ -234,12 +234,12 @@ export default function LandingPage() {
                     <div className="flex items-start space-x-4">
                       <div className={`p-3 rounded-lg ${
                         currentFeature === index
-                          ? 'bg-blue-100 dark:bg-blue-800'
+                          ? 'bg-green-100 dark:bg-green-800'
                           : 'bg-gray-100 dark:bg-gray-600'
                       }`}>
                         <Icon className={`w-6 h-6 ${
                           currentFeature === index
-                            ? 'text-blue-600 dark:text-blue-400'
+                            ? 'text-green-600 dark:text-green-400'
                             : 'text-gray-600 dark:text-gray-300'
                         }`} />
                       </div>
@@ -265,7 +265,7 @@ export default function LandingPage() {
               transition={{ duration: 0.5 }}
               className="relative"
             >
-              <div className="bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-8 text-white">
+              <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl p-8 text-white">
                 <div className="mb-6">
                   {(() => {
                     const Icon = features[currentFeature].icon;
@@ -274,7 +274,7 @@ export default function LandingPage() {
                   <h3 className="text-2xl font-bold mb-2">
                     {features[currentFeature].title}
                   </h3>
-                  <p className="text-blue-100">
+                  <p className="text-green-100">
                     {features[currentFeature].description}
                   </p>
                 </div>
@@ -326,7 +326,7 @@ export default function LandingPage() {
               <motion.div
                 key={index}
                 whileHover={{ scale: 1.05 }}
-                className="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 transition-colors"
+                className="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-600 transition-colors"
               >
                 <div className="text-sm font-medium text-gray-900 dark:text-white">
                   {tech}
@@ -338,7 +338,7 @@ export default function LandingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
+      <section className="py-20 bg-gradient-to-r from-green-600 to-emerald-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -348,14 +348,14 @@ export default function LandingPage() {
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               지금 시작해보세요
             </h2>
-            <p className="text-xl text-blue-100 mb-12 max-w-2xl mx-auto">
+            <p className="text-xl text-green-100 mb-12 max-w-2xl mx-auto">
               SafePay와 함께 더 스마트하고 안전한 결제 경험을 시작하세요
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
               <button
                 onClick={() => router.push('/auth/login')}
-                className="w-full sm:w-auto bg-white text-blue-600 hover:bg-gray-50 px-8 py-4 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center"
+                className="w-full sm:w-auto bg-white text-green-600 hover:bg-gray-50 px-8 py-4 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center"
               >
                 무료로 시작하기
                 <ArrowRight className="w-5 h-5 ml-2" />

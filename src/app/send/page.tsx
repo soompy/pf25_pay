@@ -165,7 +165,7 @@ export default function SendMoneyPage() {
   if (authState !== 'authenticated' || !user) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-green-600"></div>
       </div>
     );
   }
@@ -202,7 +202,7 @@ export default function SendMoneyPage() {
           {/* Progress Bar */}
           <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
             <div 
-              className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+              className="bg-green-600 h-2 rounded-full transition-all duration-300"
               style={{ 
                 width: step === 'form' ? '25%' : 
                        step === 'review' ? '50%' : 
@@ -243,7 +243,7 @@ export default function SendMoneyPage() {
                         onClick={() => handleRecipientTypeChange(type)}
                         className={`flex flex-col items-center p-3 rounded-lg border transition-colors ${
                           recipientType === type
-                            ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400'
+                            ? 'border-green-500 bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400'
                             : 'border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400'
                         }`}
                       >
@@ -262,7 +262,7 @@ export default function SendMoneyPage() {
                           value={contactSearch}
                           onChange={(e) => setContactSearch(e.target.value)}
                           onFocus={() => setShowContactSearch(true)}
-                          className="w-full px-4 py-3 pl-10 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                          className="w-full px-4 py-3 pl-10 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                           placeholder="Search contacts..."
                         />
                         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -298,8 +298,8 @@ export default function SendMoneyPage() {
                                     className="w-10 h-10 rounded-full"
                                   />
                                 ) : (
-                                  <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/20 rounded-full flex items-center justify-center">
-                                    <User className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                                  <div className="w-10 h-10 bg-green-100 dark:bg-green-900/20 rounded-full flex items-center justify-center">
+                                    <User className="w-5 h-5 text-green-600 dark:text-green-400" />
                                   </div>
                                 )}
                                 <div className="flex-1 text-left">
@@ -320,7 +320,7 @@ export default function SendMoneyPage() {
 
                       {/* Selected Contact Display */}
                       {selectedContact && (
-                        <div className="flex items-center space-x-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                        <div className="flex items-center space-x-3 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
                           {selectedContact.avatar ? (
                             <img 
                               src={selectedContact.avatar} 
@@ -328,8 +328,8 @@ export default function SendMoneyPage() {
                               className="w-10 h-10 rounded-full"
                             />
                           ) : (
-                            <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/20 rounded-full flex items-center justify-center">
-                              <User className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                            <div className="w-10 h-10 bg-green-100 dark:bg-green-900/20 rounded-full flex items-center justify-center">
+                              <User className="w-5 h-5 text-green-600 dark:text-green-400" />
                             </div>
                           )}
                           <div className="flex-1">
@@ -359,7 +359,7 @@ export default function SendMoneyPage() {
                       <input
                         {...register('recipient')}
                         type={recipientType === 'email' ? 'email' : recipientType === 'phone' ? 'tel' : 'text'}
-                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                         placeholder={
                           recipientType === 'email' ? 'Enter email address' :
                           recipientType === 'phone' ? 'Enter phone number' :
@@ -391,7 +391,7 @@ export default function SendMoneyPage() {
                           {...register('amount', { valueAsNumber: true })}
                           type="number"
                           step="0.01"
-                          className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                          className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                           placeholder="0.00"
                         />
                       </div>
@@ -407,7 +407,7 @@ export default function SendMoneyPage() {
                       </label>
                       <select
                         {...register('fromCard')}
-                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                       >
                         <option value="">Select a card</option>
                         {cards.map((card) => (
@@ -430,7 +430,7 @@ export default function SendMoneyPage() {
                     <input
                       {...register('description')}
                       type="text"
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                       placeholder="e.g., Lunch, Rent, Gift"
                     />
                     {errors.description && (
@@ -475,7 +475,7 @@ export default function SendMoneyPage() {
                         onClick={() => setValue('scheduleType', type)}
                         className={`flex flex-col items-center p-3 rounded-lg border transition-colors ${
                           scheduleType === type
-                            ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400'
+                            ? 'border-green-500 bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400'
                             : 'border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400'
                         }`}
                       >
@@ -494,7 +494,7 @@ export default function SendMoneyPage() {
                         {...register('scheduledDate', { valueAsDate: true })}
                         type="datetime-local"
                         min={new Date().toISOString().slice(0, 16)}
-                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                       />
                     </div>
                   )}
@@ -506,7 +506,7 @@ export default function SendMoneyPage() {
                       </label>
                       <select
                         {...register('recurringPattern')}
-                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                       >
                         <option value="daily">Daily</option>
                         <option value="weekly">Weekly</option>
@@ -527,7 +527,7 @@ export default function SendMoneyPage() {
                       <input
                         {...register('isPrivate')}
                         type="checkbox"
-                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
+                        className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500 dark:border-gray-600 dark:bg-gray-700"
                       />
                       <span className="ml-2 text-sm text-gray-700 dark:text-gray-300">
                         Make this payment private
@@ -538,7 +538,7 @@ export default function SendMoneyPage() {
                       <input
                         {...register('requestTwoFactor')}
                         type="checkbox"
-                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
+                        className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500 dark:border-gray-600 dark:bg-gray-700"
                       />
                       <span className="ml-2 text-sm text-gray-700 dark:text-gray-300">
                         Require two-factor authentication
@@ -551,7 +551,7 @@ export default function SendMoneyPage() {
                 <button
                   type="submit"
                   disabled={!amount || !selectedCard || isLoading}
-                  className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center"
+                  className="w-full bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center"
                 >
                   <Send className="w-4 h-4 mr-2" />
                   Review Payment
@@ -636,7 +636,7 @@ export default function SendMoneyPage() {
 
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center"
+                  className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center"
                 >
                   <Shield className="w-4 h-4 mr-2" />
                   Confirm Payment
@@ -655,8 +655,8 @@ export default function SendMoneyPage() {
               >
                 <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
                   <div className="text-center mb-6">
-                    <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Lock className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+                    <div className="w-16 h-16 bg-green-100 dark:bg-green-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Lock className="w-8 h-8 text-green-600 dark:text-green-400" />
                     </div>
                     <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                       Secure Payment Confirmation
@@ -676,7 +676,7 @@ export default function SendMoneyPage() {
                           type={showPassword ? 'text' : 'password'}
                           value={confirmPassword}
                           onChange={(e) => setConfirmPassword(e.target.value)}
-                          className="w-full px-4 py-3 pr-10 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                          className="w-full px-4 py-3 pr-10 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                           placeholder="Enter your password"
                         />
                         <button
@@ -716,7 +716,7 @@ export default function SendMoneyPage() {
                 <button
                   type="submit"
                   disabled={!confirmPassword || isLoading}
-                  className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center"
+                  className="w-full bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center"
                 >
                   {isLoading ? (
                     <>
@@ -779,7 +779,7 @@ export default function SendMoneyPage() {
                   <button
                     type="button"
                     onClick={() => router.push('/transactions')}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition-colors"
+                    className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-4 rounded-lg transition-colors"
                   >
                     View Transaction Details
                   </button>

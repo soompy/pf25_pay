@@ -69,7 +69,7 @@ export function Navigation() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center">
               <Shield className="w-5 h-5 text-white" />
             </div>
             <span className="font-bold text-xl text-gray-900 dark:text-white">
@@ -84,7 +84,7 @@ export function Navigation() {
                 key={item.id}
                 href={item.href}
                 onClick={() => setCurrentSection(item.id)}
-                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+                className="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors font-medium"
               >
                 {item.label}
               </Link>
@@ -112,7 +112,7 @@ export function Navigation() {
             {/* Notifications Bell - Only for authenticated users */}
             {state === 'authenticated' && user && (
               <div className="relative">
-                <button className="p-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                <button className="p-2 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
                   <Bell className="w-5 h-5" />
                   <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full text-xs text-white flex items-center justify-center">
                     3
@@ -132,10 +132,10 @@ export function Navigation() {
                     <img 
                       src={user.avatar} 
                       alt={user.name}
-                      className="w-8 h-8 rounded-full ring-2 ring-blue-200 dark:ring-blue-800"
+                      className="w-8 h-8 rounded-full ring-2 ring-green-200 dark:ring-green-800"
                     />
                   ) : (
-                    <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center ring-2 ring-blue-200 dark:ring-blue-800">
+                    <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center ring-2 ring-green-200 dark:ring-green-800">
                       <User className="w-4 h-4 text-white" />
                     </div>
                   )}
@@ -156,7 +156,7 @@ export function Navigation() {
                       className="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden"
                     >
                       {/* User Info Header */}
-                      <div className="px-6 py-4 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-b border-gray-200 dark:border-gray-700">
+                      <div className="px-6 py-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-b border-gray-200 dark:border-gray-700">
                         <div className="flex items-center space-x-3">
                           {user.avatar ? (
                             <img 
@@ -165,14 +165,14 @@ export function Navigation() {
                               className="w-12 h-12 rounded-full ring-2 ring-white dark:ring-gray-800"
                             />
                           ) : (
-                            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center ring-2 ring-white dark:ring-gray-800">
+                            <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center ring-2 ring-white dark:ring-gray-800">
                               <User className="w-6 h-6 text-white" />
                             </div>
                           )}
                           <div>
                             <p className="font-semibold text-gray-900 dark:text-white">{user.name}</p>
                             <p className="text-sm text-gray-600 dark:text-gray-400">{user.email}</p>
-                            <p className="text-lg font-bold text-blue-600 dark:text-blue-400">$12,450.00</p>
+                            <p className="text-lg font-bold text-green-600 dark:text-green-400">$12,450.00</p>
                           </div>
                         </div>
                       </div>
@@ -202,7 +202,7 @@ export function Navigation() {
                           className="flex items-center px-6 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
                           onClick={() => setIsUserMenuOpen(false)}
                         >
-                          <TrendingUp className="w-5 h-5 mr-3 text-blue-500" />
+                          <TrendingUp className="w-5 h-5 mr-3 text-green-500" />
                           <div>
                             <p className="font-medium">Dashboard</p>
                             <p className="text-xs text-gray-500 dark:text-gray-400">Overview & Analytics</p>
@@ -264,13 +264,13 @@ export function Navigation() {
               <div className="flex items-center space-x-4">
                 <Link
                   href="/auth/login"
-                  className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+                  className="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors font-medium"
                 >
                   로그인
                 </Link>
                 <Link
                   href="/auth/register"
-                  className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-6 py-2 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl font-medium"
+                  className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-6 py-2 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl font-medium"
                 >
                   회원가입
                 </Link>
@@ -304,7 +304,7 @@ export function Navigation() {
                       key={item.id}
                       href={item.href}
                       onClick={() => handleNavClick(item.id)}
-                      className="flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                      className="flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
                     >
                       <span className="font-medium">{item.label}</span>
                     </Link>
@@ -338,22 +338,22 @@ export function Navigation() {
                 {state === 'authenticated' && user ? (
                   <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
                     {/* User Info */}
-                    <div className="flex items-center px-4 py-3 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 mx-4 rounded-lg mb-4">
+                    <div className="flex items-center px-4 py-3 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 mx-4 rounded-lg mb-4">
                       {user.avatar ? (
                         <img 
                           src={user.avatar} 
                           alt={user.name}
-                          className="w-10 h-10 rounded-full mr-3 ring-2 ring-blue-200 dark:ring-blue-800"
+                          className="w-10 h-10 rounded-full mr-3 ring-2 ring-green-200 dark:ring-green-800"
                         />
                       ) : (
-                        <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mr-3 ring-2 ring-blue-200 dark:ring-blue-800">
+                        <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mr-3 ring-2 ring-green-200 dark:ring-green-800">
                           <User className="w-5 h-5 text-white" />
                         </div>
                       )}
                       <div className="flex-1">
                         <p className="font-semibold text-gray-900 dark:text-white">{user.name}</p>
                         <p className="text-sm text-gray-600 dark:text-gray-400">{user.email}</p>
-                        <p className="text-lg font-bold text-blue-600 dark:text-blue-400">$12,450.00</p>
+                        <p className="text-lg font-bold text-green-600 dark:text-green-400">$12,450.00</p>
                       </div>
                     </div>
 
@@ -410,7 +410,7 @@ export function Navigation() {
                     </Link>
                     <Link
                       href="/auth/register"
-                      className="flex items-center justify-center mx-4 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg transition-all duration-200 shadow-lg font-medium"
+                      className="flex items-center justify-center mx-4 py-3 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-lg transition-all duration-200 shadow-lg font-medium"
                       onClick={toggleMenu}
                     >
                       회원가입
