@@ -8,7 +8,7 @@
 
 **안전하고 빠른 송금, 스마트한 카드 관리, 혁신적인 결제 경험을 제공하는 차세대 핀테크 솔루션**
 
-[🚀 라이브 데모](https://your-demo-url.vercel.app) | [📱 모바일 체험](https://your-demo-url.vercel.app/mobile) | [🎨 디자인 시스템](https://your-storybook-url.vercel.app)
+[🚀 라이브 데모](https://safepay-lo6k9mqvt-suris-projects.vercel.app) | [📱 모바일 체험](https://safepay-lo6k9mqvt-suris-projects.vercel.app) | [🎨 UI 컴포넌트](https://safepay-lo6k9mqvt-suris-projects.vercel.app/demo)
 
 </div>
 
@@ -42,7 +42,8 @@
 | **프로젝트 유형** | 포트폴리오용 풀스택 웹 애플리케이션 |
 | **개발 방식** | AI 어시스턴트 협업 개발 |
 | **개발 기간** | 2025.01 ~ 진행중 (약 3~4주 예정) |
-| **배포 환경** | Vercel (자동 배포) |
+| **배포 환경** | Vercel (라이브 배포 완료) |
+| **라이브 URL** | [safepay-lo6k9mqvt-suris-projects.vercel.app](https://safepay-lo6k9mqvt-suris-projects.vercel.app) |
 | **라이선스** | MIT License |
 
 ### 🎨 프로젝트 컨셉
@@ -157,8 +158,8 @@ src/
 
 ```bash
 # 저장소 클론
-git clone https://github.com/soompy/safepay.git
-cd safepay
+git clone https://github.com/soompy/pf25_pay.git
+cd pf25_pay
 
 # 의존성 설치
 npm install

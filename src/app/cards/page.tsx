@@ -36,7 +36,7 @@ const addCardSchema = z.object({
   expiryMonth: z.number().min(1).max(12),
   expiryYear: z.number().min(new Date().getFullYear()).max(2035),
   cvv: z.string().min(3).max(4),
-  balance: z.number().min(0, 'Balance must be positive').default(0),
+  balance: z.number().min(0, 'Balance must be positive').optional(),
 });
 
 type AddCardFormData = z.infer<typeof addCardSchema>;
@@ -127,7 +127,7 @@ export default function CardsPage() {
         last4: data.cardNumber.slice(-4),
         type: cardType,
         brand: getCardBrand(cardType),
-        balance: data.balance,
+        balance: data.balance || 0,
         isDefault: cards.length === 0,
         expiryMonth: data.expiryMonth,
         expiryYear: data.expiryYear,

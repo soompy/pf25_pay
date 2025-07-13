@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -29,7 +29,7 @@ const resetSchema = z.object({
 type RequestFormData = z.infer<typeof requestSchema>;
 type ResetFormData = z.infer<typeof resetSchema>;
 
-export default function ResetPasswordPage() {
+function ResetPasswordContent() {
   const [step, setStep] = useState<'request' | 'sent' | 'reset'>('request');
   const [email, setEmail] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -311,5 +311,13 @@ export default function ResetPasswordPage() {
         </p>
       </div>
     </motion.div>
+  );
+}
+
+export default function ResetPasswordPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ResetPasswordContent />
+    </Suspense>
   );
 }
