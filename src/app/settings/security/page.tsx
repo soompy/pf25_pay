@@ -487,10 +487,10 @@ export default function SecuritySettingsPage() {
                       />
                       <button
                         onClick={handleVerify2FA}
-                        disabled={verificationCode.length !== 6 || twoFactorStep === 'verify'}
+                        disabled={verificationCode.length !== 6 || twoFactorStep === 'setup'}
                         className="px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white rounded-lg transition-colors"
                       >
-                        {twoFactorStep === 'verify' ? (
+                        {twoFactorStep === 'setup' ? (
                           <Loader2 className="w-4 h-4 animate-spin" />
                         ) : (
                           'Verify & Enable'

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ThemeSwitcher } from '../components/ui/molecules/ThemeSwitcher';
 import { ThemeProvider } from '../contexts/ThemeContext';
+import React from 'react';
 
 const meta: Meta<typeof ThemeSwitcher> = {
   title: 'SafePay/ThemeSwitcher',

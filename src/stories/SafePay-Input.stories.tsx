@@ -61,15 +61,15 @@ export const Email: Story = {
   args: {
     type: 'email',
     placeholder: 'user@example.com',
-    leftIcon: Mail({ size: 16 }),
+    leftIcon: <Mail size={16} />,
   },
 };
 
-export const Search: Story = {
+export const SearchInput: Story = {
   args: {
     type: 'search',
     placeholder: '검색어를 입력하세요...',
-    leftIcon: Search({ size: 16 }),
+    leftIcon: <Search size={16} />,
   },
 };
 
@@ -77,15 +77,15 @@ export const Password: Story = {
   args: {
     type: 'password',
     placeholder: '비밀번호',
-    leftIcon: Lock({ size: 16 }),
-    rightIcon: Eye({ size: 16 }),
+    leftIcon: <Lock size={16} />,
+    rightIcon: <Eye size={16} />,
   },
 };
 
 export const Username: Story = {
   args: {
     placeholder: '사용자명',
-    leftIcon: User({ size: 16 }),
+    leftIcon: <User size={16} />,
   },
 };
 
@@ -110,7 +110,7 @@ export const WithError: Story = {
     placeholder: '이메일 주소',
     error: '유효한 이메일 주소를 입력하세요',
     variant: 'error',
-    leftIcon: Mail({ size: 16 }),
+    leftIcon: <Mail size={16} />,
   },
 };
 
@@ -119,7 +119,7 @@ export const WithSuccess: Story = {
     placeholder: '이메일 주소',
     variant: 'success',
     helperText: '사용 가능한 이메일입니다',
-    leftIcon: Mail({ size: 16 }),
+    leftIcon: <Mail size={16} />,
   },
 };
 
@@ -127,7 +127,7 @@ export const Disabled: Story = {
   args: {
     placeholder: '비활성화된 입력 필드',
     disabled: true,
-    leftIcon: User({ size: 16 }),
+    leftIcon: <User size={16} />,
   },
 };
 

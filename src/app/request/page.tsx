@@ -33,10 +33,10 @@ const requestMoneySchema = z.object({
   recipientType: z.enum(['contact', 'email', 'phone']),
   recipient: z.string().min(1, 'Recipient is required'),
   amount: z.number().min(0.01, 'Amount must be greater than 0'),
-  currency: z.string().default('USD'),
   description: z.string().min(1, 'Description is required'),
-  expiresInDays: z.number().min(1).max(30).default(7),
-  sendNotification: z.boolean().default(true),
+  currency: z.string().optional().default('USD'),
+  expiresInDays: z.number().min(1).max(30).optional().default(7),
+  sendNotification: z.boolean().optional().default(true),
 });
 
 type RequestMoneyFormData = z.infer<typeof requestMoneySchema>;
@@ -72,7 +72,7 @@ export default function RequestMoneyPage() {
     getValues,
     reset
   } = useForm<RequestMoneyFormData>({
-    resolver: zodResolver(requestMoneySchema),
+    resolver: zodResolver(requestMoneySchema) as any,
     defaultValues: {
       recipientType: 'contact',
       currency: 'USD',
@@ -224,7 +224,7 @@ export default function RequestMoneyPage() {
           </div>
         </motion.div>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit as any)}>
           <AnimatePresence mode="wait">
             {/* Step 1: Form */}
             {step === 'form' && (

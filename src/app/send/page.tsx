@@ -35,14 +35,14 @@ const sendMoneySchema = z.object({
   recipientType: z.enum(['contact', 'email', 'phone', 'account']),
   recipient: z.string().min(1, 'Recipient is required'),
   amount: z.number().min(0.01, 'Amount must be greater than 0'),
-  currency: z.string().default('USD'),
   description: z.string().min(1, 'Description is required'),
   fromCard: z.string().min(1, 'Please select a card'),
-  scheduleType: z.enum(['now', 'later', 'recurring']).default('now'),
+  currency: z.string().optional().default('USD'),
+  scheduleType: z.enum(['now', 'later', 'recurring']).optional().default('now'),
   scheduledDate: z.date().optional(),
   recurringPattern: z.enum(['daily', 'weekly', 'monthly']).optional(),
-  isPrivate: z.boolean().default(false),
-  requestTwoFactor: z.boolean().default(false),
+  isPrivate: z.boolean().optional().default(false),
+  requestTwoFactor: z.boolean().optional().default(false),
 });
 
 type SendMoneyFormData = z.infer<typeof sendMoneySchema>;
@@ -78,7 +78,7 @@ export default function SendMoneyPage() {
     getValues,
     reset
   } = useForm<SendMoneyFormData>({
-    resolver: zodResolver(sendMoneySchema),
+    resolver: zodResolver(sendMoneySchema) as any,
     defaultValues: {
       recipientType: 'contact',
       currency: 'USD',
@@ -212,7 +212,7 @@ export default function SendMoneyPage() {
           </div>
         </motion.div>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit as any)}>
           <AnimatePresence mode="wait">
             {/* Step 1: Form */}
             {step === 'form' && (

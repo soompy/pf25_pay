@@ -134,7 +134,7 @@ const config: Config = {
   },
   plugins: [
     // 커스텀 플러그인 추가
-    function({ addUtilities, addComponents, theme }) {
+    function({ addUtilities, addComponents, theme }: any) {
       // 커스텀 유틸리티 클래스
       addUtilities({
         '.text-balance': {

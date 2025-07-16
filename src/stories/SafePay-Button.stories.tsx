@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+// import { fn } from '@storybook/test';
 import { Button } from '../components/ui/atoms/Button';
 import { Send, Mail, Heart } from 'lucide-react';
 
@@ -44,7 +44,7 @@ const meta: Meta<typeof Button> = {
       description: '테마 타입'
     }
   },
-  args: { onClick: fn() },
+  args: { onClick: () => {} },
 };
 
 export default meta;

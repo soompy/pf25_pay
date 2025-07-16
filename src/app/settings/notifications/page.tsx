@@ -174,7 +174,7 @@ export default function NotificationsSettingsPage() {
     }));
   };
 
-  const updateQuietHours = (key: string, value: string) => {
+  const updateQuietHours = (key: string, value: string | boolean) => {
     setGlobalSettings(prev => ({
       ...prev,
       quietHours: {
