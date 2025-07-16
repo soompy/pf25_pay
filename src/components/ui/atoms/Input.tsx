@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef } from 'react';
+import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
@@ -34,19 +34,20 @@ export interface InputProps
   rightIcon?: React.ReactNode;
   error?: string;
   helperText?: string;
+  ref?: React.Ref<HTMLInputElement>;
 }
 
-const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ 
-    className, 
-    variant, 
-    size, 
-    leftIcon, 
-    rightIcon, 
-    error,
-    helperText,
-    ...props 
-  }, ref) => {
+const Input: React.FC<InputProps> = ({ 
+  className, 
+  variant, 
+  size, 
+  leftIcon, 
+  rightIcon, 
+  error,
+  helperText,
+  ref,
+  ...props 
+}) => {
     const hasError = error || variant === 'error';
     
     return (
@@ -89,8 +90,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         )}
       </div>
     );
-  }
-);
+};
 
 Input.displayName = "Input";
 

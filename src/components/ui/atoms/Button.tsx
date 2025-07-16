@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef } from 'react';
+import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
@@ -47,24 +47,25 @@ export interface ButtonProps
   rightIcon?: React.ReactNode;
   customStyle?: React.CSSProperties;
   theme?: 'default' | 'custom';
+  ref?: React.Ref<HTMLButtonElement>;
 }
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ 
-    className, 
-    variant, 
-    size, 
-    fullWidth,
-    loading, 
-    leftIcon, 
-    rightIcon, 
-    children, 
-    disabled,
-    customStyle,
-    theme = 'default',
-    style,
-    ...props 
-  }, ref) => {
+const Button: React.FC<ButtonProps> = ({ 
+  className, 
+  variant, 
+  size, 
+  fullWidth,
+  loading, 
+  leftIcon, 
+  rightIcon, 
+  children, 
+  disabled,
+  customStyle,
+  theme = 'default',
+  style,
+  ref,
+  ...props 
+}) => {
     const combinedStyle = theme === 'custom' 
       ? { ...customStyle, ...style }
       : style;
@@ -108,8 +109,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {rightIcon && <span className="ml-2">{rightIcon}</span>}
       </button>
     );
-  }
-);
+};
 
 Button.displayName = "Button";
 
