@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useAnimation, useInView } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import { useRef } from 'react';
 import { 
   ArrowRight, 
   CreditCard, 
@@ -14,6 +15,34 @@ import {
   ExternalLink
 } from 'lucide-react';
 import { Navigation } from '@/components/navigation';
+
+// 숫자 카운터 훅
+const useCountUp = (end: number, duration: number = 2) => {
+  const [count, setCount] = useState(0);
+  const countRef = useRef(null);
+  const isInView = useInView(countRef, { once: true });
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      let startTime: number;
+      const animate = (currentTime: number) => {
+        if (!startTime) startTime = currentTime;
+        const progress = (currentTime - startTime) / (duration * 1000);
+        
+        if (progress < 1) {
+          setCount(Math.floor(end * progress));
+          requestAnimationFrame(animate);
+        } else {
+          setCount(end);
+        }
+      };
+      requestAnimationFrame(animate);
+    }
+  }, [isInView, end, duration]);
+
+  return { count, countRef };
+};
 
 export default function LandingPage() {
   const router = useRouter();
@@ -47,20 +76,10 @@ export default function LandingPage() {
   ];
 
   const stats = [
-    { label: '활성 사용자', value: '10M+' },
-    { label: '월 거래량', value: '$2.5B' },
-    { label: '보안 등급', value: 'A+' },
-    { label: '처리 속도', value: '< 3초' },
-  ];
-
-  const technologies = [
-    'Next.js 15',
-    'TypeScript',
-    'Tailwind CSS',
-    'Framer Motion',
-    'Zustand',
-    'React Hook Form',
-    'Zod Validation',
+    { label: '활성 사용자', value: '10M+', numericValue: 10, suffix: 'M+' },
+    { label: '월 거래량', value: '$2.5B', numericValue: 2.5, prefix: '$', suffix: 'B' },
+    { label: '보안 등급', value: 'A+', displayValue: 'A+' },
+    { label: '처리 속도', value: '< 3초', numericValue: 3, prefix: '< ', suffix: '초' },
   ];
 
   useEffect(() => {
@@ -68,7 +87,7 @@ export default function LandingPage() {
       setCurrentFeature((prev) => (prev + 1) % features.length);
     }, 4000);
     return () => clearInterval(interval);
-  }, []);
+  }, [features.length]);
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
@@ -102,20 +121,42 @@ export default function LandingPage() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6"
             >
-              <button
-                onClick={() => router.push('/auth/login')}
-                className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center"
+              <motion.div 
+                className="w-full sm:w-auto"
+                whileHover={{ 
+                  rotateX: 5, 
+                  rotateY: 5, 
+                  scale: 1.05,
+                  transition: { duration: 0.2 }
+                }}
+                style={{ transformStyle: 'preserve-3d' }}
               >
-                앱 체험하기
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </button>
-              <button
-                onClick={() => router.push('/demo')}
-                className="w-full sm:w-auto border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 px-8 py-4 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center"
+                <button
+                  onClick={() => router.push('/auth/login')}
+                  className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center shadow-lg"
+                >
+                  앱 체험하기
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </button>
+              </motion.div>
+              <motion.div 
+                className="w-full sm:w-auto"
+                whileHover={{ 
+                  rotateX: 5, 
+                  rotateY: 5, 
+                  scale: 1.05,
+                  transition: { duration: 0.2 }
+                }}
+                style={{ transformStyle: 'preserve-3d' }}
               >
-                <Play className="w-5 h-5 mr-2" />
-                데모 보기
-              </button>
+                <button
+                  onClick={() => router.push('/demo')}
+                  className="w-full sm:w-auto border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 px-8 py-4 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center shadow-lg"
+                >
+                  <Play className="w-5 h-5 mr-2" />
+                  데모 보기
+                </button>
+              </motion.div>
             </motion.div>
 
             <motion.div
@@ -148,7 +189,7 @@ export default function LandingPage() {
               y: [0, 15, 0],
               rotate: [0, -5, 0] 
             }}
-            transition={{ 
+            transition={{
               duration: 8, 
               repeat: Infinity, 
               ease: "easeInOut",
@@ -161,8 +202,8 @@ export default function LandingPage() {
               y: [0, -15, 0],
               x: [0, 10, 0] 
             }}
-            transition={{ 
-              duration: 7, 
+            transition={{
+              duration: 7,
               repeat: Infinity, 
               ease: "easeInOut",
               delay: 2 
@@ -176,22 +217,39 @@ export default function LandingPage() {
       <section className="py-16 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center"
-              >
-                <div className="text-3xl md:text-4xl font-bold text-green-600 dark:text-green-400 mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-gray-600 dark:text-gray-400 font-medium">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
+            {stats.map((stat, index) => {
+              const StatCounter = ({ stat }: { stat: typeof stats[0] }) => {
+                const { count, countRef } = useCountUp(stat.numericValue || 0, 2);
+                
+                return (
+                  <div ref={countRef} className="text-3xl md:text-4xl font-bold text-green-600 dark:text-green-400 mb-2">
+                    {stat.displayValue || `${stat.prefix || ''}${count}${stat.suffix || ''}`}
+                  </div>
+                );
+              };
+
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={{ 
+                    rotateX: 5, 
+                    rotateY: 5, 
+                    scale: 1.05,
+                    transition: { duration: 0.2 }
+                  }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="text-center bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg"
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  <StatCounter stat={stat} />
+                  <div className="text-gray-600 dark:text-gray-400 font-medium">
+                    {stat.label}
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -223,6 +281,12 @@ export default function LandingPage() {
                     key={index}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
+                    whileHover={{ 
+                      rotateX: 3, 
+                      rotateY: 3, 
+                      scale: 1.02,
+                      transition: { duration: 0.2 }
+                    }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     className={`p-6 rounded-xl cursor-pointer transition-all ${
                       currentFeature === index
@@ -230,6 +294,7 @@ export default function LandingPage() {
                         : 'bg-white dark:bg-gray-700 border-2 border-transparent hover:border-gray-200 dark:hover:border-gray-600'
                     }`}
                     onClick={() => setCurrentFeature(index)}
+                    style={{ transformStyle: 'preserve-3d' }}
                   >
                     <div className="flex items-start space-x-4">
                       <div className={`p-3 rounded-lg ${
@@ -262,10 +327,17 @@ export default function LandingPage() {
               key={currentFeature}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
+              whileHover={{ 
+                rotateX: 5, 
+                rotateY: 5, 
+                scale: 1.03,
+                transition: { duration: 0.2 }
+              }}
               transition={{ duration: 0.5 }}
               className="relative"
+              style={{ transformStyle: 'preserve-3d' }}
             >
-              <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl p-8 text-white">
+              <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl p-8 text-white shadow-xl">
                 <div className="mb-6">
                   {(() => {
                     const Icon = features[currentFeature].icon;
@@ -299,44 +371,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Technology Stack */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              최신 기술 스택
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              현대적이고 확장 가능한 기술들로 구축된 안정적인 플랫폼
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6"
-          >
-            {technologies.map((tech, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ scale: 1.05 }}
-                className="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-600 transition-colors"
-              >
-                <div className="text-sm font-medium text-gray-900 dark:text-white">
-                  {tech}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
+      
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-green-600 to-emerald-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -353,22 +388,44 @@ export default function LandingPage() {
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-              <button
-                onClick={() => router.push('/auth/login')}
-                className="w-full sm:w-auto bg-white text-green-600 hover:bg-gray-50 px-8 py-4 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center"
+              <motion.div 
+                className="w-full sm:w-auto"
+                whileHover={{ 
+                  rotateX: 5, 
+                  rotateY: 5, 
+                  scale: 1.05,
+                  transition: { duration: 0.2 }
+                }}
+                style={{ transformStyle: 'preserve-3d' }}
               >
-                무료로 시작하기
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </button>
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center"
+                <button
+                  onClick={() => router.push('/auth/login')}
+                  className="w-full sm:w-auto bg-white text-green-600 hover:bg-gray-50 px-8 py-4 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center shadow-lg"
+                >
+                  무료로 시작하기
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </button>
+              </motion.div>
+              <motion.div 
+                className="w-full sm:w-auto"
+                whileHover={{ 
+                  rotateX: 5, 
+                  rotateY: 5, 
+                  scale: 1.05,
+                  transition: { duration: 0.2 }
+                }}
+                style={{ transformStyle: 'preserve-3d' }}
               >
-                <Github className="w-5 h-5 mr-2" />
-                GitHub 보기
-              </a>
+                <a
+                  href="https://github.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center shadow-lg"
+                >
+                  <Github className="w-5 h-5 mr-2" />
+                  GitHub 보기
+                </a>
+              </motion.div>
             </div>
           </motion.div>
         </div>

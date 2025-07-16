@@ -41,9 +41,9 @@
 | **프로젝트명** | SafePay - 사용자 인증 기반 가상 결제 서비스 |
 | **프로젝트 유형** | 포트폴리오용 풀스택 웹 애플리케이션 |
 | **개발 방식** | AI 어시스턴트 협업 개발 |
-| **개발 기간** | 2025.01 ~ 진행중 (약 3~4주 예정) |
+| **개발 기간** | 2025.07 ~ 진행중 (약 3~4주 예정) |
 | **배포 환경** | Vercel (라이브 배포 완료) |
-| **라이브 URL** | [safepay-lo6k9mqvt-suris-projects.vercel.app](https://safepay-lo6k9mqvt-suris-projects.vercel.app) |
+| **라이브 URL** | [https://safepay-rho.vercel.app/](https://safepay-rho.vercel.app/) |
 | **라이선스** | MIT License |
 
 ### 🎨 프로젝트 컨셉

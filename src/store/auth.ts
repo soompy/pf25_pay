@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import type { 
+import type {
   User, 
   AuthSession, 
   AuthState, 
