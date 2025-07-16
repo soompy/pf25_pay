@@ -1,0 +1,99 @@
+// ==========================================================================
+// FOOTER
+// ==========================================================================
+
+.footer {
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-primary);
+  margin-top: auto;
+  
+  &__container {
+    @extend %container;
+    padding-top: $spacing-12;
+    padding-bottom: $spacing-8;
+  }
+  
+  &__content {
+    display: grid;
+    gap: $spacing-8;
+    grid-template-columns: 1fr;
+    
+    @include respond-to(md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @include respond-to(lg) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  &__section {
+    &-title {
+      font-size: $font-size-lg;
+      font-weight: $font-weight-semibold;
+      color: $text-primary;
+      margin-bottom: $spacing-4;
+    }
+    
+    &-links {
+      @extend %reset-list;
+      
+      li {
+        margin-bottom: $spacing-2;
+        
+        a {
+          color: $text-secondary;
+          text-decoration: none;
+          transition: color $transition-fast;
+          
+          &:hover {
+            color: $color-primary;
+          }
+        }
+      }
+    }
+  }
+  
+  &__bottom {
+    border-top: 1px solid var(--border-primary);
+    margin-top: $spacing-8;
+    padding-top: $spacing-6;
+    @include flex-between;
+    flex-direction: column;
+    gap: $spacing-4;
+    
+    @include respond-to(md) {
+      flex-direction: row;
+    }
+  }
+  
+  &__copyright {
+    @extend %small-text;
+    text-align: center;
+    
+    @include respond-to(md) {
+      text-align: left;
+    }
+  }
+  
+  &__social {
+    @include flex-center;
+    gap: $spacing-4;
+    
+    a {
+      @include flex-center;
+      width: 2.5rem;
+      height: 2.5rem;
+      background-color: alpha($color-gray-300, 0.5);
+      color: $text-secondary;
+      border-radius: $radius-full;
+      transition: all $transition-fast;
+      
+      &:hover {
+        background-color: $color-primary;
+        color: $color-white;
+        transform: translateY(-2px);
+      }
+    }
+  }
+}

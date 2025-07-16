@@ -1,0 +1,260 @@
+// ==========================================================================
+// CARDS
+// ==========================================================================
+
+.card {
+  @extend %card-base;
+  
+  &--hover {
+    @extend %card-hover;
+  }
+  
+  &--compact {
+    @extend %card-compact;
+  }
+  
+  &--elevated {
+    box-shadow: $shadow-lg;
+    
+    &:hover {
+      box-shadow: $shadow-xl;
+    }
+  }
+  
+  &--outline {
+    box-shadow: none;
+    border: 2px solid $color-gray-200;
+  }
+  
+  &--glass {
+    @include glass-effect(10px, 0.1);
+    border: 1px solid rgba($color-white, 0.2);
+  }
+  
+  // Card sections
+  &__header {
+    padding: $spacing-6 $spacing-6 0;
+    
+    &--border {
+      border-bottom: 1px solid $color-gray-200;
+      padding-bottom: $spacing-4;
+      margin-bottom: $spacing-4;
+    }
+  }
+  
+  &__title {
+    @extend %heading-base;
+    font-size: $font-size-lg;
+    margin-bottom: $spacing-2;
+  }
+  
+  &__subtitle {
+    @extend %small-text;
+    margin-bottom: 0;
+  }
+  
+  &__body {
+    padding: $spacing-6;
+    
+    &--no-padding {
+      padding: 0;
+    }
+  }
+  
+  &__footer {
+    padding: 0 $spacing-6 $spacing-6;
+    
+    &--border {
+      border-top: 1px solid $color-gray-200;
+      padding-top: $spacing-4;
+      margin-top: $spacing-4;
+    }
+    
+    &--actions {
+      @include flex-between;
+      gap: $spacing-3;
+    }
+  }
+  
+  &__image {
+    width: 100%;
+    height: auto;
+    border-radius: $radius-lg $radius-lg 0 0;
+    
+    &--cover {
+      object-fit: cover;
+      height: 12rem;
+    }
+  }
+  
+  // Card variants
+  &--primary {
+    background: linear-gradient(135deg, $color-primary 0%, $color-primary-dark 100%);
+    color: $color-white;
+    border: none;
+    
+    .card__title,
+    .card__subtitle {
+      color: $color-white;
+    }
+  }
+  
+  &--success {
+    border-left: 4px solid $color-success;
+    
+    .card__title {
+      color: $color-success;
+    }
+  }
+  
+  &--warning {
+    border-left: 4px solid $color-warning;
+    
+    .card__title {
+      color: $color-warning;
+    }
+  }
+  
+  &--error {
+    border-left: 4px solid $color-error;
+    
+    .card__title {
+      color: $color-error;
+    }
+  }
+}
+
+// Card grid
+.card-grid {
+  display: grid;
+  gap: $spacing-6;
+  grid-template-columns: 1fr;
+  
+  @include respond-to(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @include respond-to(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  &--4-cols {
+    @include respond-to(xl) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  &--compact {
+    gap: $spacing-4;
+  }
+}
+
+// Payment card specific styles
+.payment-card {
+  @extend %card-base;
+  background: linear-gradient(135deg, $color-primary 0%, $color-secondary 100%);
+  color: $color-white;
+  padding: $spacing-6;
+  min-height: 12rem;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 200px;
+    height: 200px;
+    background: rgba($color-white, 0.1);
+    border-radius: $radius-full;
+  }
+  
+  &__number {
+    font-family: $font-secondary;
+    font-size: $font-size-lg;
+    letter-spacing: 0.2em;
+    margin: $spacing-4 0;
+  }
+  
+  &__holder {
+    font-size: $font-size-sm;
+    text-transform: uppercase;
+    margin-bottom: $spacing-2;
+  }
+  
+  &__expiry {
+    font-size: $font-size-sm;
+    font-family: $font-secondary;
+  }
+  
+  &__brand {
+    position: absolute;
+    top: $spacing-4;
+    right: $spacing-4;
+    width: 2rem;
+    height: auto;
+  }
+  
+  // Card variants
+  &--visa {
+    background: linear-gradient(135deg, #1a1f71 0%, #2d4de0 100%);
+  }
+  
+  &--mastercard {
+    background: linear-gradient(135deg, #ff5f00 0%, #eb001b 100%);
+  }
+  
+  &--amex {
+    background: linear-gradient(135deg, #2e77bb 0%, #1f5f99 100%);
+  }
+}
+
+// Stats card
+.stats-card {
+  @extend %card-base;
+  text-align: center;
+  
+  &__icon {
+    width: 3rem;
+    height: 3rem;
+    margin: 0 auto $spacing-4;
+    padding: $spacing-3;
+    background-color: alpha($color-primary, 0.1);
+    border-radius: $radius-full;
+    color: $color-primary;
+    @include flex-center;
+  }
+  
+  &__value {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $text-primary;
+    margin-bottom: $spacing-1;
+  }
+  
+  &__label {
+    @extend %small-text;
+  }
+  
+  &__change {
+    @extend %small-text;
+    margin-top: $spacing-2;
+    
+    &--positive {
+      color: $color-success;
+      
+      &::before {
+        content: '↗ ';
+      }
+    }
+    
+    &--negative {
+      color: $color-error;
+      
+      &::before {
+        content: '↘ ';
+      }
+    }
+  }
+}

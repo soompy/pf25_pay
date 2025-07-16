@@ -1,0 +1,89 @@
+// ==========================================================================
+// CONTAINERS
+// ==========================================================================
+
+.container {
+  @extend %container;
+  
+  &--sm {
+    max-width: 576px;
+  }
+  
+  &--md {
+    max-width: 768px;
+  }
+  
+  &--lg {
+    max-width: 1024px;
+  }
+  
+  &--xl {
+    max-width: 1280px;
+  }
+  
+  &--2xl {
+    max-width: 1536px;
+  }
+  
+  &--fluid {
+    max-width: none;
+    width: 100%;
+  }
+}
+
+.section {
+  @extend %section-padding;
+  
+  &--sm {
+    padding: $spacing-8 0;
+    
+    @include respond-to(md) {
+      padding: $spacing-12 0;
+    }
+  }
+  
+  &--lg {
+    padding: $spacing-20 0;
+    
+    @include respond-to(md) {
+      padding: $spacing-24 0;
+    }
+    
+    @include respond-to(lg) {
+      padding: $spacing-32 0;
+    }
+  }
+  
+  &--no-padding {
+    padding: 0;
+  }
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  padding-top: $spacing-16; // Account for fixed header
+  
+  &--full-height {
+    min-height: calc(100vh - 4rem);
+  }
+}
+
+.content-area {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-4;
+  
+  @include respond-to(sm) {
+    padding: 0 $spacing-6;
+  }
+  
+  @include respond-to(lg) {
+    padding: 0 $spacing-8;
+  }
+}

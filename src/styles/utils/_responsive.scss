@@ -1,0 +1,266 @@
+// ==========================================================================
+// RESPONSIVE UTILITIES
+// ==========================================================================
+
+// Show/hide utilities for different breakpoints
+.xs-only {
+  @include respond-to(sm) {
+    display: none !important;
+  }
+}
+
+.sm-up {
+  display: none !important;
+  
+  @include respond-to(sm) {
+    display: block !important;
+  }
+}
+
+.sm-only {
+  display: none !important;
+  
+  @include respond-to(sm) {
+    display: block !important;
+  }
+  
+  @include respond-to(md) {
+    display: none !important;
+  }
+}
+
+.md-up {
+  display: none !important;
+  
+  @include respond-to(md) {
+    display: block !important;
+  }
+}
+
+.md-only {
+  display: none !important;
+  
+  @include respond-to(md) {
+    display: block !important;
+  }
+  
+  @include respond-to(lg) {
+    display: none !important;
+  }
+}
+
+.lg-up {
+  display: none !important;
+  
+  @include respond-to(lg) {
+    display: block !important;
+  }
+}
+
+.lg-only {
+  display: none !important;
+  
+  @include respond-to(lg) {
+    display: block !important;
+  }
+  
+  @include respond-to(xl) {
+    display: none !important;
+  }
+}
+
+.xl-up {
+  display: none !important;
+  
+  @include respond-to(xl) {
+    display: block !important;
+  }
+}
+
+// Mobile-first responsive text sizes
+.text-responsive {
+  font-size: $font-size-sm;
+  
+  @include respond-to(sm) {
+    font-size: $font-size-base;
+  }
+  
+  @include respond-to(md) {
+    font-size: $font-size-lg;
+  }
+}
+
+.heading-responsive {
+  font-size: $font-size-xl;
+  
+  @include respond-to(sm) {
+    font-size: $font-size-2xl;
+  }
+  
+  @include respond-to(md) {
+    font-size: $font-size-3xl;
+  }
+  
+  @include respond-to(lg) {
+    font-size: $font-size-4xl;
+  }
+}
+
+// Responsive spacing
+.p-responsive {
+  padding: $spacing-4;
+  
+  @include respond-to(sm) {
+    padding: $spacing-6;
+  }
+  
+  @include respond-to(lg) {
+    padding: $spacing-8;
+  }
+}
+
+.px-responsive {
+  padding-left: $spacing-4;
+  padding-right: $spacing-4;
+  
+  @include respond-to(sm) {
+    padding-left: $spacing-6;
+    padding-right: $spacing-6;
+  }
+  
+  @include respond-to(lg) {
+    padding-left: $spacing-8;
+    padding-right: $spacing-8;
+  }
+}
+
+.py-responsive {
+  padding-top: $spacing-8;
+  padding-bottom: $spacing-8;
+  
+  @include respond-to(sm) {
+    padding-top: $spacing-12;
+    padding-bottom: $spacing-12;
+  }
+  
+  @include respond-to(lg) {
+    padding-top: $spacing-16;
+    padding-bottom: $spacing-16;
+  }
+}
+
+// Responsive containers
+.container-responsive {
+  width: 100%;
+  padding: 0 $spacing-4;
+  margin: 0 auto;
+  
+  @include respond-to(sm) {
+    padding: 0 $spacing-6;
+  }
+  
+  @include respond-to(md) {
+    max-width: $breakpoint-md;
+  }
+  
+  @include respond-to(lg) {
+    max-width: $breakpoint-lg;
+    padding: 0 $spacing-8;
+  }
+  
+  @include respond-to(xl) {
+    max-width: $breakpoint-xl;
+  }
+}
+
+// Responsive grid
+.grid-responsive {
+  display: grid;
+  gap: $spacing-4;
+  grid-template-columns: 1fr;
+  
+  @include respond-to(sm) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-6;
+  }
+  
+  @include respond-to(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  @include respond-to(lg) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-8;
+  }
+}
+
+// Mobile-specific utilities
+@include respond-max(sm) {
+  .mobile-full-width {
+    width: 100% !important;
+  }
+  
+  .mobile-text-center {
+    text-align: center !important;
+  }
+  
+  .mobile-hidden {
+    display: none !important;
+  }
+  
+  .mobile-stack {
+    flex-direction: column !important;
+    
+    > * {
+      width: 100% !important;
+      margin-bottom: $spacing-4 !important;
+      
+      &:last-child {
+        margin-bottom: 0 !important;
+      }
+    }
+  }
+}
+
+// Tablet-specific utilities
+@include respond-to(md) {
+  @include respond-max(lg) {
+    .tablet-hidden {
+      display: none !important;
+    }
+    
+    .tablet-full-width {
+      width: 100% !important;
+    }
+  }
+}
+
+// Desktop-specific utilities
+@include respond-to(lg) {
+  .desktop-hidden {
+    display: none !important;
+  }
+  
+  .desktop-flex {
+    display: flex !important;
+  }
+  
+  .desktop-grid {
+    display: grid !important;
+  }
+}
+
+// Print-specific responsive utilities
+@media print {
+  .print-break-before {
+    page-break-before: always;
+  }
+  
+  .print-break-after {
+    page-break-after: always;
+  }
+  
+  .print-break-inside-avoid {
+    page-break-inside: avoid;
+  }
+}

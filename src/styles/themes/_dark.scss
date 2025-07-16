@@ -1,0 +1,63 @@
+// ==========================================================================
+// DARK THEME
+// ==========================================================================
+
+[data-theme="dark"] {
+  // Background Colors
+  --bg-primary: #{$color-gray-900};
+  --bg-secondary: #{$color-gray-800};
+  --bg-tertiary: #{$color-gray-700};
+  --bg-elevated: #{$color-gray-800};
+  
+  // Text Colors
+  --text-primary: #{$color-gray-100};
+  --text-secondary: #{$color-gray-300};
+  --text-tertiary: #{$color-gray-500};
+  --text-inverse: #{$color-gray-900};
+  
+  // Border Colors
+  --border-primary: #{$color-gray-700};
+  --border-secondary: #{$color-gray-600};
+  
+  // Component specific variables
+  --navbar-bg: rgba(17, 24, 39, 0.8);
+  --navbar-border: #{$color-gray-700};
+  --sidebar-bg: #{$color-gray-900};
+  --sidebar-border: #{$color-gray-700};
+  --card-bg: #{$color-gray-800};
+  --card-border: #{$color-gray-700};
+  --input-bg: #{$color-gray-800};
+  --input-border: #{$color-gray-600};
+  
+  // Glassmorphism for dark theme
+  --glass-bg: rgba(17, 24, 39, 0.3);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+// Dark mode media query fallback
+@include dark-mode {
+  --bg-primary: #{$color-gray-900};
+  --bg-secondary: #{$color-gray-800};
+  --bg-tertiary: #{$color-gray-700};
+  --bg-elevated: #{$color-gray-800};
+  
+  --text-primary: #{$color-gray-100};
+  --text-secondary: #{$color-gray-300};
+  --text-tertiary: #{$color-gray-500};
+  --text-inverse: #{$color-gray-900};
+  
+  --border-primary: #{$color-gray-700};
+  --border-secondary: #{$color-gray-600};
+  
+  --navbar-bg: rgba(17, 24, 39, 0.8);
+  --navbar-border: #{$color-gray-700};
+  --sidebar-bg: #{$color-gray-900};
+  --sidebar-border: #{$color-gray-700};
+  --card-bg: #{$color-gray-800};
+  --card-border: #{$color-gray-700};
+  --input-bg: #{$color-gray-800};
+  --input-border: #{$color-gray-600};
+  
+  --glass-bg: rgba(17, 24, 39, 0.3);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}

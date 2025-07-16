@@ -1,0 +1,141 @@
+// ==========================================================================
+// BUTTONS
+// ==========================================================================
+
+.btn {
+  @extend %btn-base;
+  
+  // Button variants
+  &--primary {
+    @extend %btn-primary;
+  }
+  
+  &--secondary {
+    @extend %btn-secondary;
+  }
+  
+  &--outline {
+    @extend %btn-outline;
+  }
+  
+  &--ghost {
+    @extend %btn-ghost;
+  }
+  
+  &--success {
+    @include button-variant($color-success, $color-white);
+  }
+  
+  &--warning {
+    @include button-variant($color-warning, $color-white);
+  }
+  
+  &--error {
+    @include button-variant($color-error, $color-white);
+  }
+  
+  // Button sizes
+  &--sm {
+    @include button-size($spacing-2, $spacing-3, $font-size-sm);
+  }
+  
+  &--lg {
+    @include button-size($spacing-4, $spacing-6, $font-size-lg);
+  }
+  
+  &--xl {
+    @include button-size($spacing-5, $spacing-8, $font-size-xl);
+  }
+  
+  &--icon {
+    @include button-size($spacing-3, $spacing-3, $font-size-base);
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  
+  // Button states
+  &--loading {
+    @extend %is-loading;
+  }
+  
+  &--disabled {
+    @extend %is-disabled;
+  }
+  
+  // Button modifiers
+  &--full-width {
+    width: 100%;
+  }
+  
+  &--rounded {
+    border-radius: $radius-full;
+  }
+  
+  // Button with icons
+  &__icon {
+    width: 1rem;
+    height: 1rem;
+    
+    &--left {
+      margin-right: $spacing-2;
+    }
+    
+    &--right {
+      margin-left: $spacing-2;
+    }
+  }
+}
+
+// Button group
+.btn-group {
+  display: inline-flex;
+  
+  .btn {
+    border-radius: 0;
+    
+    &:first-child {
+      border-top-left-radius: $radius-md;
+      border-bottom-left-radius: $radius-md;
+    }
+    
+    &:last-child {
+      border-top-right-radius: $radius-md;
+      border-bottom-right-radius: $radius-md;
+    }
+    
+    &:not(:last-child) {
+      border-right-width: 0;
+    }
+    
+    &:hover,
+    &:focus {
+      z-index: 1;
+    }
+  }
+}
+
+// Floating action button
+.fab {
+  @extend %btn-base;
+  @include button-variant($color-primary, $color-white);
+  @include button-size($spacing-4, $spacing-4, $font-size-lg);
+  
+  position: fixed;
+  bottom: $spacing-6;
+  right: $spacing-6;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: $radius-full;
+  box-shadow: $shadow-lg;
+  z-index: z-index('fixed');
+  
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: $shadow-xl;
+  }
+  
+  @include respond-to(md) {
+    bottom: $spacing-8;
+    right: $spacing-8;
+  }
+}

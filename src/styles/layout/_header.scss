@@ -1,0 +1,77 @@
+// ==========================================================================
+// HEADER
+// ==========================================================================
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--navbar-bg);
+  border-bottom: 1px solid var(--navbar-border);
+  backdrop-filter: blur(10px);
+  z-index: z-index('fixed');
+  
+  &__container {
+    @extend %container;
+    @include flex-between;
+    height: 4rem;
+  }
+  
+  &__logo {
+    @include flex-center;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $color-primary;
+    text-decoration: none;
+    
+    &:hover {
+      color: $color-primary-dark;
+    }
+  }
+  
+  &__nav {
+    @include flex-center;
+    gap: $spacing-6;
+    
+    @include respond-max(md) {
+      display: none;
+    }
+  }
+  
+  &__actions {
+    @include flex-center;
+    gap: $spacing-3;
+  }
+  
+  &__mobile-toggle {
+    @extend %reset-button;
+    @include flex-center;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: $text-primary;
+    
+    @include respond-to(md) {
+      display: none;
+    }
+  }
+}
+
+.nav-link {
+  color: $text-primary;
+  text-decoration: none;
+  font-weight: $font-weight-medium;
+  padding: $spacing-2 $spacing-3;
+  border-radius: $radius-md;
+  transition: all $transition-fast;
+  
+  &:hover {
+    background-color: alpha($color-primary, 0.1);
+    color: $color-primary;
+  }
+  
+  &--active {
+    background-color: alpha($color-primary, 0.1);
+    color: $color-primary;
+  }
+}

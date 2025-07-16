@@ -1,0 +1,88 @@
+// ==========================================================================
+// RESET
+// ==========================================================================
+// Additional reset styles for SafePay
+
+// Remove default margins and paddings
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+dl, dd, ol, ul,
+figure, hr, fieldset, legend {
+  margin: 0;
+  padding: 0;
+}
+
+// Reset list styles
+ol, ul {
+  list-style: none;
+}
+
+// Reset table styles
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+// Reset button styles
+button {
+  @extend %reset-button;
+}
+
+// Reset form element styles
+input, textarea, select {
+  font: inherit;
+  letter-spacing: inherit;
+  word-spacing: inherit;
+}
+
+// Reset anchor styles
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+// Focus styles
+:focus {
+  outline: 2px solid $color-primary;
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+// Selection styles
+::selection {
+  background-color: alpha($color-primary, 0.2);
+  color: $text-primary;
+}
+
+// Placeholder styles
+::placeholder {
+  color: $text-tertiary;
+  opacity: 1;
+}
+
+// Scrollbar styles
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $color-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $color-gray-300;
+  border-radius: $radius-full;
+  
+  &:hover {
+    background: $color-gray-400;
+  }
+}
+
+// Remove tap highlighting on iOS
+a, button, input, select, textarea {
+  -webkit-tap-highlight-color: transparent;
+}

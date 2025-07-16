@@ -1,0 +1,58 @@
+// ==========================================================================
+// SafePay SCSS Architecture
+// ==========================================================================
+// 7-1 Pattern: 7 folders, 1 file
+// https://sass-guidelin.es/#the-7-1-pattern
+
+// 1. ABSTRACTS
+// Configuration and helpers
+@import 'abstracts/variables';
+@import 'abstracts/functions';
+@import 'abstracts/mixins';
+@import 'abstracts/placeholders';
+
+// 2. VENDORS
+// Third-party CSS
+@import 'vendors/normalize';
+
+// 3. BASE
+// Boilerplate code
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/helpers';
+
+// 4. LAYOUT
+// Layout-related sections
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/sidebar';
+@import 'layout/grid';
+@import 'layout/containers';
+
+// 5. COMPONENTS
+// UI components
+@import 'components/buttons';
+@import 'components/forms';
+@import 'components/cards';
+@import 'components/modals';
+@import 'components/navigation';
+@import 'components/tables';
+@import 'components/alerts';
+
+// 6. PAGES
+// Page-specific styles
+@import 'pages/home';
+@import 'pages/auth';
+@import 'pages/dashboard';
+@import 'pages/settings';
+
+// 7. THEMES
+// Theme-specific styles
+@import 'themes/default';
+@import 'themes/dark';
+@import 'themes/custom';
+
+// 8. UTILS
+// Utilities and helper classes
+@import 'utils/utilities';
+@import 'utils/responsive';

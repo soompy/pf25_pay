@@ -1,0 +1,106 @@
+// ==========================================================================
+// FUNCTIONS
+// ==========================================================================
+
+// Unit Conversion
+// ==========================================================================
+@function rem($pixels) {
+  @return ($pixels / 16px) * 1rem;
+}
+
+@function em($pixels, $context: 16px) {
+  @return ($pixels / $context) * 1em;
+}
+
+// Color Functions
+// ==========================================================================
+@function color-contrast($background) {
+  $lightness: lightness($background);
+  
+  @if $lightness > 50% {
+    @return $color-gray-900; // Dark text on light background
+  } @else {
+    @return $color-white; // Light text on dark background
+  }
+}
+
+@function alpha($color, $opacity) {
+  @return rgba($color, $opacity);
+}
+
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+// Spacing Functions
+// ==========================================================================
+@function spacing($multiplier) {
+  @return $spacing-4 * $multiplier;
+}
+
+// Grid Functions
+// ==========================================================================
+@function grid-width($columns) {
+  @return percentage($columns / $grid-columns);
+}
+
+@function container-padding($size: 'default') {
+  @if $size == 'sm' {
+    @return $spacing-4;
+  } @else if $size == 'lg' {
+    @return $spacing-8;
+  } @else {
+    @return $spacing-6;
+  }
+}
+
+// Typography Functions
+// ==========================================================================
+@function line-height($font-size, $target-height) {
+  @return $target-height / $font-size;
+}
+
+// Z-Index Functions
+// ==========================================================================
+@function z-index($layer) {
+  $z-indexes: (
+    'dropdown': $z-dropdown,
+    'sticky': $z-sticky,
+    'fixed': $z-fixed,
+    'modal-backdrop': $z-modal-backdrop,
+    'modal': $z-modal,
+    'popover': $z-popover,
+    'tooltip': $z-tooltip,
+    'toast': $z-toast
+  );
+  
+  @return map-get($z-indexes, $layer);
+}
+
+// Map Deep Get
+// ==========================================================================
+@function map-deep-get($map, $keys...) {
+  $value: $map;
+  
+  @each $key in $keys {
+    $value: map-get($value, $key);
+  }
+  
+  @return $value;
+}
+
+// String Replace
+// ==========================================================================
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+  
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+  
+  @return $string;
+}
