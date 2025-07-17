@@ -1,9 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion, useAnimation, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import { useRef } from 'react';
 import { 
   ArrowRight, 
   CreditCard, 
@@ -16,37 +15,10 @@ import {
 } from 'lucide-react';
 import { Navigation } from '@/components/navigation';
 
-// 숫자 카운터 훅
-const useCountUp = (end: number, duration: number = 2) => {
-  const [count, setCount] = useState(0);
-  const countRef = useRef(null);
-  const isInView = useInView(countRef, { once: true });
-  const controls = useAnimation();
-
-  useEffect(() => {
-    if (isInView) {
-      let startTime: number;
-      const animate = (currentTime: number) => {
-        if (!startTime) startTime = currentTime;
-        const progress = (currentTime - startTime) / (duration * 1000);
-        
-        if (progress < 1) {
-          setCount(Math.floor(end * progress));
-          requestAnimationFrame(animate);
-        } else {
-          setCount(end);
-        }
-      };
-      requestAnimationFrame(animate);
-    }
-  }, [isInView, end, duration]);
-
-  return { count, countRef };
-};
-
 export default function LandingPage() {
   const router = useRouter();
   const [currentFeature, setCurrentFeature] = useState(0);
+  const [currentMockup, setCurrentMockup] = useState(0);
 
   const features = [
     {
@@ -76,10 +48,19 @@ export default function LandingPage() {
   ];
 
   const stats = [
-    { label: '활성 사용자', value: '10M+', numericValue: 10, suffix: 'M+' },
-    { label: '월 거래량', value: '$2.5B', numericValue: 2.5, prefix: '$', suffix: 'B' },
-    { label: '보안 등급', value: 'A+', displayValue: 'A+' },
-    { label: '처리 속도', value: '< 3초', numericValue: 3, prefix: '< ', suffix: '초' },
+    { label: '활성 사용자', value: '10M+' },
+    { label: '월 거래량', value: '$2.5B' },
+    { label: '보안 등급', value: 'A+' },
+    { label: '처리 속도', value: '< 3초' },
+  ];
+
+  const mockupImages = [
+    { src: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=300&h=600&fit=crop&auto=format&q=80', alt: 'Mobile Payment Screen' },
+    { src: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=300&h=600&fit=crop&auto=format&q=80', alt: 'Credit Card & Phone' },
+    { src: 'https://images.unsplash.com/photo-1605792657660-596af9009ccd?w=300&h=600&fit=crop&auto=format&q=80', alt: 'Digital Wallet Interface' },
+    { src: 'https://images.unsplash.com/photo-1634733988138-bf2c3a2a13fa?w=300&h=600&fit=crop&auto=format&q=80', alt: 'Banking App Dashboard' },
+    { src: 'https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=300&h=600&fit=crop&auto=format&q=80', alt: 'QR Code Payment' },
+    { src: 'https://images.unsplash.com/photo-1579621970588-a35d0e7ab9b6?w=300&h=600&fit=crop&auto=format&q=80', alt: 'Contactless Payment' },
   ];
 
   useEffect(() => {
@@ -88,6 +69,14 @@ export default function LandingPage() {
     }, 4000);
     return () => clearInterval(interval);
   }, [features.length]);
+
+  // Mockup images auto-swiper
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentMockup((prev) => (prev + 1) % mockupImages.length);
+    }, 4000); // 4초로 변경하여 더 여유있게 이미지를 볼 수 있도록
+    return () => clearInterval(interval);
+  }, [mockupImages.length]);
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
@@ -177,7 +166,7 @@ export default function LandingPage() {
               y: [0, -20, 0],
               rotate: [0, 5, 0] 
             }}
-            transition={{ 
+            transition={{
               duration: 6, 
               repeat: Infinity, 
               ease: "easeInOut" 
@@ -217,39 +206,29 @@ export default function LandingPage() {
       <section className="py-16 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => {
-              const StatCounter = ({ stat }: { stat: typeof stats[0] }) => {
-                const { count, countRef } = useCountUp(stat.numericValue || 0, 2);
-                
-                return (
-                  <div ref={countRef} className="text-3xl md:text-4xl font-bold text-green-600 dark:text-green-400 mb-2">
-                    {stat.displayValue || `${stat.prefix || ''}${count}${stat.suffix || ''}`}
-                  </div>
-                );
-              };
-
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  whileHover={{ 
-                    rotateX: 5, 
-                    rotateY: 5, 
-                    scale: 1.05,
-                    transition: { duration: 0.2 }
-                  }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="text-center bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg"
-                  style={{ transformStyle: 'preserve-3d' }}
-                >
-                  <StatCounter stat={stat} />
-                  <div className="text-gray-600 dark:text-gray-400 font-medium">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              );
-            })}
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ 
+                  rotateX: 5, 
+                  rotateY: 5, 
+                  scale: 1.05,
+                  transition: { duration: 0.2 }
+                }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="text-center bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg"
+                style={{ transformStyle: 'preserve-3d' }}
+              >
+                <div className="text-3xl md:text-4xl font-bold text-green-600 dark:text-green-400 mb-2">
+                  {stat.value}
+                </div>
+                <div className="text-gray-600 dark:text-gray-400 font-medium">
+                  {stat.label}
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -365,6 +344,130 @@ export default function LandingPage() {
                     </div>
                   </div>
                 </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Payment Section */}
+      <section className="py-20 bg-white dark:bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-center lg:text-left"
+            >
+              <div className="mb-8">
+                <span className="text-2xl md:text-3xl font-bold text-green-600 dark:text-green-400 block mb-4">
+                  결제
+                </span>
+                <p className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+                  결제는 간편하고<br />
+                  빠르게!
+                </p>
+              </div>
+              <strong className="text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed block">
+                안전하고 빠른 송금,<br /> 
+                스마트한 카드 관리,<br />
+                혁신적인 결제 경험을 제공하는<br />
+                차세대 핀테크 솔루션
+              </strong>
+            </motion.div>
+
+            {/* Right Phone Preview */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="flex justify-center"
+            >
+              <div className="relative">
+                {/* Phone Frame */}
+                <div className="relative w-72 h-[600px] bg-gray-900 rounded-[3rem] p-3 shadow-2xl">
+                  <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
+                    {/* Screen Content - Auto Swiper */}
+                    <div className="relative w-full h-full">
+                      {mockupImages.map((image, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ 
+                            opacity: currentMockup === index ? 1 : 0,
+                            scale: currentMockup === index ? 1 : 0.8
+                          }}
+                          transition={{ duration: 0.6 }}
+                          className="absolute inset-0 flex items-center justify-center"
+                        >
+                          <img
+                            src={image.src}
+                            alt={image.alt}
+                            className="w-full h-full object-cover rounded-[2rem] bg-gray-200 dark:bg-gray-700"
+                            onLoad={(e) => {
+                              e.currentTarget.classList.add('opacity-100');
+                            }}
+                            onError={(e) => {
+                              e.currentTarget.src = '/api/placeholder/300/600';
+                            }}
+                          />
+                        </motion.div>
+                      ))}
+                    </div>
+                    
+                    {/* Swiper Indicators */}
+                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                      {mockupImages.map((_, index) => (
+                        <div
+                          key={index}
+                          className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                            currentMockup === index
+                              ? 'bg-green-500 w-6'
+                              : 'bg-gray-300'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {/* Phone Details */}
+                  <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gray-700 rounded-full"></div>
+                  <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gray-700 rounded-full"></div>
+                </div>
+
+                {/* Floating Elements */}
+                <motion.div
+                  animate={{ 
+                    y: [0, -10, 0],
+                    rotate: [0, 5, 0] 
+                  }}
+                  transition={{ 
+                    duration: 4, 
+                    repeat: Infinity, 
+                    ease: "easeInOut" 
+                  }}
+                  className="absolute -top-4 -right-4 w-20 h-20 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center shadow-lg"
+                >
+                  <CreditCard className="w-10 h-10 text-green-600 dark:text-green-400" />
+                </motion.div>
+                
+                <motion.div
+                  animate={{ 
+                    y: [0, 10, 0],
+                    rotate: [0, -5, 0] 
+                  }}
+                  transition={{ 
+                    duration: 5, 
+                    repeat: Infinity, 
+                    ease: "easeInOut",
+                    delay: 1
+                  }}
+                  className="absolute -bottom-4 -left-4 w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center shadow-lg"
+                >
+                  <Send className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+                </motion.div>
               </div>
             </motion.div>
           </div>
