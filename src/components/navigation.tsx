@@ -25,6 +25,7 @@ import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePortfolioStore } from '@/store/portfolio';
 import { useAuthStore } from '@/store/auth';
+import { Button } from '@/components/ui/atoms/Button';
 
 export function Navigation() {
   const { isMenuOpen, toggleMenu, setCurrentSection } = usePortfolioStore();
@@ -268,12 +269,14 @@ export function Navigation() {
                 >
                   로그인
                 </Link>
-                <Link
-                  href="/auth/register"
-                  className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-6 py-2 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl font-medium"
+                <Button
+                  variant="success"
+                  size="default"
+                  className="shadow-lg"
+                  onClick={() => router.push('/auth/register')}
                 >
                   회원가입
-                </Link>
+                </Button>
               </div>
             )}
           </div>
@@ -401,20 +404,33 @@ export function Navigation() {
                   </div>
                 ) : (
                   <div className="border-t border-gray-200 dark:border-gray-700 pt-4 space-y-3">
-                    <Link
-                      href="/auth/login"
-                      className="flex items-center justify-center mx-4 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors font-medium"
-                      onClick={toggleMenu}
-                    >
-                      로그인
-                    </Link>
-                    <Link
-                      href="/auth/register"
-                      className="flex items-center justify-center mx-4 py-3 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-lg transition-all duration-200 shadow-lg font-medium"
-                      onClick={toggleMenu}
-                    >
-                      회원가입
-                    </Link>
+                    <div className="mx-4">
+                      <Button
+                        variant="outline"
+                        size="default"
+                        fullWidth={true}
+                        onClick={() => {
+                          router.push('/auth/login');
+                          toggleMenu();
+                        }}
+                      >
+                        로그인
+                      </Button>
+                    </div>
+                    <div className="mx-4">
+                      <Button
+                        variant="success"
+                        size="default"
+                        fullWidth={true}
+                        className="shadow-lg"
+                        onClick={() => {
+                          router.push('/auth/register');
+                          toggleMenu();
+                        }}
+                      >
+                        회원가입
+                      </Button>
+                    </div>
                   </div>
                 )}
               </div>

@@ -14,6 +14,7 @@ import {
   ExternalLink
 } from 'lucide-react';
 import { Navigation } from '@/components/navigation';
+import { Button } from '@/components/ui/atoms/Button';
 
 export default function LandingPage() {
   const router = useRouter();
@@ -120,13 +121,16 @@ export default function LandingPage() {
                 }}
                 style={{ transformStyle: 'preserve-3d' }}
               >
-                <button
+                <Button
                   onClick={() => router.push('/auth/login')}
-                  className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center shadow-lg"
+                  variant="success"
+                  size="lg"
+                  fullWidth={true}
+                  className="sm:w-auto shadow-lg"
                 >
                   앱 체험하기
                   <ArrowRight className="w-5 h-5 ml-2" />
-                </button>
+                </Button>
               </motion.div>
               <motion.div 
                 className="w-full sm:w-auto"
@@ -138,13 +142,16 @@ export default function LandingPage() {
                 }}
                 style={{ transformStyle: 'preserve-3d' }}
               >
-                <button
+                <Button
                   onClick={() => router.push('/demo')}
-                  className="w-full sm:w-auto border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 px-8 py-4 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center shadow-lg"
+                  variant="outline"
+                  size="lg"
+                  fullWidth={true}
+                  className="sm:w-auto shadow-lg"
                 >
                   <Play className="w-5 h-5 mr-2" />
                   데모 보기
-                </button>
+                </Button>
               </motion.div>
             </motion.div>
 
@@ -501,13 +508,16 @@ export default function LandingPage() {
                 }}
                 style={{ transformStyle: 'preserve-3d' }}
               >
-                <button
+                <Button
                   onClick={() => router.push('/auth/login')}
-                  className="w-full sm:w-auto bg-white text-green-600 hover:bg-gray-50 px-8 py-4 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center shadow-lg"
+                  variant="secondary"
+                  size="lg"
+                  fullWidth={true}
+                  className="sm:w-auto bg-white text-green-600 hover:bg-gray-50 shadow-lg"
                 >
                   무료로 시작하기
                   <ArrowRight className="w-5 h-5 ml-2" />
-                </button>
+                </Button>
               </motion.div>
               <motion.div 
                 className="w-full sm:w-auto"
