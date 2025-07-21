@@ -3,11 +3,18 @@
 // ==========================================================================
 
 [data-theme="dark"] {
+  // Semantic Colors
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+  
   // Background Colors
   --bg-primary: #{$color-gray-900};
   --bg-secondary: #{$color-gray-800};
   --bg-tertiary: #{$color-gray-700};
   --bg-elevated: #{$color-gray-800};
+  --bg-accent: var(--color-primary-500);
   
   // Text Colors
   --text-primary: #{$color-gray-100};
@@ -36,10 +43,16 @@
 
 // Dark mode media query fallback
 @include dark-mode {
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+  
   --bg-primary: #{$color-gray-900};
   --bg-secondary: #{$color-gray-800};
   --bg-tertiary: #{$color-gray-700};
   --bg-elevated: #{$color-gray-800};
+  --bg-accent: var(--color-primary-500);
   
   --text-primary: #{$color-gray-100};
   --text-secondary: #{$color-gray-300};

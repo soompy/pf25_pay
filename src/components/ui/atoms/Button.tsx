@@ -10,14 +10,14 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-blue-500",
-        destructive: "bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-500",
-        outline: "border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus-visible:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700",
-        secondary: "bg-gray-100 text-gray-900 hover:bg-gray-200 focus-visible:ring-gray-500 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600",
-        ghost: "text-gray-700 hover:bg-gray-100 focus-visible:ring-gray-500 dark:text-gray-300 dark:hover:bg-gray-700",
-        link: "text-blue-600 underline-offset-4 hover:underline focus-visible:ring-blue-500 dark:text-blue-400",
-        success: "bg-green-600 text-white hover:bg-green-700 focus-visible:ring-green-500",
-        warning: "bg-orange-600 text-white hover:bg-orange-700 focus-visible:ring-orange-500",
+        default: "bg-[var(--color-primary-600)] text-[var(--text-inverse)] hover:bg-[var(--color-primary-700)] focus-visible:ring-[var(--color-primary-500)]",
+        destructive: "bg-[var(--color-error)] text-[var(--text-inverse)] hover:bg-red-700 focus-visible:ring-[var(--color-error)]",
+        outline: "border border-[var(--border-primary)] bg-[var(--bg-primary)] text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] focus-visible:ring-[var(--color-primary-500)]",
+        secondary: "bg-[var(--bg-secondary)] text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] focus-visible:ring-[var(--color-gray-500)]",
+        ghost: "text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] focus-visible:ring-[var(--color-gray-500)]",
+        link: "text-[var(--color-primary-600)] underline-offset-4 hover:underline focus-visible:ring-[var(--color-primary-500)]",
+        success: "bg-[var(--color-success)] text-[var(--text-inverse)] hover:bg-[var(--color-primary-700)] focus-visible:ring-[var(--color-success)]",
+        warning: "bg-[var(--color-warning)] text-[var(--text-inverse)] hover:bg-orange-700 focus-visible:ring-[var(--color-warning)]",
       },
       size: {
         default: "h-10 px-4 py-2",

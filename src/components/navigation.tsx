@@ -10,14 +10,11 @@ import {
   CreditCard, 
   Send, 
   QrCode, 
-  Receipt, 
   Bell, 
   DollarSign,
   TrendingUp,
   History,
-  Users,
-  Wallet,
-  Plus
+  Wallet
 } from 'lucide-react';
 import { useState } from 'react';
 import Link from 'next/link';
@@ -65,15 +62,15 @@ export function Navigation() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[var(--bg-primary)]/80 backdrop-blur-sm border-b border-[var(--border-primary)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center">
-              <Shield className="w-5 h-5 text-white" />
+            <div className="w-8 h-8 bg-[var(--color-primary-600)] rounded-lg flex items-center justify-center">
+              <Shield className="w-5 h-5 text-[var(--text-inverse)]" />
             </div>
-            <span className="font-bold text-xl text-gray-900 dark:text-white">
+            <span className="font-bold text-xl text-[var(--text-primary)]">
               SafePay
             </span>
           </Link>
@@ -85,7 +82,7 @@ export function Navigation() {
                 key={item.id}
                 href={item.href}
                 onClick={() => setCurrentSection(item.id)}
-                className="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors font-medium"
+                className="text-[var(--text-primary)] hover:text-[var(--color-primary-600)] transition-colors font-medium"
               >
                 {item.label}
               </Link>
@@ -93,17 +90,17 @@ export function Navigation() {
 
             {/* Quick Actions - Only for authenticated users */}
             {state === 'authenticated' && user && (
-              <div className="flex items-center space-x-2 pl-4 border-l border-gray-200 dark:border-gray-700">
+              <div className="flex items-center space-x-2 pl-4 border-l border-[var(--border-primary)]">
                 {quickActions.map((action) => {
                   const Icon = action.icon;
                   return (
                     <Link
                       key={action.id}
                       href={action.href}
-                      className={`p-2 rounded-lg transition-colors hover:bg-${action.color}-50 dark:hover:bg-${action.color}-900/20 group`}
+                      className="p-2 rounded-lg transition-colors hover:bg-[var(--bg-tertiary)] group"
                       title={action.label}
                     >
-                      <Icon className={`w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-${action.color}-600 dark:group-hover:text-${action.color}-400 transition-colors`} />
+                      <Icon className="w-5 h-5 text-[var(--text-secondary)] group-hover:text-[var(--color-primary-600)] transition-colors" />
                     </Link>
                   );
                 })}
@@ -113,9 +110,9 @@ export function Navigation() {
             {/* Notifications Bell - Only for authenticated users */}
             {state === 'authenticated' && user && (
               <div className="relative">
-                <button className="p-2 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors">
+                <button className="p-2 text-[var(--text-secondary)] hover:text-[var(--color-primary-600)] transition-colors">
                   <Bell className="w-5 h-5" />
-                  <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full text-xs text-white flex items-center justify-center">
+                  <span className="absolute -top-1 -right-1 w-3 h-3 bg-[var(--color-notification)] rounded-full text-xs text-[var(--text-inverse)] flex items-center justify-center">
                     3
                   </span>
                 </button>
@@ -127,22 +124,22 @@ export function Navigation() {
               <div className="relative">
                 <button
                   onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                  className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                  className="flex items-center space-x-3 p-2 rounded-lg hover:bg-[var(--bg-tertiary)] transition-colors"
                 >
                   {user.avatar ? (
                     <img 
                       src={user.avatar} 
                       alt={user.name}
-                      className="w-8 h-8 rounded-full ring-2 ring-green-200 dark:ring-green-800"
+                      className="w-8 h-8 rounded-full ring-2 ring-[var(--color-primary-200)]"
                     />
                   ) : (
-                    <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center ring-2 ring-green-200 dark:ring-green-800">
-                      <User className="w-4 h-4 text-white" />
+                    <div className="w-8 h-8 bg-gradient-to-br from-[var(--color-primary-500)] to-[var(--color-primary-600)] rounded-full flex items-center justify-center ring-2 ring-[var(--color-primary-200)]">
+                      <User className="w-4 h-4 text-[var(--text-inverse)]" />
                     </div>
                   )}
                   <div className="text-left hidden xl:block">
-                    <p className="text-sm font-medium text-gray-900 dark:text-white">{user.name}</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">$12,450.00</p>
+                    <p className="text-sm font-medium text-[var(--text-primary)]">{user.name}</p>
+                    <p className="text-xs text-[var(--text-secondary)]">$12,450.00</p>
                   </div>
                 </button>
 
@@ -154,44 +151,44 @@ export function Navigation() {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden"
+                      className="absolute right-0 mt-2 w-80 bg-[var(--bg-primary)] rounded-xl shadow-xl border border-[var(--border-primary)] overflow-hidden"
                     >
                       {/* User Info Header */}
-                      <div className="px-6 py-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-b border-gray-200 dark:border-gray-700">
+                      <div className="px-6 py-4 bg-gradient-to-r from-[var(--color-primary-50)] to-[var(--bg-accent)] border-b border-[var(--border-primary)]">
                         <div className="flex items-center space-x-3">
                           {user.avatar ? (
                             <img 
                               src={user.avatar} 
                               alt={user.name}
-                              className="w-12 h-12 rounded-full ring-2 ring-white dark:ring-gray-800"
+                              className="w-12 h-12 rounded-full ring-2 ring-[var(--bg-primary)]"
                             />
                           ) : (
-                            <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center ring-2 ring-white dark:ring-gray-800">
-                              <User className="w-6 h-6 text-white" />
+                            <div className="w-12 h-12 bg-gradient-to-br from-[var(--color-primary-500)] to-[var(--color-primary-600)] rounded-full flex items-center justify-center ring-2 ring-[var(--bg-primary)]">
+                              <User className="w-6 h-6 text-[var(--text-inverse)]" />
                             </div>
                           )}
                           <div>
-                            <p className="font-semibold text-gray-900 dark:text-white">{user.name}</p>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">{user.email}</p>
-                            <p className="text-lg font-bold text-green-600 dark:text-green-400">$12,450.00</p>
+                            <p className="font-semibold text-[var(--text-primary)]">{user.name}</p>
+                            <p className="text-sm text-[var(--text-secondary)]">{user.email}</p>
+                            <p className="text-lg font-bold text-[var(--color-primary-600)]">$12,450.00</p>
                           </div>
                         </div>
                       </div>
 
                       {/* Quick Stats */}
-                      <div className="px-6 py-3 border-b border-gray-200 dark:border-gray-700">
+                      <div className="px-6 py-3 border-b border-[var(--border-primary)]">
                         <div className="grid grid-cols-3 gap-4 text-center">
                           <div>
-                            <p className="text-lg font-semibold text-gray-900 dark:text-white">$2,341</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">This Month</p>
+                            <p className="text-lg font-semibold text-[var(--text-primary)]">$2,341</p>
+                            <p className="text-xs text-[var(--text-secondary)]">This Month</p>
                           </div>
                           <div>
-                            <p className="text-lg font-semibold text-gray-900 dark:text-white">47</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Transactions</p>
+                            <p className="text-lg font-semibold text-[var(--text-primary)]">47</p>
+                            <p className="text-xs text-[var(--text-secondary)]">Transactions</p>
                           </div>
                           <div>
-                            <p className="text-lg font-semibold text-gray-900 dark:text-white">3</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Active Cards</p>
+                            <p className="text-lg font-semibold text-[var(--text-primary)]">3</p>
+                            <p className="text-xs text-[var(--text-secondary)]">Active Cards</p>
                           </div>
                         </div>
                       </div>
@@ -200,58 +197,58 @@ export function Navigation() {
                       <div className="py-2">
                         <Link
                           href="/dashboard"
-                          className="flex items-center px-6 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                          className="flex items-center px-6 py-3 text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] transition-colors"
                           onClick={() => setIsUserMenuOpen(false)}
                         >
-                          <TrendingUp className="w-5 h-5 mr-3 text-green-500" />
+                          <TrendingUp className="w-5 h-5 mr-3 text-[var(--color-primary-500)]" />
                           <div>
                             <p className="font-medium">Dashboard</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Overview & Analytics</p>
+                            <p className="text-xs text-[var(--text-secondary)]">Overview & Analytics</p>
                           </div>
                         </Link>
 
                         <Link
                           href="/transactions"
-                          className="flex items-center px-6 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                          className="flex items-center px-6 py-3 text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] transition-colors"
                           onClick={() => setIsUserMenuOpen(false)}
                         >
-                          <History className="w-5 h-5 mr-3 text-green-500" />
+                          <History className="w-5 h-5 mr-3 text-[var(--color-primary-500)]" />
                           <div>
                             <p className="font-medium">Transaction History</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">View all payments</p>
+                            <p className="text-xs text-[var(--text-secondary)]">View all payments</p>
                           </div>
                         </Link>
 
                         <Link
                           href="/cards"
-                          className="flex items-center px-6 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                          className="flex items-center px-6 py-3 text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] transition-colors"
                           onClick={() => setIsUserMenuOpen(false)}
                         >
-                          <Wallet className="w-5 h-5 mr-3 text-purple-500" />
+                          <Wallet className="w-5 h-5 mr-3 text-[var(--color-purple-500)]" />
                           <div>
                             <p className="font-medium">My Cards</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Manage payment methods</p>
+                            <p className="text-xs text-[var(--text-secondary)]">Manage payment methods</p>
                           </div>
                         </Link>
 
                         <Link
                           href="/settings"
-                          className="flex items-center px-6 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                          className="flex items-center px-6 py-3 text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] transition-colors"
                           onClick={() => setIsUserMenuOpen(false)}
                         >
-                          <Settings className="w-5 h-5 mr-3 text-orange-500" />
+                          <Settings className="w-5 h-5 mr-3 text-[var(--color-orange-500)]" />
                           <div>
                             <p className="font-medium">Account Settings</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Privacy & Security</p>
+                            <p className="text-xs text-[var(--text-secondary)]">Privacy & Security</p>
                           </div>
                         </Link>
                       </div>
 
                       {/* Logout Button */}
-                      <div className="border-t border-gray-200 dark:border-gray-700 p-3">
+                      <div className="border-t border-[var(--border-primary)] p-3">
                         <button
                           onClick={handleLogout}
-                          className="flex items-center w-full px-3 py-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+                          className="flex items-center w-full px-3 py-2 text-[var(--color-error)] hover:bg-[var(--bg-tertiary)] rounded-lg transition-colors"
                         >
                           <LogOut className="w-4 h-4 mr-3" />
                           <span className="font-medium">Sign Out</span>
@@ -265,7 +262,7 @@ export function Navigation() {
               <div className="flex items-center space-x-4">
                 <Link
                   href="/auth/login"
-                  className="text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors font-medium"
+                  className="text-[var(--text-primary)] hover:text-[var(--color-primary-600)] transition-colors font-medium"
                 >
                   로그인
                 </Link>
@@ -284,7 +281,7 @@ export function Navigation() {
           {/* Mobile/Tablet Menu Button */}
           <button
             onClick={toggleMenu}
-            className="lg:hidden p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+            className="lg:hidden p-2 text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] rounded-lg transition-colors"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -297,7 +294,7 @@ export function Navigation() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden border-t border-gray-200 dark:border-gray-700"
+              className="lg:hidden border-t border-[var(--border-primary)]"
             >
               <div className="py-4">
                 {/* Main Navigation */}
@@ -307,7 +304,7 @@ export function Navigation() {
                       key={item.id}
                       href={item.href}
                       onClick={() => handleNavClick(item.id)}
-                      className="flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                      className="flex items-center px-4 py-3 text-[var(--text-primary)] hover:text-[var(--color-primary-600)] hover:bg-[var(--bg-tertiary)] transition-colors"
                     >
                       <span className="font-medium">{item.label}</span>
                     </Link>
@@ -316,8 +313,8 @@ export function Navigation() {
 
                 {/* Quick Actions for Mobile */}
                 {state === 'authenticated' && user && (
-                  <div className="border-t border-gray-200 dark:border-gray-700 pt-4 mb-4">
-                    <p className="px-4 text-sm font-semibold text-gray-900 dark:text-white mb-3">Quick Actions</p>
+                  <div className="border-t border-[var(--border-primary)] pt-4 mb-4">
+                    <p className="px-4 text-sm font-semibold text-[var(--text-primary)] mb-3">Quick Actions</p>
                     <div className="grid grid-cols-2 gap-3 px-4">
                       {quickActions.map((action) => {
                         const Icon = action.icon;
@@ -326,10 +323,10 @@ export function Navigation() {
                             key={action.id}
                             href={action.href}
                             onClick={toggleMenu}
-                            className="flex flex-col items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                            className="flex flex-col items-center p-4 bg-[var(--bg-tertiary)] rounded-lg hover:bg-[var(--bg-secondary)] transition-colors"
                           >
-                            <Icon className="w-6 h-6 text-gray-600 dark:text-gray-400 mb-2" />
-                            <span className="text-sm font-medium text-gray-900 dark:text-white">{action.label}</span>
+                            <Icon className="w-6 h-6 text-[var(--text-secondary)] mb-2" />
+                            <span className="text-sm font-medium text-[var(--text-primary)]">{action.label}</span>
                           </Link>
                         );
                       })}
@@ -339,40 +336,40 @@ export function Navigation() {
                 
                 {/* Mobile Authentication Menu */}
                 {state === 'authenticated' && user ? (
-                  <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
+                  <div className="border-t border-[var(--border-primary)] pt-4">
                     {/* User Info */}
-                    <div className="flex items-center px-4 py-3 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 mx-4 rounded-lg mb-4">
+                    <div className="flex items-center px-4 py-3 bg-gradient-to-r from-[var(--color-primary-50)] to-[var(--bg-accent)] mx-4 rounded-lg mb-4">
                       {user.avatar ? (
                         <img 
                           src={user.avatar} 
                           alt={user.name}
-                          className="w-10 h-10 rounded-full mr-3 ring-2 ring-green-200 dark:ring-green-800"
+                          className="w-10 h-10 rounded-full mr-3 ring-2 ring-[var(--color-primary-200)]"
                         />
                       ) : (
-                        <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mr-3 ring-2 ring-green-200 dark:ring-green-800">
-                          <User className="w-5 h-5 text-white" />
+                        <div className="w-10 h-10 bg-gradient-to-br from-[var(--color-primary-500)] to-[var(--color-primary-600)] rounded-full flex items-center justify-center mr-3 ring-2 ring-[var(--color-primary-200)]">
+                          <User className="w-5 h-5 text-[var(--text-inverse)]" />
                         </div>
                       )}
                       <div className="flex-1">
-                        <p className="font-semibold text-gray-900 dark:text-white">{user.name}</p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">{user.email}</p>
-                        <p className="text-lg font-bold text-green-600 dark:text-green-400">$12,450.00</p>
+                        <p className="font-semibold text-[var(--text-primary)]">{user.name}</p>
+                        <p className="text-sm text-[var(--text-secondary)]">{user.email}</p>
+                        <p className="text-lg font-bold text-[var(--color-primary-600)]">$12,450.00</p>
                       </div>
                     </div>
 
                     {/* Quick Stats */}
                     <div className="grid grid-cols-3 gap-4 px-4 mb-4">
-                      <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                        <p className="text-lg font-semibold text-gray-900 dark:text-white">$2,341</p>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">This Month</p>
+                      <div className="text-center p-3 bg-[var(--bg-tertiary)] rounded-lg">
+                        <p className="text-lg font-semibold text-[var(--text-primary)]">$2,341</p>
+                        <p className="text-xs text-[var(--text-secondary)]">This Month</p>
                       </div>
-                      <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                        <p className="text-lg font-semibold text-gray-900 dark:text-white">47</p>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">Transactions</p>
+                      <div className="text-center p-3 bg-[var(--bg-tertiary)] rounded-lg">
+                        <p className="text-lg font-semibold text-[var(--text-primary)]">47</p>
+                        <p className="text-xs text-[var(--text-secondary)]">Transactions</p>
                       </div>
-                      <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                        <p className="text-lg font-semibold text-gray-900 dark:text-white">3</p>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">Active Cards</p>
+                      <div className="text-center p-3 bg-[var(--bg-tertiary)] rounded-lg">
+                        <p className="text-lg font-semibold text-[var(--text-primary)]">3</p>
+                        <p className="text-xs text-[var(--text-secondary)]">Active Cards</p>
                       </div>
                     </div>
 
@@ -380,13 +377,13 @@ export function Navigation() {
                     <div className="space-y-1">
                       <Link
                         href="/settings"
-                        className="flex items-center px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                        className="flex items-center px-4 py-3 text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] transition-colors"
                         onClick={toggleMenu}
                       >
-                        <Settings className="w-5 h-5 mr-3 text-orange-500" />
+                        <Settings className="w-5 h-5 mr-3 text-[var(--color-orange-500)]" />
                         <div>
                           <p className="font-medium">Account Settings</p>
-                          <p className="text-xs text-gray-500 dark:text-gray-400">Privacy & Security</p>
+                          <p className="text-xs text-[var(--text-secondary)]">Privacy & Security</p>
                         </div>
                       </Link>
                       
@@ -395,7 +392,7 @@ export function Navigation() {
                           handleLogout();
                           toggleMenu();
                         }}
-                        className="flex items-center w-full px-4 py-3 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                        className="flex items-center w-full px-4 py-3 text-[var(--color-error)] hover:bg-[var(--bg-tertiary)] transition-colors"
                       >
                         <LogOut className="w-5 h-5 mr-3" />
                         <span className="font-medium">Sign Out</span>
@@ -403,7 +400,7 @@ export function Navigation() {
                     </div>
                   </div>
                 ) : (
-                  <div className="border-t border-gray-200 dark:border-gray-700 pt-4 space-y-3">
+                  <div className="border-t border-[var(--border-primary)] pt-4 space-y-3">
                     <div className="mx-4">
                       <Button
                         variant="outline"

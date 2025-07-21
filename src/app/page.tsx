@@ -80,11 +80,11 @@ export default function LandingPage() {
   }, [mockupImages.length]);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
+    <div className="min-h-screen bg-[var(--bg-primary)]">
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative pt-24 pb-20 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 dark:from-gray-900 dark:via-green-900/20 dark:to-teal-900/20">
+      <section className="relative pt-24 pb-20 bg-gradient-to-br from-[var(--color-primary-50)] via-[var(--color-primary-100)] to-[var(--color-primary-100)] dark:from-[var(--bg-primary)] dark:via-[var(--color-primary-900)]/20 dark:to-[var(--color-primary-800)]/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <motion.div
@@ -92,15 +92,15 @@ export default function LandingPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
-                <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+              <h1 className="text-5xl md:text-7xl font-bold text-[var(--text-primary)] mb-6">
+                <span className="bg-gradient-to-r from-[var(--color-primary-600)] to-[var(--color-primary-500)] bg-clip-text text-transparent">
                   SafePay
                 </span>
               </h1>
-              <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-4">
+              <p className="text-xl md:text-2xl text-[var(--text-secondary)] mb-4">
                 새로운 차원의 디지털 결제 플랫폼
               </p>
-              <p className="text-lg text-gray-500 dark:text-gray-400 mb-12 max-w-3xl mx-auto">
+              <p className="text-lg text-[var(--text-tertiary)] mb-12 max-w-3xl mx-auto">
                 안전하고 빠른 송금, 스마트한 카드 관리, 혁신적인 결제 경험을 제공하는 차세대 핀테크 솔루션입니다.
               </p>
             </motion.div>
@@ -159,7 +159,7 @@ export default function LandingPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.4 }}
-              className="mt-8 text-sm text-gray-500 dark:text-gray-400"
+              className="mt-8 text-sm text-[var(--text-tertiary)]"
             >
               💡 데모 계정: user@example.com / password123
             </motion.div>
@@ -178,7 +178,7 @@ export default function LandingPage() {
               repeat: Infinity, 
               ease: "easeInOut" 
             }}
-            className="absolute top-20 left-10 w-16 h-16 bg-green-200 dark:bg-green-800 rounded-full opacity-60"
+            className="absolute top-20 left-10 w-16 h-16 bg-[var(--color-primary-200)] dark:bg-[var(--color-primary-800)] rounded-full opacity-60"
           />
           <motion.div
             animate={{ 
@@ -204,13 +204,13 @@ export default function LandingPage() {
               ease: "easeInOut",
               delay: 2 
             }}
-            className="absolute bottom-20 left-1/4 w-8 h-8 bg-indigo-200 dark:bg-indigo-800 rounded-full opacity-50"
+            className="absolute bottom-20 left-1/4 w-8 h-8 bg-[var(--color-info)]/30 dark:bg-[var(--color-info)]/50 rounded-full opacity-50"
           />
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+      <section className="py-16 bg-[var(--bg-primary)] border-b border-[var(--border-primary)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
@@ -225,13 +225,13 @@ export default function LandingPage() {
                   transition: { duration: 0.2 }
                 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg"
+                className="text-center bg-[var(--bg-elevated)] p-6 rounded-xl shadow-lg"
                 style={{ transformStyle: 'preserve-3d' }}
               >
-                <div className="text-3xl md:text-4xl font-bold text-green-600 dark:text-green-400 mb-2">
+                <div className="text-3xl md:text-4xl font-bold text-[var(--color-success)] mb-2">
                   {stat.value}
                 </div>
-                <div className="text-gray-600 dark:text-gray-400 font-medium">
+                <div className="text-[var(--text-secondary)] font-medium">
                   {stat.label}
                 </div>
               </motion.div>
@@ -241,7 +241,7 @@ export default function LandingPage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
+      <section className="py-20 bg-[var(--bg-secondary)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -249,10 +249,10 @@ export default function LandingPage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-6">
               강력한 기능들
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-[var(--text-secondary)] max-w-3xl mx-auto">
               SafePay가 제공하는 혁신적인 결제 솔루션을 경험해보세요
             </p>
           </motion.div>
@@ -276,8 +276,8 @@ export default function LandingPage() {
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     className={`p-6 rounded-xl cursor-pointer transition-all ${
                       currentFeature === index
-                        ? 'bg-green-50 dark:bg-green-900/20 border-2 border-green-200 dark:border-green-700'
-                        : 'bg-white dark:bg-gray-700 border-2 border-transparent hover:border-gray-200 dark:hover:border-gray-600'
+                        ? 'bg-[var(--color-primary-50)] dark:bg-[var(--color-primary-900)]/20 border-2 border-[var(--color-primary-200)] dark:border-[var(--color-primary-700)]'
+                        : 'bg-[var(--bg-elevated)] border-2 border-transparent hover:border-[var(--border-primary)]'
                     }`}
                     onClick={() => setCurrentFeature(index)}
                     style={{ transformStyle: 'preserve-3d' }}
@@ -285,20 +285,20 @@ export default function LandingPage() {
                     <div className="flex items-start space-x-4">
                       <div className={`p-3 rounded-lg ${
                         currentFeature === index
-                          ? 'bg-green-100 dark:bg-green-800'
-                          : 'bg-gray-100 dark:bg-gray-600'
+                          ? 'bg-[var(--color-primary-100)] dark:bg-[var(--color-primary-800)]'
+                          : 'bg-[var(--bg-tertiary)]'
                       }`}>
                         <Icon className={`w-6 h-6 ${
                           currentFeature === index
-                            ? 'text-green-600 dark:text-green-400'
-                            : 'text-gray-600 dark:text-gray-300'
+                            ? 'text-[var(--color-primary-600)] dark:text-[var(--color-primary-400)]'
+                            : 'text-[var(--text-secondary)]'
                         }`} />
                       </div>
                       <div>
-                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                        <h3 className="text-xl font-semibold text-[var(--text-primary)] mb-2">
                           {feature.title}
                         </h3>
-                        <p className="text-gray-600 dark:text-gray-300">
+                        <p className="text-[var(--text-secondary)]">
                           {feature.description}
                         </p>
                       </div>
@@ -323,7 +323,7 @@ export default function LandingPage() {
               className="relative"
               style={{ transformStyle: 'preserve-3d' }}
             >
-              <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl p-8 text-white shadow-xl">
+              <div className="bg-gradient-to-br from-[var(--color-primary-500)] to-[var(--color-primary-600)] rounded-2xl p-8 text-[var(--text-inverse)] shadow-xl">
                 <div className="mb-6">
                   {(() => {
                     const Icon = features[currentFeature].icon;
@@ -332,7 +332,7 @@ export default function LandingPage() {
                   <h3 className="text-2xl font-bold mb-2">
                     {features[currentFeature].title}
                   </h3>
-                  <p className="text-green-100">
+                  <p className="text-[var(--color-primary-100)]">
                     {features[currentFeature].description}
                   </p>
                 </div>
@@ -358,7 +358,7 @@ export default function LandingPage() {
       </section>
 
       {/* Payment Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
+      <section className="py-20 bg-[var(--bg-primary)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Content */}
@@ -369,15 +369,15 @@ export default function LandingPage() {
               className="text-center lg:text-left"
             >
               <div className="mb-8">
-                <span className="text-2xl md:text-3xl font-bold text-green-600 dark:text-green-400 block mb-4">
+                <span className="text-2xl md:text-3xl font-bold text-[var(--color-primary-600)] dark:text-[var(--color-primary-400)] block mb-4">
                   결제
                 </span>
-                <p className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+                <p className="text-4xl md:text-5xl font-bold text-[var(--text-primary)]">
                   결제는 간편하고<br />
                   빠르게!
                 </p>
               </div>
-              <strong className="text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed block">
+              <strong className="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed block">
                 안전하고 빠른 송금,<br /> 
                 스마트한 카드 관리,<br />
                 혁신적인 결제 경험을 제공하는<br />
@@ -394,8 +394,8 @@ export default function LandingPage() {
             >
               <div className="relative">
                 {/* Phone Frame */}
-                <div className="relative w-72 h-[600px] bg-gray-900 rounded-[3rem] p-3 shadow-2xl">
-                  <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
+                <div className="relative w-72 h-[600px] bg-[var(--text-primary)] rounded-[3rem] p-3 shadow-2xl">
+                  <div className="w-full h-full bg-[var(--bg-primary)] rounded-[2.5rem] overflow-hidden relative">
                     {/* Screen Content - Auto Swiper */}
                     <div className="relative w-full h-full">
                       {mockupImages.map((image, index) => (
@@ -412,7 +412,7 @@ export default function LandingPage() {
                           <img
                             src={image.src}
                             alt={image.alt}
-                            className="w-full h-full object-cover rounded-[2rem] bg-gray-200 dark:bg-gray-700"
+                            className="w-full h-full object-cover rounded-[2rem] bg-[var(--bg-secondary)]"
                             onLoad={(e) => {
                               e.currentTarget.classList.add('opacity-100');
                             }}
@@ -431,8 +431,8 @@ export default function LandingPage() {
                           key={index}
                           className={`w-2 h-2 rounded-full transition-all duration-300 ${
                             currentMockup === index
-                              ? 'bg-green-500 w-6'
-                              : 'bg-gray-300'
+                              ? 'bg-[var(--color-success)] w-6'
+                              : 'bg-[var(--text-tertiary)]'
                           }`}
                         />
                       ))}
@@ -440,8 +440,8 @@ export default function LandingPage() {
                   </div>
                   
                   {/* Phone Details */}
-                  <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gray-700 rounded-full"></div>
-                  <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gray-700 rounded-full"></div>
+                  <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-[var(--text-tertiary)] rounded-full"></div>
+                  <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-[var(--text-tertiary)] rounded-full"></div>
                 </div>
 
                 {/* Floating Elements */}
@@ -455,9 +455,9 @@ export default function LandingPage() {
                     repeat: Infinity, 
                     ease: "easeInOut" 
                   }}
-                  className="absolute -top-4 -right-4 w-20 h-20 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center shadow-lg"
+                  className="absolute -top-4 -right-4 w-20 h-20 bg-[var(--color-primary-100)] dark:bg-[var(--color-primary-900)] rounded-full flex items-center justify-center shadow-lg"
                 >
-                  <CreditCard className="w-10 h-10 text-green-600 dark:text-green-400" />
+                  <CreditCard className="w-10 h-10 text-[var(--color-primary-600)] dark:text-[var(--color-primary-400)]" />
                 </motion.div>
                 
                 <motion.div
@@ -471,9 +471,9 @@ export default function LandingPage() {
                     ease: "easeInOut",
                     delay: 1
                   }}
-                  className="absolute -bottom-4 -left-4 w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center shadow-lg"
+                  className="absolute -bottom-4 -left-4 w-16 h-16 bg-[var(--color-info)]/20 dark:bg-[var(--color-info)]/30 rounded-full flex items-center justify-center shadow-lg"
                 >
-                  <Send className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+                  <Send className="w-8 h-8 text-[var(--color-info)]" />
                 </motion.div>
               </div>
             </motion.div>
@@ -483,17 +483,17 @@ export default function LandingPage() {
 
       
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-green-600 to-emerald-600">
+      <section className="py-20 bg-gradient-to-r from-[var(--color-primary-600)] to-[var(--color-primary-500)]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-[var(--text-inverse)] mb-6">
               지금 시작해보세요
             </h2>
-            <p className="text-xl text-green-100 mb-12 max-w-2xl mx-auto">
+            <p className="text-xl text-[var(--color-primary-100)] mb-12 max-w-2xl mx-auto">
               SafePay와 함께 더 스마트하고 안전한 결제 경험을 시작하세요
             </p>
             
@@ -513,7 +513,7 @@ export default function LandingPage() {
                   variant="secondary"
                   size="lg"
                   fullWidth={true}
-                  className="sm:w-auto bg-white text-green-600 hover:bg-gray-50 shadow-lg"
+                  className="sm:w-auto bg-[var(--text-inverse)] text-[var(--color-primary-600)] hover:bg-[var(--bg-secondary)] shadow-lg"
                 >
                   무료로 시작하기
                   <ArrowRight className="w-5 h-5 ml-2" />
@@ -533,7 +533,7 @@ export default function LandingPage() {
                   href="https://github.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center shadow-lg"
+                  className="w-full sm:w-auto border-2 border-[var(--text-inverse)] text-[var(--text-inverse)] hover:bg-white/10 px-8 py-4 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center shadow-lg"
                 >
                   <Github className="w-5 h-5 mr-2" />
                   GitHub 보기
@@ -545,22 +545,22 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
+      <footer className="bg-[var(--text-primary)] text-[var(--text-inverse)] py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h3 className="text-2xl font-bold mb-4">SafePay</h3>
-            <p className="text-gray-400 mb-6">
+            <p className="text-[var(--text-tertiary)] mb-6">
               차세대 디지털 결제 플랫폼
             </p>
             <div className="flex justify-center space-x-6">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a href="#" className="text-[var(--text-tertiary)] hover:text-[var(--text-inverse)] transition-colors">
                 <Github className="w-6 h-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <a href="#" className="text-[var(--text-tertiary)] hover:text-[var(--text-inverse)] transition-colors">
                 <ExternalLink className="w-6 h-6" />
               </a>
             </div>
-            <div className="mt-8 pt-8 border-t border-gray-800 text-gray-400 text-sm">
+            <div className="mt-8 pt-8 border-t border-[var(--border-primary)] text-[var(--text-tertiary)] text-sm">
               © 2025 SafePay. 포트폴리오 프로젝트입니다.
             </div>
           </div>

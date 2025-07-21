@@ -31,6 +31,19 @@
   --color-error: #ef4444;
   --color-info: #22c55e;
 
+  /* Additional Colors */
+  --color-blue-50: #eff6ff;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-blue-900: #1e3a8a;
+  
+  --color-purple-500: #8b5cf6;
+  
+  --color-orange-500: #f97316;
+  
+  /* Notification Colors */
+  --color-notification: #ef4444;
+
   /* Background Colors */
   --bg-primary: #ffffff;
   --bg-secondary: #f9fafb;
