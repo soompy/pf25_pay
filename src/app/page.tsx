@@ -15,44 +15,46 @@ import {
 } from 'lucide-react';
 import { Navigation } from '@/components/navigation';
 import { Button } from '@/components/ui/atoms/Button';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function LandingPage() {
   const router = useRouter();
+  const { t } = useTranslation('homepage');
   const [currentFeature, setCurrentFeature] = useState(0);
   const [currentMockup, setCurrentMockup] = useState(0);
 
   const features = [
     {
       icon: Send,
-      title: '즉시 송금',
-      description: '친구, 가족, 동료에게 안전하고 빠르게 돈을 보내세요',
+      title: t('features.items.fast'),
+      description: t('features.items.secure'),
       image: '/api/placeholder/400/300',
     },
     {
       icon: CreditCard,
-      title: '스마트 카드 관리',
-      description: '모든 카드를 한 곳에서 관리하고 실시간으로 잔액을 확인하세요',
+      title: t('features.items.smart'),
+      description: t('features.items.easy'),
       image: '/api/placeholder/400/300',
     },
     {
       icon: Users,
-      title: '결제 요청',
-      description: 'QR 코드나 링크로 간편하게 결제를 요청하세요',
+      title: t('features.items.fast'),
+      description: t('features.items.secure'),
       image: '/api/placeholder/400/300',
     },
     {
       icon: TrendingUp,
-      title: '거래 분석',
-      description: '상세한 거래 내역과 분석으로 지출을 관리하세요',
+      title: t('features.items.smart'),
+      description: t('features.items.easy'),
       image: '/api/placeholder/400/300',
     },
   ];
 
   const stats = [
-    { label: '활성 사용자', value: '10M+' },
-    { label: '월 거래량', value: '$2.5B' },
-    { label: '보안 등급', value: 'A+' },
-    { label: '처리 속도', value: '< 3초' },
+    { label: t('stats.activeUsers'), value: '10M+' },
+    { label: t('stats.monthlyVolume'), value: '$2.5B' },
+    { label: t('stats.securityRating'), value: 'A+' },
+    { label: t('stats.processingSpeed'), value: '< 3초' },
   ];
 
   const mockupImages = [
@@ -98,10 +100,10 @@ export default function LandingPage() {
                 </span>
               </h1>
               <p className="text-xl md:text-2xl text-[var(--text-secondary)] mb-4">
-                새로운 차원의 디지털 결제 플랫폼
+                {t('hero.subtitle')}
               </p>
               <p className="text-lg text-[var(--text-tertiary)] mb-12 max-w-3xl mx-auto">
-                안전하고 빠른 송금, 스마트한 카드 관리, 혁신적인 결제 경험을 제공하는 차세대 핀테크 솔루션입니다.
+                {t('hero.description')}
               </p>
             </motion.div>
 
@@ -128,7 +130,7 @@ export default function LandingPage() {
                   fullWidth={true}
                   className="sm:w-auto shadow-lg"
                 >
-                  앱 체험하기
+                  {t('hero.tryApp')}
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </motion.div>
@@ -143,14 +145,14 @@ export default function LandingPage() {
                 style={{ transformStyle: 'preserve-3d' }}
               >
                 <Button
-                  onClick={() => router.push('/demo')}
+                  onClick={() => router.push('/auth/register')}
                   variant="outline"
                   size="lg"
                   fullWidth={true}
                   className="sm:w-auto shadow-lg"
                 >
                   <Play className="w-5 h-5 mr-2" />
-                  데모 보기
+                  {t('hero.viewDemo')}
                 </Button>
               </motion.div>
             </motion.div>
@@ -161,7 +163,7 @@ export default function LandingPage() {
               transition={{ duration: 1, delay: 0.4 }}
               className="mt-8 text-sm text-[var(--text-tertiary)]"
             >
-              💡 데모 계정: user@example.com / password123
+              {t('hero.demoAccount')}
             </motion.div>
           </div>
         </div>
@@ -250,10 +252,10 @@ export default function LandingPage() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-6">
-              강력한 기능들
+              {t('features.title')}
             </h2>
             <p className="text-xl text-[var(--text-secondary)] max-w-3xl mx-auto">
-              SafePay가 제공하는 혁신적인 결제 솔루션을 경험해보세요
+              {t('features.description')}
             </p>
           </motion.div>
 
@@ -370,18 +372,24 @@ export default function LandingPage() {
             >
               <div className="mb-8">
                 <span className="text-2xl md:text-3xl font-bold text-[var(--color-primary-600)] dark:text-[var(--color-primary-400)] block mb-4">
-                  결제
+                  {t('payment.title')}
                 </span>
                 <p className="text-4xl md:text-5xl font-bold text-[var(--text-primary)]">
-                  결제는 간편하고<br />
-                  빠르게!
+                  {t('payment.heading').split('\n').map((line, index) => (
+                    <span key={index}>
+                      {line}
+                      {index === 0 && <br />}
+                    </span>
+                  ))}
                 </p>
               </div>
               <strong className="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed block">
-                안전하고 빠른 송금,<br /> 
-                스마트한 카드 관리,<br />
-                혁신적인 결제 경험을 제공하는<br />
-                차세대 핀테크 솔루션
+                {t('payment.description').split('\n').map((line, index) => (
+                  <span key={index}>
+                    {line}
+                    {index < 3 && <br />}
+                  </span>
+                ))}
               </strong>
             </motion.div>
 
@@ -491,10 +499,10 @@ export default function LandingPage() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-[var(--text-inverse)] mb-6">
-              지금 시작해보세요
+              {t('cta.title')}
             </h2>
             <p className="text-xl text-[var(--color-primary-100)] mb-12 max-w-2xl mx-auto">
-              SafePay와 함께 더 스마트하고 안전한 결제 경험을 시작하세요
+              {t('cta.description')}
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
@@ -515,7 +523,7 @@ export default function LandingPage() {
                   fullWidth={true}
                   className="sm:w-auto bg-[var(--text-inverse)] text-[var(--color-primary-600)] hover:bg-[var(--bg-secondary)] shadow-lg"
                 >
-                  무료로 시작하기
+                  {t('cta.startFree')}
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </motion.div>
@@ -536,7 +544,7 @@ export default function LandingPage() {
                   className="w-full sm:w-auto border-2 border-[var(--text-inverse)] text-[var(--text-inverse)] hover:bg-white/10 px-8 py-4 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center shadow-lg"
                 >
                   <Github className="w-5 h-5 mr-2" />
-                  GitHub 보기
+                  {t('cta.viewGithub')}
                 </a>
               </motion.div>
             </div>
@@ -550,7 +558,7 @@ export default function LandingPage() {
           <div className="text-center">
             <h3 className="text-2xl font-bold mb-4">SafePay</h3>
             <p className="text-[var(--text-tertiary)] mb-6">
-              차세대 디지털 결제 플랫폼
+              {t('footer.tagline')}
             </p>
             <div className="flex justify-center space-x-6">
               <a href="#" className="text-[var(--text-tertiary)] hover:text-[var(--text-inverse)] transition-colors">
@@ -561,7 +569,7 @@ export default function LandingPage() {
               </a>
             </div>
             <div className="mt-8 pt-8 border-t border-[var(--border-primary)] text-[var(--text-tertiary)] text-sm">
-              © 2025 SafePay. 포트폴리오 프로젝트입니다.
+              {t('footer.copyright')}
             </div>
           </div>
         </div>
