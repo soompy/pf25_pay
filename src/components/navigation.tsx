@@ -23,31 +23,37 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { usePortfolioStore } from '@/store/portfolio';
 import { useAuthStore } from '@/store/auth';
 import { Button } from '@/components/ui/atoms/Button';
+import { ThemeSwitcher } from '@/components/ui/molecules/ThemeSwitcher';
+import { LanguageSwitcher } from '@/components/ui/molecules/LanguageSwitcher';
+import { useNavTranslation, useCommonTranslation } from '@/hooks/useTranslation';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export function Navigation() {
   const { isMenuOpen, toggleMenu, setCurrentSection } = usePortfolioStore();
   const { user, logout, state } = useAuthStore();
+  const { nav, language: langTranslations } = useNavTranslation();
+  const { language, setLanguage } = useLanguage();
+  const { translations } = useCommonTranslation();
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const router = useRouter();
 
   const navItems = [
-    { id: 'home', label: 'Home', href: '/' },
-    { id: 'demo', label: 'Demo', href: '/demo' },
+    { id: 'home', label: nav.home, href: '/' },
   ];
 
   // Quick action items for authenticated users
   const quickActions = [
-    { id: 'send', label: 'Send Money', href: '/send', icon: Send, color: 'blue' },
-    { id: 'request', label: 'Request', href: '/request', icon: DollarSign, color: 'green' },
-    { id: 'scan', label: 'QR Scan', href: '/scan', icon: QrCode, color: 'purple' },
-    { id: 'cards', label: 'My Cards', href: '/cards', icon: CreditCard, color: 'orange' },
+    { id: 'send', label: nav.send, href: '/send', icon: Send, color: 'blue' },
+    { id: 'request', label: nav.request, href: '/request', icon: DollarSign, color: 'green' },
+    { id: 'scan', label: nav.scan, href: '/scan', icon: QrCode, color: 'purple' },
+    { id: 'cards', label: nav.cards, href: '/cards', icon: CreditCard, color: 'orange' },
   ];
 
   // Add authenticated user menu items
   const authNavItems = user ? [
     ...navItems,
-    { id: 'dashboard', label: 'Dashboard', href: '/dashboard' },
-    { id: 'transactions', label: 'Transactions', href: '/transactions' },
+    { id: 'dashboard', label: nav.dashboard, href: '/dashboard' },
+    { id: 'transactions', label: nav.transactions, href: '/transactions' },
   ] : navItems;
 
   const handleNavClick = (sectionId: string) => {
@@ -106,6 +112,38 @@ export function Navigation() {
                 })}
               </div>
             )}
+            
+            {/* Language Switcher - Nav style */}
+            <div className="flex items-center space-x-1">
+              <button
+                onClick={() => setLanguage('ko')}
+                className={`
+                  px-2 py-1 rounded-md text-sm font-medium transition-all duration-200
+                  ${language === 'ko' 
+                    ? 'bg-[var(--color-primary-100)] text-[var(--color-primary-700)] border border-[var(--color-primary-300)]'
+                    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)]'
+                  }
+                `}
+              >
+                {translations.language.korean}
+              </button>
+              <span className="text-[var(--text-tertiary)]">|</span>
+              <button
+                onClick={() => setLanguage('en')}
+                className={`
+                  px-2 py-1 rounded-md text-sm font-medium transition-all duration-200
+                  ${language === 'en' 
+                    ? 'bg-[var(--color-primary-100)] text-[var(--color-primary-700)] border border-[var(--color-primary-300)]'
+                    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)]'
+                  }
+                `}
+              >
+                EN
+              </button>
+            </div>
+            
+            {/* Theme Switcher */}
+            <ThemeSwitcher variant="dropdown" size="sm" />
             
             {/* Notifications Bell - Only for authenticated users */}
             {state === 'authenticated' && user && (
@@ -264,7 +302,7 @@ export function Navigation() {
                   href="/auth/login"
                   className="text-[var(--text-primary)] hover:text-[var(--color-primary-600)] transition-colors font-medium"
                 >
-                  로그인
+                  {translations.auth.login}
                 </Link>
                 <Button
                   variant="success"
@@ -272,7 +310,7 @@ export function Navigation() {
                   className="shadow-lg"
                   onClick={() => router.push('/auth/register')}
                 >
-                  회원가입
+                  {translations.auth.signup}
                 </Button>
               </div>
             )}
@@ -333,6 +371,46 @@ export function Navigation() {
                     </div>
                   </div>
                 )}
+                
+                {/* Language & Theme Switcher for Mobile */}
+                <div className="border-t border-[var(--border-primary)] pt-4 mb-4">
+                  <div className="px-4">
+                    <p className="text-sm font-semibold text-[var(--text-primary)] mb-3">Language & Theme</p>
+                    
+                    {/* Language Switcher - Nav style for mobile */}
+                    <div className="flex items-center space-x-2 mb-3">
+                      <button
+                        onClick={() => setLanguage('ko')}
+                        className={`
+                          flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all duration-200 text-center
+                          ${language === 'ko' 
+                            ? 'bg-[var(--color-primary-100)] text-[var(--color-primary-700)] border border-[var(--color-primary-300)]'
+                            : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] border border-[var(--border-primary)]'
+                          }
+                        `}
+                      >
+                        {translations.language.korean}
+                      </button>
+                      <button
+                        onClick={() => setLanguage('en')}
+                        className={`
+                          flex-1 py-2 px-3 rounded-md text-sm font-medium transition-all duration-200 text-center
+                          ${language === 'en' 
+                            ? 'bg-[var(--color-primary-100)] text-[var(--color-primary-700)] border border-[var(--color-primary-300)]'
+                            : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] border border-[var(--border-primary)]'
+                          }
+                        `}
+                      >
+                        EN
+                      </button>
+                    </div>
+                    
+                    {/* Theme Switcher */}
+                    <div className="flex justify-center">
+                      <ThemeSwitcher variant="dropdown" size="md" />
+                    </div>
+                  </div>
+                </div>
                 
                 {/* Mobile Authentication Menu */}
                 {state === 'authenticated' && user ? (
@@ -411,7 +489,7 @@ export function Navigation() {
                           toggleMenu();
                         }}
                       >
-                        로그인
+                        {translations.auth.login}
                       </Button>
                     </div>
                     <div className="mx-4">
@@ -425,7 +503,7 @@ export function Navigation() {
                           toggleMenu();
                         }}
                       >
-                        회원가입
+                        {translations.auth.signup}
                       </Button>
                     </div>
                   </div>
