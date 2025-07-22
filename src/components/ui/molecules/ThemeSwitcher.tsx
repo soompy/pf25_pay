@@ -6,11 +6,8 @@ import {
   Palette, 
   Sun, 
   Moon, 
-  Monitor, 
   Check,
-  Settings,
-  Eye,
-  Droplets
+  Settings
 } from 'lucide-react';
 import { useTheme, type Theme } from '@/contexts/ThemeContext';
 import { Button } from '../atoms/Button';
@@ -35,27 +32,6 @@ const themes = [
     icon: Moon, 
     preview: 'bg-gray-900 border-gray-700',
     description: '어둡고 편안한 테마'
-  },
-  { 
-    id: 'blue' as Theme, 
-    name: '블루', 
-    icon: Droplets, 
-    preview: 'bg-blue-50 border-blue-200',
-    description: '시원한 블루 테마'
-  },
-  { 
-    id: 'emerald' as Theme, 
-    name: '에메랄드', 
-    icon: Eye, 
-    preview: 'bg-emerald-50 border-emerald-200',
-    description: '자연스러운 에메랄드 테마'
-  },
-  { 
-    id: 'purple' as Theme, 
-    name: '퍼플', 
-    icon: Monitor, 
-    preview: 'bg-purple-50 border-purple-200',
-    description: '고급스러운 퍼플 테마'
   },
 ];
 
@@ -153,6 +129,23 @@ export function ThemeSwitcher({
           );
         })}
       </div>
+    );
+  }
+
+  // 간단한 토글 버튼으로 변경
+  if (variant === 'dropdown') {
+    return (
+      <button
+        onClick={() => handleThemeChange(theme === 'light' ? 'dark' : 'light')}
+        className="p-2 rounded-lg hover:bg-[var(--bg-tertiary)] transition-colors text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+        title={theme === 'light' ? '다크 모드로 전환' : '라이트 모드로 전환'}
+      >
+        {theme === 'light' ? (
+          <Moon className="w-5 h-5" />
+        ) : (
+          <Sun className="w-5 h-5" />
+        )}
+      </button>
     );
   }
 
