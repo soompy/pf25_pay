@@ -27,6 +27,7 @@ import { useAuthStore } from '@/store/auth';
 import { useTranslation } from '@/hooks/useTranslation';
 import { ThemeSwitcher } from '@/components/ui/molecules/ThemeSwitcher';
 import { LanguageSwitcher } from '@/components/ui/molecules/LanguageSwitcher';
+import { FloatingActionButton } from '@/components/ui/molecules/FloatingActionButton';
 
 interface SidebarProps {
   children: React.ReactNode;
@@ -329,6 +330,9 @@ export function DashboardSidebar({ children }: SidebarProps) {
       `}>
         {children}
       </main>
+
+      {/* Floating Action Button */}
+      <FloatingActionButton />
     </div>
   );
 }

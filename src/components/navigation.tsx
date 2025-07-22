@@ -37,9 +37,7 @@ export function Navigation() {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const router = useRouter();
 
-  const navItems = [
-    { id: 'home', label: nav.home, href: '/' },
-  ];
+  const navItems: Array<{ id: string; label: string; href: string }> = [];
 
   // Quick action items for authenticated users
   const quickActions = [
@@ -94,24 +92,6 @@ export function Navigation() {
               </Link>
             ))}
 
-            {/* Quick Actions - Only for authenticated users */}
-            {state === 'authenticated' && user && (
-              <div className="flex items-center space-x-2 pl-4 border-l border-[var(--border-primary)]">
-                {quickActions.map((action) => {
-                  const Icon = action.icon;
-                  return (
-                    <Link
-                      key={action.id}
-                      href={action.href}
-                      className="p-2 rounded-lg transition-colors hover:bg-[var(--bg-tertiary)] group"
-                      title={action.label}
-                    >
-                      <Icon className="w-5 h-5 text-[var(--text-secondary)] group-hover:text-[var(--color-primary-600)] transition-colors" />
-                    </Link>
-                  );
-                })}
-              </div>
-            )}
             
             {/* Language Switcher - Nav style */}
             <div className="flex items-center space-x-1">
