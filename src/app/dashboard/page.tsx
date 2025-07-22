@@ -17,9 +17,11 @@ import {
   QrCode
 } from 'lucide-react';
 import { useAuthStore } from '@/store/auth';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function DashboardPage() {
   const { user, state } = useAuthStore();
+  const { t } = useTranslation('dashboard');
   const router = useRouter();
 
   useEffect(() => {
@@ -53,7 +55,7 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-16">
+    <div className="min-h-screen bg-[var(--bg-primary)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Welcome Header */}
         <motion.div
@@ -61,11 +63,11 @@ export default function DashboardPage() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-            Welcome back, {user.name}!
+          <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">
+            {t('welcomeBack')}, {user.name}!
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">
-            Here's your financial overview for today
+          <p className="text-[var(--text-secondary)]">
+            {t('welcome')}
           </p>
         </motion.div>
 

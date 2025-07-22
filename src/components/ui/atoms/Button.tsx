@@ -47,10 +47,11 @@ export interface ButtonProps
   rightIcon?: React.ReactNode;
   customStyle?: React.CSSProperties;
   theme?: 'default' | 'custom';
-  ref?: React.Ref<HTMLButtonElement>;
+  'aria-label'?: string;
+  'aria-describedby'?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ 
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ 
   className, 
   variant, 
   size, 
@@ -63,9 +64,10 @@ const Button: React.FC<ButtonProps> = ({
   customStyle,
   theme = 'default',
   style,
-  ref,
+  'aria-label': ariaLabel,
+  'aria-describedby': ariaDescribedBy,
   ...props 
-}) => {
+}, ref) => {
     const combinedStyle = theme === 'custom' 
       ? { ...customStyle, ...style }
       : style;
@@ -80,6 +82,10 @@ const Button: React.FC<ButtonProps> = ({
         style={combinedStyle}
         ref={ref}
         disabled={disabled || loading}
+        aria-busy={loading}
+        aria-disabled={disabled || loading}
+        aria-label={ariaLabel}
+        aria-describedby={ariaDescribedBy}
         {...props}
       >
         {loading && (
@@ -88,6 +94,7 @@ const Button: React.FC<ButtonProps> = ({
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
+            aria-hidden="true"
           >
             <circle
               className="opacity-25"
@@ -104,12 +111,12 @@ const Button: React.FC<ButtonProps> = ({
             />
           </svg>
         )}
-        {leftIcon && !loading && <span className="mr-2">{leftIcon}</span>}
+        {leftIcon && !loading && <span className="mr-2" aria-hidden="true">{leftIcon}</span>}
         {children}
-        {rightIcon && <span className="ml-2">{rightIcon}</span>}
+        {rightIcon && <span className="ml-2" aria-hidden="true">{rightIcon}</span>}
       </button>
     );
-};
+});
 
 Button.displayName = "Button";
 

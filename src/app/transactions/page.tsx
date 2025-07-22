@@ -27,6 +27,7 @@ import {
 } from 'lucide-react';
 import { useAuthStore } from '@/store/auth';
 import { usePaymentStore } from '@/store/payment';
+import { useTranslation } from '@/hooks/useTranslation';
 import type { Transaction, PaymentRequest } from '@/types/payment';
 
 type FilterType = 'all' | 'send' | 'receive' | 'request' | 'refund';
@@ -35,6 +36,7 @@ type TimeFilter = 'all' | 'today' | 'week' | 'month' | 'year';
 
 export default function TransactionsPage() {
   const { user, state: authState } = useAuthStore();
+  const { t } = useTranslation('dashboard');
   const { 
     transactions, 
     paymentRequests, 
@@ -203,7 +205,7 @@ export default function TransactionsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-16">
+    <div className="min-h-screen bg-[var(--bg-primary)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <motion.div
@@ -213,11 +215,11 @@ export default function TransactionsPage() {
         >
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-                Transactions
+              <h1 className="text-3xl font-bold text-[var(--text-primary)]">
+                {t('transactions.title')}
               </h1>
-              <p className="text-gray-600 dark:text-gray-400">
-                View and manage your payment history
+              <p className="text-[var(--text-secondary)]">
+                {t('transactions.subtitle')}
               </p>
             </div>
             <div className="flex items-center space-x-3">
@@ -226,7 +228,7 @@ export default function TransactionsPage() {
                 className="flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
               >
                 <Download className="w-4 h-4 mr-2" />
-                Export
+                {t('transactions.actions.export')}
               </button>
             </div>
           </div>
@@ -241,7 +243,7 @@ export default function TransactionsPage() {
                   : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
               }`}
             >
-              Transactions ({filteredTransactions.length})
+              {t('transactions.tabs.transactions')} ({filteredTransactions.length})
             </button>
             <button
               onClick={() => setActiveTab('requests')}
@@ -251,7 +253,7 @@ export default function TransactionsPage() {
                   : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
               }`}
             >
-              Payment Requests ({filteredRequests.length})
+              {t('transactions.tabs.requests')} ({filteredRequests.length})
             </button>
           </div>
         </motion.div>
@@ -272,7 +274,7 @@ export default function TransactionsPage() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-                placeholder="Search transactions..."
+                placeholder={t('transactions.search.placeholder')}
               />
             </div>
 
@@ -282,7 +284,7 @@ export default function TransactionsPage() {
               className="flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
               <Filter className="w-4 h-4 mr-2" />
-              Filters
+              {t('transactions.search.filters')}
             </button>
           </div>
 
@@ -298,55 +300,55 @@ export default function TransactionsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {/* Type Filter */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                      Type
+                    <label className="block text-sm font-medium text-[var(--text-primary)] mb-1">
+                      {t('transactions.filters.type')}
                     </label>
                     <select
                       value={typeFilter}
                       onChange={(e) => setTypeFilter(e.target.value as FilterType)}
                       className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                     >
-                      <option value="all">All Types</option>
-                      <option value="send">Sent</option>
-                      <option value="receive">Received</option>
-                      <option value="request">Requests</option>
-                      <option value="refund">Refunds</option>
+                      <option value="all">{t('transactions.filters.allTypes')}</option>
+                      <option value="send">{t('transactionTypes.sent')}</option>
+                      <option value="receive">{t('transactionTypes.received')}</option>
+                      <option value="request">{t('transactionTypes.request')}</option>
+                      <option value="refund">{t('transactionTypes.refund')}</option>
                     </select>
                   </div>
 
                   {/* Status Filter */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                      Status
+                    <label className="block text-sm font-medium text-[var(--text-primary)] mb-1">
+                      {t('transactions.filters.status')}
                     </label>
                     <select
                       value={statusFilter}
                       onChange={(e) => setStatusFilter(e.target.value as StatusFilter)}
                       className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                     >
-                      <option value="all">All Status</option>
-                      <option value="completed">Completed</option>
-                      <option value="pending">Pending</option>
-                      <option value="failed">Failed</option>
-                      <option value="cancelled">Cancelled</option>
+                      <option value="all">{t('transactions.filters.allStatus')}</option>
+                      <option value="completed">{t('status.completed')}</option>
+                      <option value="pending">{t('status.pending')}</option>
+                      <option value="failed">{t('status.failed')}</option>
+                      <option value="cancelled">{t('status.cancelled')}</option>
                     </select>
                   </div>
 
                   {/* Time Filter */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                      Time Period
+                    <label className="block text-sm font-medium text-[var(--text-primary)] mb-1">
+                      {t('transactions.filters.timePeriod')}
                     </label>
                     <select
                       value={timeFilter}
                       onChange={(e) => setTimeFilter(e.target.value as TimeFilter)}
                       className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                     >
-                      <option value="all">All Time</option>
-                      <option value="today">Today</option>
-                      <option value="week">Last Week</option>
-                      <option value="month">Last Month</option>
-                      <option value="year">Last Year</option>
+                      <option value="all">{t('transactions.filters.allTime')}</option>
+                      <option value="today">{t('transactions.filters.today')}</option>
+                      <option value="week">{t('transactions.filters.week')}</option>
+                      <option value="month">{t('transactions.filters.month')}</option>
+                      <option value="year">{t('transactions.filters.year')}</option>
                     </select>
                   </div>
                 </div>
@@ -372,13 +374,13 @@ export default function TransactionsPage() {
               ) : filteredTransactions.length === 0 ? (
                 <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-12 text-center">
                   <DollarSign className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
-                    No transactions found
+                  <h3 className="text-lg font-medium text-[var(--text-primary)] mb-2">
+                    {t('transactions.empty.transactions')}
                   </h3>
-                  <p className="text-gray-500 dark:text-gray-400">
+                  <p className="text-[var(--text-secondary)]">
                     {searchQuery || typeFilter !== 'all' || statusFilter !== 'all' || timeFilter !== 'all'
-                      ? 'Try adjusting your filters to see more results.'
-                      : 'Start by sending or requesting money.'}
+                      ? t('transactions.empty.filtered')
+                      : t('transactions.empty.start')}
                   </p>
                 </div>
               ) : (
@@ -408,9 +410,9 @@ export default function TransactionsPage() {
                                 </h3>
                                 {getStatusIcon(transaction.status)}
                               </div>
-                              <div className="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400 mt-1">
+                              <div className="flex items-center space-x-4 text-sm text-[var(--text-secondary)] mt-1">
                                 <span>
-                                  {transaction.type === 'send' ? 'To: ' : 'From: '}
+                                  {transaction.type === 'send' ? t('transactions.details.to') + ': ' : t('transactions.details.from') + ': '}
                                   {transaction.type === 'send' 
                                     ? transaction.toUser?.name 
                                     : transaction.fromUser?.name}
@@ -434,8 +436,8 @@ export default function TransactionsPage() {
                                 {transaction.type === 'receive' ? '+' : '-'}${transaction.amount.toFixed(2)}
                               </div>
                               {transaction.fee > 0 && (
-                                <div className="text-sm text-gray-500 dark:text-gray-400">
-                                  Fee: ${transaction.fee.toFixed(2)}
+                                <div className="text-sm text-[var(--text-secondary)]">
+                                  {t('transactions.details.fee')}: ${transaction.fee.toFixed(2)}
                                 </div>
                               )}
                             </div>
@@ -448,7 +450,7 @@ export default function TransactionsPage() {
                                   handleRetryTransaction(transaction.id);
                                 }}
                                 className="p-2 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors"
-                                title="Retry transaction"
+                                title={t('transactions.actions.retry')}
                               >
                                 <RefreshCw className="w-4 h-4" />
                               </button>
@@ -461,7 +463,7 @@ export default function TransactionsPage() {
                                   handleCancelTransaction(transaction.id);
                                 }}
                                 className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
-                                title="Cancel transaction"
+                                title={t('transactions.actions.cancel')}
                               >
                                 <X className="w-4 h-4" />
                               </button>
@@ -489,11 +491,11 @@ export default function TransactionsPage() {
               ) : filteredRequests.length === 0 ? (
                 <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-12 text-center">
                   <DollarSign className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
-                    No payment requests found
+                  <h3 className="text-lg font-medium text-[var(--text-primary)] mb-2">
+                    {t('transactions.empty.requests')}
                   </h3>
-                  <p className="text-gray-500 dark:text-gray-400">
-                    Payment requests you send or receive will appear here.
+                  <p className="text-[var(--text-secondary)]">
+                    {t('transactions.empty.requestsDescription')}
                   </p>
                 </div>
               ) : (
@@ -529,14 +531,14 @@ export default function TransactionsPage() {
                                   {request.status}
                                 </span>
                               </div>
-                              <div className="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400 mt-1">
+                              <div className="flex items-center space-x-4 text-sm text-[var(--text-secondary)] mt-1">
                                 <span>
-                                  From: {request.fromUser.name}
+                                  {t('transactions.details.from')}: {request.fromUser.name}
                                 </span>
                                 <span>•</span>
                                 <span>{request.createdAt.toLocaleDateString()}</span>
                                 <span>•</span>
-                                <span>Expires: {request.expiresAt.toLocaleDateString()}</span>
+                                <span>{t('transactions.details.expires')}: {request.expiresAt.toLocaleDateString()}</span>
                               </div>
                             </div>
                           </div>
@@ -557,14 +559,14 @@ export default function TransactionsPage() {
                                   disabled={isLoading}
                                   className="px-3 py-1 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white text-sm rounded-lg transition-colors"
                                 >
-                                  Pay
+                                  {t('transactions.actions.pay')}
                                 </button>
                                 <button
                                   onClick={() => handleRespondToRequest(request.id, 'decline')}
                                   disabled={isLoading}
                                   className="px-3 py-1 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 text-sm rounded-lg transition-colors"
                                 >
-                                  Decline
+                                  {t('transactions.actions.decline')}
                                 </button>
                               </div>
                             )}
@@ -597,8 +599,8 @@ export default function TransactionsPage() {
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-                    Transaction Details
+                  <h2 className="text-xl font-semibold text-[var(--text-primary)]">
+                    {t('transactions.details.title')}
                   </h2>
                   <button
                     onClick={() => setSelectedTransaction(null)}
@@ -626,30 +628,30 @@ export default function TransactionsPage() {
                   {/* Details */}
                   <div className="space-y-3 border-t border-gray-200 dark:border-gray-700 pt-4">
                     <div className="flex justify-between">
-                      <span className="text-gray-600 dark:text-gray-400">Status</span>
+                      <span className="text-[var(--text-secondary)]">Status</span>
                       <div className="flex items-center space-x-2">
                         {getStatusIcon(selectedTransaction.status)}
-                        <span className="capitalize font-medium text-gray-900 dark:text-white">
+                        <span className="capitalize font-medium text-[var(--text-primary)]">
                           {selectedTransaction.status}
                         </span>
                       </div>
                     </div>
                     
                     <div className="flex justify-between">
-                      <span className="text-gray-600 dark:text-gray-400">Type</span>
+                      <span className="text-[var(--text-secondary)]">Type</span>
                       <div className="flex items-center space-x-2">
                         {getTypeIcon(selectedTransaction.type)}
-                        <span className="capitalize font-medium text-gray-900 dark:text-white">
+                        <span className="capitalize font-medium text-[var(--text-primary)]">
                           {selectedTransaction.type}
                         </span>
                       </div>
                     </div>
 
                     <div className="flex justify-between">
-                      <span className="text-gray-600 dark:text-gray-400">
-                        {selectedTransaction.type === 'send' ? 'To' : 'From'}
+                      <span className="text-[var(--text-secondary)]">
+                        {selectedTransaction.type === 'send' ? t('transactions.details.to') : t('transactions.details.from')}
                       </span>
-                      <span className="font-medium text-gray-900 dark:text-white">
+                      <span className="font-medium text-[var(--text-primary)]">
                         {selectedTransaction.type === 'send' 
                           ? selectedTransaction.toUser?.name 
                           : selectedTransaction.fromUser?.name}
@@ -657,31 +659,31 @@ export default function TransactionsPage() {
                     </div>
 
                     <div className="flex justify-between">
-                      <span className="text-gray-600 dark:text-gray-400">Date</span>
-                      <span className="font-medium text-gray-900 dark:text-white">
+                      <span className="text-[var(--text-secondary)]">{t('transactions.details.date')}</span>
+                      <span className="font-medium text-[var(--text-primary)]">
                         {selectedTransaction.createdAt.toLocaleString()}
                       </span>
                     </div>
 
                     <div className="flex justify-between">
-                      <span className="text-gray-600 dark:text-gray-400">Reference</span>
-                      <span className="font-mono text-sm text-gray-900 dark:text-white">
+                      <span className="text-[var(--text-secondary)]">{t('transactions.details.reference')}</span>
+                      <span className="font-mono text-sm text-[var(--text-primary)]">
                         {selectedTransaction.reference}
                       </span>
                     </div>
 
                     {selectedTransaction.fee > 0 && (
                       <div className="flex justify-between">
-                        <span className="text-gray-600 dark:text-gray-400">Fee</span>
-                        <span className="font-medium text-gray-900 dark:text-white">
+                        <span className="text-[var(--text-secondary)]">{t('transactions.details.fee')}</span>
+                        <span className="font-medium text-[var(--text-primary)]">
                           ${selectedTransaction.fee.toFixed(2)}
                         </span>
                       </div>
                     )}
 
                     <div className="flex justify-between">
-                      <span className="text-gray-600 dark:text-gray-400">Total</span>
-                      <span className="font-medium text-gray-900 dark:text-white">
+                      <span className="text-[var(--text-secondary)]">{t('transactions.details.total')}</span>
+                      <span className="font-medium text-[var(--text-primary)]">
                         ${selectedTransaction.totalAmount.toFixed(2)}
                       </span>
                     </div>
@@ -697,7 +699,7 @@ export default function TransactionsPage() {
                         }}
                         className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
                       >
-                        Retry Transaction
+                        {t('transactions.details.retryTransaction')}
                       </button>
                     </div>
                   )}
