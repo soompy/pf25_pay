@@ -20,11 +20,19 @@
   }
 }
 
+/* 전역 테마 변경 transition 효과 */
+* {
+  transition: 
+    background-color var(--transition-theme),
+    color var(--transition-theme),
+    border-color var(--transition-theme),
+    box-shadow var(--transition-theme);
+}
+
 body {
   background: var(--bg-primary);
   color: var(--text-primary);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
-  transition: background-color var(--transition-normal), color var(--transition-normal);
 }
 
 /* 스크롤바 스타일링 */

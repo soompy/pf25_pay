@@ -48,6 +48,7 @@
   --bg-primary: #ffffff;
   --bg-secondary: #f9fafb;
   --bg-tertiary: #f3f4f6;
+  --bg-elevated: #ffffff;
   --bg-accent: #f0fdf4;
 
   /* Text Colors */
@@ -94,6 +95,7 @@
   --text-4xl: 2.25rem;
 
   /* Animation */
+  --transition-theme: 500ms ease-in-out;
   --transition-fast: 150ms ease-in-out;
   --transition-normal: 200ms ease-in-out;
   --transition-slow: 300ms ease-in-out;
@@ -105,12 +107,13 @@
   --bg-primary: #111827;
   --bg-secondary: #1f2937;
   --bg-tertiary: #374151;
+  --bg-elevated: #1f2937;
   --bg-accent: #14532d;
 
   /* Text Colors */
-  --text-primary: #f9fafb;
-  --text-secondary: #d1d5db;
-  --text-tertiary: #9ca3af;
+  --text-primary: #ffffff;
+  --text-secondary: #e5e7eb;
+  --text-tertiary: #d1d5db;
   --text-inverse: #111827;
 
   /* Border Colors */
