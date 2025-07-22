@@ -50,6 +50,12 @@ export const homepage = {
     copyright: '© 2025 SafePay. This is a portfolio project.',
   },
 
+  // Milestone Section
+  milestone: {
+    title: '10 Million Users Milestone Reached!',
+    subtitle: 'We will continue to provide safer and faster payment services',
+  },
+
   // Image Alt Text
   mockup: {
     alt: {

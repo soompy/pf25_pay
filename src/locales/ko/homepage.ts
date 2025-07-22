@@ -50,6 +50,12 @@ export const homepage = {
     copyright: '© 2025 SafePay. 포트폴리오 프로젝트입니다.',
   },
 
+  // Milestone Section
+  milestone: {
+    title: '사용자 1000만명 돌파!',
+    subtitle: '더 안전하고 빠른 결제 서비스로 보답하겠습니다',
+  },
+
   // Image Alt Text
   mockup: {
     alt: {
