@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { 
@@ -11,17 +11,23 @@ import {
   TrendingUp,
   Play,
   Github,
-  ExternalLink
+  ExternalLink,
+  Trophy,
+  Sparkles
 } from 'lucide-react';
 import { Navigation } from '@/components/navigation';
 import { Button } from '@/components/ui/atoms/Button';
 import { useTranslation } from '@/hooks/useTranslation';
+import { CanvasConfetti } from '@/components/ui/molecules/CanvasConfetti';
 
 export default function LandingPage() {
   const router = useRouter();
   const { t } = useTranslation('homepage');
   const [currentFeature, setCurrentFeature] = useState(0);
   const [currentMockup, setCurrentMockup] = useState(0);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [showMilestone, setShowMilestone] = useState(true);
+  const milestoneRef = useRef<HTMLElement | null>(null);
 
   const features = [
     {
@@ -81,12 +87,73 @@ export default function LandingPage() {
     return () => clearInterval(interval);
   }, [mockupImages.length]);
 
+  // Intersection Observer for confetti effect
+  useEffect(() => {
+    if (!milestoneRef.current || !showMilestone) return;
+
+    let isIntersecting = false;
+    let loopTimeoutId: NodeJS.Timeout | null = null;
+    let pauseTimeoutId: NodeJS.Timeout | null = null;
+
+    const startConfettiLoop = () => {
+      if (!isIntersecting) return;
+      
+      setShowConfetti(true);
+      loopTimeoutId = setTimeout(() => {
+        setShowConfetti(false);
+        pauseTimeoutId = setTimeout(() => {
+          if (isIntersecting) {
+            startConfettiLoop(); // 재귀적으로 루프 계속
+          }
+        }, 1000); // 1초 쉬고 다시 시작
+      }, 3000); // 3초 동안 confetti
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isIntersecting) {
+            isIntersecting = true;
+            startConfettiLoop();
+          } else if (!entry.isIntersecting && isIntersecting) {
+            isIntersecting = false;
+            setShowConfetti(false);
+            // 기존 타이머들 정리
+            if (loopTimeoutId) clearTimeout(loopTimeoutId);
+            if (pauseTimeoutId) clearTimeout(pauseTimeoutId);
+          }
+        });
+      },
+      {
+        threshold: 0.3, // 30% 보이면 트리거
+      }
+    );
+
+    observer.observe(milestoneRef.current);
+
+    return () => {
+      observer.disconnect();
+      if (loopTimeoutId) clearTimeout(loopTimeoutId);
+      if (pauseTimeoutId) clearTimeout(pauseTimeoutId);
+      setShowConfetti(false);
+    };
+  }, [showMilestone]);
+
   return (
     <div className="min-h-screen bg-[var(--bg-primary)]">
       <Navigation />
+
+      {/* Canvas Confetti Effect */}
+      <CanvasConfetti 
+        active={showConfetti} 
+        duration={5000}
+        particleCount={200}
+        containerRef={milestoneRef}
+      />
+
       
       {/* Hero Section */}
-      <section className="relative pt-24 pb-20 bg-gradient-to-br from-[var(--color-primary-50)] via-[var(--color-primary-100)] to-[var(--color-primary-100)] dark:from-[var(--bg-primary)] dark:via-[var(--color-primary-900)]/20 dark:to-[var(--color-primary-800)]/20">
+      <section className="relative pt-32 pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <motion.div
@@ -99,10 +166,10 @@ export default function LandingPage() {
                   SafePay
                 </span>
               </h1>
-              <p className="text-xl md:text-2xl text-[var(--text-secondary)] mb-4">
+              <p className="text-xl md:text-2xl mb-4">
                 {t('hero.subtitle')}
               </p>
-              <p className="text-lg text-[var(--text-tertiary)] mb-12 max-w-3xl mx-auto">
+              <p className="text-lg mb-12 max-w-3xl mx-auto">
                 {t('hero.description')}
               </p>
             </motion.div>
@@ -161,7 +228,7 @@ export default function LandingPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.4 }}
-              className="mt-8 text-sm text-[var(--text-tertiary)]"
+              className="mt-8 text-sm text-gray-300"
             >
               {t('hero.demoAccount')}
             </motion.div>
@@ -254,7 +321,7 @@ export default function LandingPage() {
             <h2 className="text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-6">
               {t('features.title')}
             </h2>
-            <p className="text-xl text-[var(--text-secondary)] max-w-3xl mx-auto">
+            <p className="text-xl text-[var(--text-primary)] max-w-3xl mx-auto">
               {t('features.description')}
             </p>
           </motion.div>
@@ -297,10 +364,18 @@ export default function LandingPage() {
                         }`} />
                       </div>
                       <div>
-                        <h3 className="text-xl font-semibold text-[var(--text-primary)] mb-2">
+                        <h3 className={`text-xl font-semibold mb-2 ${
+                          currentFeature === index
+                            ? 'text-[var(--color-primary-800)] dark:text-[var(--color-primary-100)]'
+                            : 'text-[var(--text-primary)]'
+                        }`}>
                           {feature.title}
                         </h3>
-                        <p className="text-[var(--text-secondary)]">
+                        <p className={`${
+                          currentFeature === index
+                            ? 'text-[var(--color-primary-800)] dark:text-[var(--color-primary-200)]'
+                            : 'text-[var(--text-primary)]'
+                        }`}>
                           {feature.description}
                         </p>
                       </div>
@@ -331,10 +406,10 @@ export default function LandingPage() {
                     const Icon = features[currentFeature].icon;
                     return <Icon className="w-12 h-12 mb-4" />;
                   })()}
-                  <h3 className="text-2xl font-bold mb-2">
+                  <h3 className="text-2xl text-[var(--color-secondary)] font-bold mb-2">
                     {features[currentFeature].title}
                   </h3>
-                  <p className="text-[var(--color-primary-100)]">
+                  <p className="text-[var(--color-secondary)]">
                     {features[currentFeature].description}
                   </p>
                 </div>
@@ -490,6 +565,55 @@ export default function LandingPage() {
       </section>
 
       
+      {/* Milestone Achievement Banner */}
+      {showMilestone && (
+        <motion.section
+          ref={milestoneRef}
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -50 }}
+          transition={{ 
+            type: "spring", 
+            stiffness: 300, 
+            damping: 20, 
+            delay: 0.5 
+          }}
+          className=" bg-[var(--bg-primary)] py-24 transition-all duration-500"
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <motion.div
+                animate={{ rotate: [0, 10, -10, 0] }}
+                transition={{ duration: 0.5, repeat: 3 }}
+                className="inline-block mb-4"
+              >
+                <Trophy className="w-12 h-12 text-yellow-500 dark:text-yellow-400 mx-auto" />
+              </motion.div>
+              
+              <motion.h3 
+                className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-2"
+                animate={{ scale: [1, 1.05, 1] }}
+                transition={{ duration: 0.8, repeat: Infinity, repeatDelay: 1 }}
+              >
+                {t('milestone.title')}
+              </motion.h3>
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-4">
+                {t('milestone.subtitle')}
+              </p>
+
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                className="inline-block"
+              >
+                <Sparkles className="w-10 h-10 text-purple-500 dark:text-purple-400" />
+              </motion.div>
+
+            </div>
+          </div>
+        </motion.section>
+      )}
+
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-[var(--color-primary-600)] to-[var(--color-primary-500)]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -498,7 +622,7 @@ export default function LandingPage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-[var(--text-inverse)] mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-primary-100)] mb-6">
               {t('cta.title')}
             </h2>
             <p className="text-xl text-[var(--color-primary-100)] mb-12 max-w-2xl mx-auto">
@@ -541,7 +665,7 @@ export default function LandingPage() {
                   href="https://github.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto border-2 border-[var(--text-inverse)] text-[var(--text-inverse)] hover:bg-white/10 px-8 py-4 rounded-xl font-semibold text-lg transition-colors flex items-center justify-center shadow-lg"
+                  className="w-full sm:w-auto border-2 border-[var(--text-inverse)] text-[var(--text-inverse)] hover:bg-white/10 px-8 py-3 rounded-lg font-medium text-base h-12 transition-colors flex items-center justify-center shadow-lg"
                 >
                   <Github className="w-5 h-5 mr-2" />
                   {t('cta.viewGithub')}
