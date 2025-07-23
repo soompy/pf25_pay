@@ -25,6 +25,19 @@ export const common = {
     request: '요청',
     scan: 'QR 스캔',
     cards: '내 카드',
+    settings: '계정 설정',
+    signOut: '로그아웃',
+  },
+
+  // User Menu
+  userMenu: {
+    thisMonth: '이번 달',
+    transactions: '거래',
+    activeCards: '활성 카드',
+    dashboardDesc: '개요 및 분석',
+    transactionsDesc: '모든 결제 내역 보기',
+    cardsDesc: '결제 수단 관리',
+    settingsDesc: '개인정보 및 보안',
   },
   
   // Theme
@@ -40,7 +53,7 @@ export const common = {
   // Language
   language: {
     korean: '한국어',
-    english: 'English',
+    english: 'EN',
   },
   
   // Auth buttons

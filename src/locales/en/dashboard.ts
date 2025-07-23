@@ -23,6 +23,7 @@ export const dashboard = {
     addCard: 'Add Card',
     topUp: 'Top Up',
     withdraw: 'Withdraw',
+    security: 'Security',
   },
 
   // Recent Transactions
@@ -50,6 +51,14 @@ export const dashboard = {
     lastMonth: 'Last Month',
     increase: 'Increase',
     decrease: 'Decrease',
+  },
+
+  // Security
+  security: {
+    level: 'Security Level',
+    high: 'High',
+    medium: 'Medium',
+    low: 'Low',
   },
 
   // Cards Section

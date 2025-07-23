@@ -4,6 +4,9 @@ import { useAuthStore } from '@/store/auth';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { ThemeSwitcher } from '@/components/ui/molecules/ThemeSwitcher';
+import { LanguageSwitcher } from '@/components/ui/molecules/LanguageSwitcher';
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface AuthLayoutProps {
   children: React.ReactNode;
@@ -11,6 +14,7 @@ interface AuthLayoutProps {
 
 export default function AuthLayout({ children }: AuthLayoutProps) {
   const { state, user } = useAuthStore();
+  const { t } = useTranslation('auth');
   const router = useRouter();
 
   useEffect(() => {
@@ -60,7 +64,7 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
               SafePay
             </h1>
             <p className="text-gray-600 dark:text-gray-400 text-sm">
-              Secure payment authentication
+              {t('common.secureAuth') || 'Secure payment authentication'}
             </p>
           </div>
 
@@ -69,9 +73,16 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
 
         {/* Footer */}
         <div className="text-center mt-8">
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            Protected by enterprise-grade security
-          </p>
+          <div className="flex flex-col items-center space-y-4">
+            {/* Language and Theme Switchers */}
+            <div className="flex items-center space-x-4">
+              <LanguageSwitcher variant="inline" size="sm" />
+              <ThemeSwitcher variant="dropdown" size="sm" />
+            </div>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              {t('common.enterpriseSecurity') || 'Protected by enterprise-grade security'}
+            </p>
+          </div>
         </div>
       </motion.div>
     </div>

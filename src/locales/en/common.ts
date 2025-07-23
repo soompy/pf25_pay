@@ -25,6 +25,19 @@ export const common = {
     request: 'Request',
     scan: 'QR Scan',
     cards: 'My Cards',
+    settings: 'Account Settings',
+    signOut: 'Sign Out',
+  },
+
+  // User Menu
+  userMenu: {
+    thisMonth: 'This Month',
+    transactions: 'Transactions',
+    activeCards: 'Active Cards',
+    dashboardDesc: 'Overview & Analytics',
+    transactionsDesc: 'View all payments',
+    cardsDesc: 'Manage payment methods',
+    settingsDesc: 'Privacy & Security',
   },
   
   // Theme
@@ -40,7 +53,7 @@ export const common = {
   // Language
   language: {
     korean: '한국어',
-    english: 'English',
+    english: 'EN',
   },
   
   // Auth buttons

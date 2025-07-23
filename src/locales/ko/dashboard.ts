@@ -23,6 +23,7 @@ export const dashboard = {
     addCard: '카드 추가',
     topUp: '충전',
     withdraw: '출금',
+    security: '보안',
   },
 
   // Recent Transactions
@@ -50,6 +51,14 @@ export const dashboard = {
     lastMonth: '지난 달',
     increase: '증가',
     decrease: '감소',
+  },
+
+  // Security
+  security: {
+    level: '보안 등급',
+    high: '높음',
+    medium: '보통',
+    low: '낮음',
   },
 
   // Cards Section
