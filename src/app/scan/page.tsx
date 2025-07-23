@@ -223,7 +223,7 @@ export default function QRScanPage() {
           <div className="flex items-center space-x-2">
             {/* Language and Theme Switchers */}
             <div className="flex items-center space-x-1 mr-2">
-              <LanguageSwitcher variant="inline" size="sm" className="text-white" />
+              <LanguageSwitcher variant="inline" size="sm" />
               <ThemeSwitcher variant="dropdown" size="sm" />
             </div>
             
