@@ -25,14 +25,13 @@ import { usePortfolioStore } from '@/store/portfolio';
 import { useAuthStore } from '@/store/auth';
 import { Button } from '@/components/ui/atoms/Button';
 import { ThemeSwitcher } from '@/components/ui/molecules/ThemeSwitcher';
-import { LanguageSwitcher } from '@/components/ui/molecules/LanguageSwitcher';
 import { useNavTranslation, useCommonTranslation } from '@/hooks/useTranslation';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export function Navigation() {
   const { isMenuOpen, toggleMenu, setCurrentSection } = usePortfolioStore();
   const { user, logout, state } = useAuthStore();
-  const { nav, language: langTranslations } = useNavTranslation();
+  const { nav } = useNavTranslation();
   const { language, setLanguage } = useLanguage();
   const { translations } = useCommonTranslation();
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);

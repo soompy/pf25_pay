@@ -10,20 +10,13 @@ import {
   CreditCard, 
   Plus, 
   Star,
-  StarOff,
   Eye,
   EyeOff,
   MoreHorizontal,
   Trash2,
-  Shield,
-  CheckCircle,
   AlertCircle,
   X,
-  Calendar,
-  TrendingUp,
-  TrendingDown,
   DollarSign,
-  Lock,
   Edit
 } from 'lucide-react';
 import { useAuthStore } from '@/store/auth';
@@ -46,12 +39,9 @@ export default function CardsPage() {
   const { 
     cards, 
     addCard, 
-    updateCard, 
     deleteCard, 
     setDefaultCard,
-    isLoading, 
-    error,
-    clearError 
+    isLoading
   } = usePaymentStore();
   
   const router = useRouter();
@@ -122,7 +112,7 @@ export default function CardsPage() {
   const onSubmit = async (data: AddCardFormData) => {
     try {
       const cardType = getCardType(data.cardNumber);
-      const newCard = await addCard({
+      await addCard({
         name: data.name,
         last4: data.cardNumber.slice(-4),
         type: cardType,
@@ -137,7 +127,7 @@ export default function CardsPage() {
       
       reset();
       setShowAddCard(false);
-    } catch (error) {
+    } catch {
       // Error handled by store
     }
   };
@@ -161,7 +151,7 @@ export default function CardsPage() {
         >
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+              <h1 className="text-3xl font-bold text-[var(--text-primary)]">
                 My Cards
               </h1>
               <p className="text-gray-600 dark:text-gray-400">
@@ -330,11 +320,11 @@ export default function CardsPage() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="bg-white dark:bg-gray-800 rounded-xl p-6 max-w-sm w-full"
+                className="bg-[var(--bg-primary)] rounded-xl p-6 max-w-sm w-full"
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+                  <h2 className="text-xl font-semibold text-[var(--text-primary)]">
                     Card Actions
                   </h2>
                   <button
@@ -355,7 +345,7 @@ export default function CardsPage() {
                       className="w-full flex items-center px-4 py-3 text-left hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg transition-colors"
                     >
                       <Star className="w-5 h-5 text-gray-400 mr-3" />
-                      <span className="text-gray-900 dark:text-white">Set as Default</span>
+                      <span className="text-[var(--text-primary)]">Set as Default</span>
                     </button>
                   )}
 
@@ -367,7 +357,7 @@ export default function CardsPage() {
                     className="w-full flex items-center px-4 py-3 text-left hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg transition-colors"
                   >
                     <Edit className="w-5 h-5 text-gray-400 mr-3" />
-                    <span className="text-gray-900 dark:text-white">Edit Card</span>
+                    <span className="text-[var(--text-primary)]">Edit Card</span>
                   </button>
 
                   <button
@@ -400,11 +390,11 @@ export default function CardsPage() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="bg-white dark:bg-gray-800 rounded-xl p-6 max-w-md w-full max-h-[90vh] overflow-y-auto"
+                className="bg-[var(--bg-primary)] rounded-xl p-6 max-w-md w-full max-h-[90vh] overflow-y-auto"
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+                  <h2 className="text-xl font-semibold text-[var(--text-primary)]">
                     Add New Card
                   </h2>
                   <button
@@ -584,14 +574,14 @@ export default function CardsPage() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="bg-white dark:bg-gray-800 rounded-xl p-6 max-w-sm w-full"
+                className="bg-[var(--bg-primary)] rounded-xl p-6 max-w-sm w-full"
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="text-center">
                   <div className="w-12 h-12 bg-red-100 dark:bg-red-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Trash2 className="w-6 h-6 text-red-600 dark:text-red-400" />
                   </div>
-                  <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-2">
                     Delete Card
                   </h2>
                   <p className="text-gray-600 dark:text-gray-400 mb-6">

@@ -13,22 +13,14 @@ import {
   CheckCircle, 
   XCircle, 
   AlertCircle,
-  Calendar,
   DollarSign,
-  User,
   RefreshCw,
-  Eye,
-  MoreHorizontal,
-  ArrowLeft,
-  TrendingUp,
-  TrendingDown,
-  Repeat,
   X
 } from 'lucide-react';
 import { useAuthStore } from '@/store/auth';
 import { usePaymentStore } from '@/store/payment';
 import { useTranslation } from '@/hooks/useTranslation';
-import type { Transaction, PaymentRequest } from '@/types/payment';
+import type { Transaction } from '@/types/payment';
 
 type FilterType = 'all' | 'send' | 'receive' | 'request' | 'refund';
 type StatusFilter = 'all' | 'completed' | 'pending' | 'failed' | 'cancelled';
@@ -45,8 +37,7 @@ export default function TransactionsPage() {
     retryTransaction,
     cancelTransaction,
     respondToRequest,
-    isLoading, 
-    error 
+    isLoading 
   } = usePaymentStore();
   
   const router = useRouter();
@@ -225,7 +216,7 @@ export default function TransactionsPage() {
             <div className="flex items-center space-x-3">
               <button
                 onClick={exportTransactions}
-                className="flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                className="flex items-center px-4 py-2 border border-[var(--border-primary)] text-[var(--text-secondary)] rounded-lg hover:bg-[var(--bg-tertiary)] transition-colors"
               >
                 <Download className="w-4 h-4 mr-2" />
                 {t('transactions.actions.export')}
@@ -234,13 +225,13 @@ export default function TransactionsPage() {
           </div>
 
           {/* Tabs */}
-          <div className="flex space-x-1 bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
+          <div className="flex space-x-1 bg-[var(--bg-tertiary)] rounded-lg p-1">
             <button
               onClick={() => setActiveTab('transactions')}
               className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
                 activeTab === 'transactions'
-                  ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow'
-                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+                  ? 'bg-[var(--bg-primary)] text-[var(--text-primary)] shadow'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
               }`}
             >
               {t('transactions.tabs.transactions')} ({filteredTransactions.length})
@@ -249,8 +240,8 @@ export default function TransactionsPage() {
               onClick={() => setActiveTab('requests')}
               className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
                 activeTab === 'requests'
-                  ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow'
-                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+                  ? 'bg-[var(--bg-primary)] text-[var(--text-primary)] shadow'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
               }`}
             >
               {t('transactions.tabs.requests')} ({filteredRequests.length})
@@ -263,7 +254,7 @@ export default function TransactionsPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 mb-8"
+          className="bg-[var(--bg-primary)] rounded-xl border border-[var(--border-primary)] p-6 mb-8"
         >
           <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0 md:space-x-4">
             {/* Search */}
@@ -273,7 +264,7 @@ export default function TransactionsPage() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                className="w-full pl-10 pr-4 py-2 border border-[var(--border-primary)] rounded-lg focus:ring-2 focus:ring-[var(--color-primary-500)] focus:border-transparent bg-[var(--bg-primary)] text-[var(--text-primary)]"
                 placeholder={t('transactions.search.placeholder')}
               />
             </div>
@@ -281,7 +272,7 @@ export default function TransactionsPage() {
             {/* Filter Toggle */}
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+              className="flex items-center px-4 py-2 border border-[var(--border-primary)] text-[var(--text-secondary)] rounded-lg hover:bg-[var(--bg-tertiary)] transition-colors"
             >
               <Filter className="w-4 h-4 mr-2" />
               {t('transactions.search.filters')}
@@ -295,7 +286,7 @@ export default function TransactionsPage() {
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
-                className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700"
+                className="mt-4 pt-4 border-t border-[var(--border-primary)]"
               >
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {/* Type Filter */}
@@ -306,7 +297,7 @@ export default function TransactionsPage() {
                     <select
                       value={typeFilter}
                       onChange={(e) => setTypeFilter(e.target.value as FilterType)}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                      className="w-full px-3 py-2 border border-[var(--border-primary)] rounded-lg focus:ring-2 focus:ring-[var(--color-primary-500)] focus:border-transparent bg-[var(--bg-primary)] text-[var(--text-primary)]"
                     >
                       <option value="all">{t('transactions.filters.allTypes')}</option>
                       <option value="send">{t('transactionTypes.sent')}</option>
@@ -324,7 +315,7 @@ export default function TransactionsPage() {
                     <select
                       value={statusFilter}
                       onChange={(e) => setStatusFilter(e.target.value as StatusFilter)}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                      className="w-full px-3 py-2 border border-[var(--border-primary)] rounded-lg focus:ring-2 focus:ring-[var(--color-primary-500)] focus:border-transparent bg-[var(--bg-primary)] text-[var(--text-primary)]"
                     >
                       <option value="all">{t('transactions.filters.allStatus')}</option>
                       <option value="completed">{t('status.completed')}</option>
@@ -342,7 +333,7 @@ export default function TransactionsPage() {
                     <select
                       value={timeFilter}
                       onChange={(e) => setTimeFilter(e.target.value as TimeFilter)}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                      className="w-full px-3 py-2 border border-[var(--border-primary)] rounded-lg focus:ring-2 focus:ring-[var(--color-primary-500)] focus:border-transparent bg-[var(--bg-primary)] text-[var(--text-primary)]"
                     >
                       <option value="all">{t('transactions.filters.allTime')}</option>
                       <option value="today">{t('transactions.filters.today')}</option>
@@ -372,7 +363,7 @@ export default function TransactionsPage() {
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
                 </div>
               ) : filteredTransactions.length === 0 ? (
-                <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-12 text-center">
+                <div className="bg-[var(--bg-primary)] rounded-xl border border-[var(--border-primary)] p-12 text-center">
                   <DollarSign className="w-12 h-12 text-gray-400 mx-auto mb-4" />
                   <h3 className="text-lg font-medium text-[var(--text-primary)] mb-2">
                     {t('transactions.empty.transactions')}
@@ -384,28 +375,28 @@ export default function TransactionsPage() {
                   </p>
                 </div>
               ) : (
-                <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-                  <div className="divide-y divide-gray-200 dark:divide-gray-700">
+                <div className="bg-[var(--bg-primary)] rounded-xl border border-[var(--border-primary)] overflow-hidden">
+                  <div className="divide-y divide-[var(--border-primary)]">
                     {filteredTransactions.map((transaction, index) => (
                       <motion.div
                         key={transaction.id}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.05 }}
-                        className="p-6 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors cursor-pointer"
+                        className="p-6 hover:bg-[var(--bg-tertiary)] transition-colors cursor-pointer"
                         onClick={() => setSelectedTransaction(transaction)}
                       >
                         <div className="flex items-center justify-between">
                           <div className="flex items-center space-x-4">
                             {/* Type Icon */}
-                            <div className="w-10 h-10 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center">
+                            <div className="w-10 h-10 bg-[var(--bg-tertiary)] rounded-full flex items-center justify-center">
                               {getTypeIcon(transaction.type)}
                             </div>
 
                             {/* Transaction Details */}
                             <div className="flex-1">
                               <div className="flex items-center space-x-2">
-                                <h3 className="font-medium text-gray-900 dark:text-white">
+                                <h3 className="font-medium text-[var(--text-primary)]">
                                   {transaction.description}
                                 </h3>
                                 {getStatusIcon(transaction.status)}
@@ -430,8 +421,8 @@ export default function TransactionsPage() {
                             <div className="text-right">
                               <div className={`font-semibold ${
                                 transaction.type === 'receive' 
-                                  ? 'text-green-600 dark:text-green-400' 
-                                  : 'text-gray-900 dark:text-white'
+                                  ? 'text-[var(--color-success)]' 
+                                  : 'text-[var(--text-primary)]'
                               }`}>
                                 {transaction.type === 'receive' ? '+' : '-'}${transaction.amount.toFixed(2)}
                               </div>
@@ -449,7 +440,7 @@ export default function TransactionsPage() {
                                   e.stopPropagation();
                                   handleRetryTransaction(transaction.id);
                                 }}
-                                className="p-2 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors"
+                                className="p-2 text-[var(--color-primary-600)] hover:bg-[var(--color-primary-50)] rounded-lg transition-colors"
                                 title={t('transactions.actions.retry')}
                               >
                                 <RefreshCw className="w-4 h-4" />
@@ -462,7 +453,7 @@ export default function TransactionsPage() {
                                   e.stopPropagation();
                                   handleCancelTransaction(transaction.id);
                                 }}
-                                className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+                                className="p-2 text-[var(--color-error)] hover:bg-[var(--color-error-50)] rounded-lg transition-colors"
                                 title={t('transactions.actions.cancel')}
                               >
                                 <X className="w-4 h-4" />
@@ -489,7 +480,7 @@ export default function TransactionsPage() {
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
                 </div>
               ) : filteredRequests.length === 0 ? (
-                <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-12 text-center">
+                <div className="bg-[var(--bg-primary)] rounded-xl border border-[var(--border-primary)] p-12 text-center">
                   <DollarSign className="w-12 h-12 text-gray-400 mx-auto mb-4" />
                   <h3 className="text-lg font-medium text-[var(--text-primary)] mb-2">
                     {t('transactions.empty.requests')}
@@ -499,8 +490,8 @@ export default function TransactionsPage() {
                   </p>
                 </div>
               ) : (
-                <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-                  <div className="divide-y divide-gray-200 dark:divide-gray-700">
+                <div className="bg-[var(--bg-primary)] rounded-xl border border-[var(--border-primary)] overflow-hidden">
+                  <div className="divide-y divide-[var(--border-primary)]">
                     {filteredRequests.map((request, index) => (
                       <motion.div
                         key={request.id}
@@ -512,21 +503,21 @@ export default function TransactionsPage() {
                         <div className="flex items-center justify-between">
                           <div className="flex items-center space-x-4">
                             {/* Request Icon */}
-                            <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/20 rounded-full flex items-center justify-center">
-                              <DollarSign className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                            <div className="w-10 h-10 bg-[var(--color-primary-100)] rounded-full flex items-center justify-center">
+                              <DollarSign className="w-5 h-5 text-[var(--color-primary-600)]" />
                             </div>
 
                             {/* Request Details */}
                             <div className="flex-1">
                               <div className="flex items-center space-x-2">
-                                <h3 className="font-medium text-gray-900 dark:text-white">
+                                <h3 className="font-medium text-[var(--text-primary)]">
                                   {request.description}
                                 </h3>
                                 <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-                                  request.status === 'pending' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400' :
-                                  request.status === 'paid' ? 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400' :
-                                  request.status === 'declined' ? 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400' :
-                                  'bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-400'
+                                  request.status === 'pending' ? 'bg-[var(--color-warning-100)] text-[var(--color-warning-800)]' :
+                                  request.status === 'paid' ? 'bg-[var(--color-success-100)] text-[var(--color-success-800)]' :
+                                  request.status === 'declined' ? 'bg-[var(--color-error-100)] text-[var(--color-error-800)]' :
+                                  'bg-[var(--bg-tertiary)] text-[var(--text-secondary)]'
                                 }`}>
                                   {request.status}
                                 </span>
@@ -546,7 +537,7 @@ export default function TransactionsPage() {
                           {/* Amount and Actions */}
                           <div className="flex items-center space-x-4">
                             <div className="text-right">
-                              <div className="font-semibold text-gray-900 dark:text-white">
+                              <div className="font-semibold text-[var(--text-primary)]">
                                 ${request.amount.toFixed(2)}
                               </div>
                             </div>
@@ -557,14 +548,14 @@ export default function TransactionsPage() {
                                 <button
                                   onClick={() => handleRespondToRequest(request.id, 'pay')}
                                   disabled={isLoading}
-                                  className="px-3 py-1 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white text-sm rounded-lg transition-colors"
+                                  className="px-3 py-1 bg-[var(--color-primary-600)] hover:bg-[var(--color-primary-700)] disabled:bg-[var(--color-primary-400)] text-white text-sm rounded-lg transition-colors"
                                 >
                                   {t('transactions.actions.pay')}
                                 </button>
                                 <button
                                   onClick={() => handleRespondToRequest(request.id, 'decline')}
                                   disabled={isLoading}
-                                  className="px-3 py-1 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 text-sm rounded-lg transition-colors"
+                                  className="px-3 py-1 border border-[var(--border-primary)] text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)] text-sm rounded-lg transition-colors"
                                 >
                                   {t('transactions.actions.decline')}
                                 </button>
@@ -595,7 +586,7 @@ export default function TransactionsPage() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="bg-white dark:bg-gray-800 rounded-xl p-6 max-w-lg w-full max-h-[90vh] overflow-y-auto"
+                className="bg-[var(--bg-primary)] rounded-xl p-6 max-w-lg w-full max-h-[90vh] overflow-y-auto"
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="flex items-center justify-between mb-6">
@@ -604,7 +595,7 @@ export default function TransactionsPage() {
                   </h2>
                   <button
                     onClick={() => setSelectedTransaction(null)}
-                    className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                    className="p-2 hover:bg-[var(--bg-tertiary)] rounded-lg transition-colors"
                   >
                     <X className="w-5 h-5 text-gray-500" />
                   </button>
@@ -615,18 +606,18 @@ export default function TransactionsPage() {
                   <div className="text-center py-4">
                     <div className={`text-3xl font-bold ${
                       selectedTransaction.type === 'receive' 
-                        ? 'text-green-600 dark:text-green-400' 
-                        : 'text-gray-900 dark:text-white'
+                        ? 'text-[var(--color-success)]' 
+                        : 'text-[var(--text-primary)]'
                     }`}>
                       {selectedTransaction.type === 'receive' ? '+' : '-'}${selectedTransaction.amount.toFixed(2)}
                     </div>
-                    <div className="text-gray-500 dark:text-gray-400 mt-1">
+                    <div className="text-[var(--text-secondary)] mt-1">
                       {selectedTransaction.description}
                     </div>
                   </div>
 
                   {/* Details */}
-                  <div className="space-y-3 border-t border-gray-200 dark:border-gray-700 pt-4">
+                  <div className="space-y-3 border-t border-[var(--border-primary)] pt-4">
                     <div className="flex justify-between">
                       <span className="text-[var(--text-secondary)]">Status</span>
                       <div className="flex items-center space-x-2">
@@ -691,13 +682,13 @@ export default function TransactionsPage() {
 
                   {/* Actions */}
                   {selectedTransaction.status === 'failed' && (
-                    <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
+                    <div className="border-t border-[var(--border-primary)] pt-4">
                       <button
                         onClick={() => {
                           handleRetryTransaction(selectedTransaction.id);
                           setSelectedTransaction(null);
                         }}
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+                        className="w-full bg-[var(--color-primary-600)] hover:bg-[var(--color-primary-700)] text-white font-medium py-2 px-4 rounded-lg transition-colors"
                       >
                         {t('transactions.details.retryTransaction')}
                       </button>

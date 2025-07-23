@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { 
   CreditCard, 
-  TrendingUp, 
+ 
   Shield, 
   Clock, 
   DollarSign,
@@ -77,17 +77,17 @@ export default function DashboardPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700"
+            className="bg-[var(--bg-primary)] rounded-xl p-6 shadow-sm border border-[var(--border-primary)]"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Balance</p>
-                <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                <p className="text-sm font-medium text-[var(--text-secondary)]">{t('balance.totalBalance')}</p>
+                <p className="text-2xl font-bold text-[var(--text-primary)]">
                   ${mockData.balance.toLocaleString()}
                 </p>
               </div>
-              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/20 rounded-lg flex items-center justify-center">
-                <DollarSign className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+              <div className="w-12 h-12 bg-[var(--color-primary-100)] rounded-lg flex items-center justify-center">
+                <DollarSign className="w-6 h-6 text-[var(--color-primary-600)]" />
               </div>
             </div>
           </motion.div>
@@ -96,17 +96,17 @@ export default function DashboardPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700"
+            className="bg-[var(--bg-primary)] rounded-xl p-6 shadow-sm border border-[var(--border-primary)]"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Monthly Income</p>
-                <p className="text-2xl font-bold text-green-600 dark:text-green-400">
+                <p className="text-sm font-medium text-[var(--text-secondary)]">{t('statistics.monthlyIncome')}</p>
+                <p className="text-2xl font-bold text-[var(--color-success)]">
                   +${mockData.monthlyIncome.toLocaleString()}
                 </p>
               </div>
-              <div className="w-12 h-12 bg-green-100 dark:bg-green-900/20 rounded-lg flex items-center justify-center">
-                <ArrowUpRight className="w-6 h-6 text-green-600 dark:text-green-400" />
+              <div className="w-12 h-12 bg-[var(--color-success)]/10 rounded-lg flex items-center justify-center">
+                <ArrowUpRight className="w-6 h-6 text-[var(--color-success)]" />
               </div>
             </div>
           </motion.div>
@@ -115,17 +115,17 @@ export default function DashboardPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700"
+            className="bg-[var(--bg-primary)] rounded-xl p-6 shadow-sm border border-[var(--border-primary)]"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Monthly Expenses</p>
-                <p className="text-2xl font-bold text-red-600 dark:text-red-400">
+                <p className="text-sm font-medium text-[var(--text-secondary)]">{t('statistics.monthlySpending')}</p>
+                <p className="text-2xl font-bold text-[var(--color-error)]">
                   -${mockData.monthlyExpense.toLocaleString()}
                 </p>
               </div>
-              <div className="w-12 h-12 bg-red-100 dark:bg-red-900/20 rounded-lg flex items-center justify-center">
-                <ArrowDownRight className="w-6 h-6 text-red-600 dark:text-red-400" />
+              <div className="w-12 h-12 bg-[var(--color-error)]/10 rounded-lg flex items-center justify-center">
+                <ArrowDownRight className="w-6 h-6 text-[var(--color-error)]" />
               </div>
             </div>
           </motion.div>
@@ -134,17 +134,17 @@ export default function DashboardPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700"
+            className="bg-[var(--bg-primary)] rounded-xl p-6 shadow-sm border border-[var(--border-primary)]"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Security Level</p>
-                <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                  {user.twoFactorEnabled ? 'High' : 'Medium'}
+                <p className="text-sm font-medium text-[var(--text-secondary)]">{t('security.level')}</p>
+                <p className="text-2xl font-bold text-[var(--color-primary-600)]">
+                  {user.twoFactorEnabled ? t('security.high') : t('security.medium')}
                 </p>
               </div>
-              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/20 rounded-lg flex items-center justify-center">
-                <Shield className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+              <div className="w-12 h-12 bg-[var(--color-primary-100)] rounded-lg flex items-center justify-center">
+                <Shield className="w-6 h-6 text-[var(--color-primary-600)]" />
               </div>
             </div>
           </motion.div>
@@ -158,12 +158,12 @@ export default function DashboardPage() {
             transition={{ delay: 0.5 }}
             className="lg:col-span-2"
           >
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+            <div className="bg-[var(--bg-primary)] rounded-xl p-6 shadow-sm border border-[var(--border-primary)]">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Your Cards</h2>
-                <button className="flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors">
+                <h2 className="text-xl font-semibold text-[var(--text-primary)]">{t('cards.title')}</h2>
+                <button className="flex items-center text-[var(--color-primary-600)] hover:text-[var(--color-primary-700)] transition-colors">
                   <Plus className="w-4 h-4 mr-1" />
-                  Add Card
+                  {t('cards.addCard')}
                 </button>
               </div>
 
@@ -186,7 +186,7 @@ export default function DashboardPage() {
                           <p className="text-blue-100 text-xs">{card.type}</p>
                           {card.isDefault && (
                             <span className="inline-block bg-white/20 text-xs px-2 py-1 rounded-full mt-1">
-                              Default
+                              {t('cards.defaultCard')}
                             </span>
                           )}
                         </div>
@@ -194,7 +194,7 @@ export default function DashboardPage() {
                       
                       <div className="flex justify-between items-end">
                         <div>
-                          <p className="text-blue-100 text-xs mb-1">Card Number</p>
+                          <p className="text-blue-100 text-xs mb-1">{t('cards.cardNumber')}</p>
                           <p className="font-mono text-lg">•••• •••• •••• {card.last4}</p>
                         </div>
                         <div className="flex space-x-2">
@@ -222,11 +222,11 @@ export default function DashboardPage() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.7 }}
           >
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+            <div className="bg-[var(--bg-primary)] rounded-xl p-6 shadow-sm border border-[var(--border-primary)]">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Recent Activity</h2>
-                <button className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm transition-colors">
-                  View All
+                <h2 className="text-xl font-semibold text-[var(--text-primary)]">{t('recentTransactions.title')}</h2>
+                <button className="text-[var(--color-primary-600)] hover:text-[var(--color-primary-700)] text-sm transition-colors">
+                  {t('recentTransactions.viewAll')}
                 </button>
               </div>
 
@@ -237,33 +237,33 @@ export default function DashboardPage() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.8 + index * 0.1 }}
-                    className="flex items-center justify-between p-3 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                    className="flex items-center justify-between p-3 hover:bg-[var(--bg-tertiary)] rounded-lg transition-colors"
                   >
                     <div className="flex items-center space-x-3">
                       <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
                         transaction.type === 'income' 
-                          ? 'bg-green-100 dark:bg-green-900/20' 
-                          : 'bg-red-100 dark:bg-red-900/20'
+                          ? 'bg-[var(--color-success)]/10' 
+                          : 'bg-[var(--color-error)]/10'
                       }`}>
                         {transaction.type === 'income' ? (
                           <ArrowUpRight className={`w-5 h-5 ${
                             transaction.type === 'income' 
-                              ? 'text-green-600 dark:text-green-400' 
-                              : 'text-red-600 dark:text-red-400'
+                              ? 'text-[var(--color-success)]' 
+                              : 'text-[var(--color-error)]'
                           }`} />
                         ) : (
                           <ArrowDownRight className={`w-5 h-5 ${
                             transaction.type === 'income' 
-                              ? 'text-green-600 dark:text-green-400' 
-                              : 'text-red-600 dark:text-red-400'
+                              ? 'text-[var(--color-success)]' 
+                              : 'text-[var(--color-error)]'
                           }`} />
                         )}
                       </div>
                       <div>
-                        <p className="font-medium text-gray-900 dark:text-white text-sm">
+                        <p className="font-medium text-[var(--text-primary)] text-sm">
                           {transaction.description}
                         </p>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                        <p className="text-xs text-[var(--text-tertiary)]">
                           {transaction.date}
                         </p>
                       </div>
@@ -271,8 +271,8 @@ export default function DashboardPage() {
                     <div className="text-right">
                       <p className={`font-semibold text-sm ${
                         transaction.type === 'income' 
-                          ? 'text-green-600 dark:text-green-400' 
-                          : 'text-red-600 dark:text-red-400'
+                          ? 'text-[var(--color-success)]' 
+                          : 'text-[var(--color-error)]'
                       }`}>
                         {transaction.type === 'income' ? '+' : '-'}${transaction.amount.toLocaleString()}
                       </p>
@@ -282,8 +282,8 @@ export default function DashboardPage() {
                             ? 'bg-green-500' 
                             : 'bg-yellow-500'
                         }`}></div>
-                        <span className="text-xs text-gray-500 dark:text-gray-400 capitalize">
-                          {transaction.status}
+                        <span className="text-xs text-[var(--text-tertiary)] capitalize">
+                          {t(`status.${transaction.status}`)}
                         </span>
                       </div>
                     </div>
@@ -301,47 +301,47 @@ export default function DashboardPage() {
           transition={{ delay: 1.0 }}
           className="mt-8"
         >
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Quick Actions</h2>
+          <div className="bg-[var(--bg-primary)] rounded-xl p-6 shadow-sm border border-[var(--border-primary)]">
+            <h2 className="text-xl font-semibold text-[var(--text-primary)] mb-6">{t('quickActions.title')}</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <button 
                 onClick={() => router.push('/send')}
-                className="flex flex-col items-center p-4 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                className="flex flex-col items-center p-4 hover:bg-[var(--bg-tertiary)] rounded-lg transition-colors"
               >
-                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/20 rounded-lg flex items-center justify-center mb-2">
-                  <CreditCard className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                <div className="w-12 h-12 bg-[var(--color-primary-100)] rounded-lg flex items-center justify-center mb-2">
+                  <CreditCard className="w-6 h-6 text-[var(--color-primary-600)]" />
                 </div>
-                <span className="text-sm font-medium text-gray-900 dark:text-white">Send Money</span>
+                <span className="text-sm font-medium text-[var(--text-primary)]">{t('quickActions.sendMoney')}</span>
               </button>
               
               <button 
                 onClick={() => router.push('/scan')}
-                className="flex flex-col items-center p-4 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                className="flex flex-col items-center p-4 hover:bg-[var(--bg-tertiary)] rounded-lg transition-colors"
               >
-                <div className="w-12 h-12 bg-green-100 dark:bg-green-900/20 rounded-lg flex items-center justify-center mb-2">
-                  <QrCode className="w-6 h-6 text-green-600 dark:text-green-400" />
+                <div className="w-12 h-12 bg-[var(--color-success)]/10 rounded-lg flex items-center justify-center mb-2">
+                  <QrCode className="w-6 h-6 text-[var(--color-success)]" />
                 </div>
-                <span className="text-sm font-medium text-gray-900 dark:text-white">QR Scan</span>
+                <span className="text-sm font-medium text-[var(--text-primary)]">{t('quickActions.scanQr')}</span>
               </button>
               
               <button 
                 onClick={() => router.push('/request')}
-                className="flex flex-col items-center p-4 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                className="flex flex-col items-center p-4 hover:bg-[var(--bg-tertiary)] rounded-lg transition-colors"
               >
-                <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/20 rounded-lg flex items-center justify-center mb-2">
-                  <Clock className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-2">
+                  <Clock className="w-6 h-6 text-purple-600" />
                 </div>
-                <span className="text-sm font-medium text-gray-900 dark:text-white">Request</span>
+                <span className="text-sm font-medium text-[var(--text-primary)]">{t('quickActions.requestMoney')}</span>
               </button>
               
               <button 
                 onClick={() => router.push('/settings/security')}
-                className="flex flex-col items-center p-4 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                className="flex flex-col items-center p-4 hover:bg-[var(--bg-tertiary)] rounded-lg transition-colors"
               >
-                <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900/20 rounded-lg flex items-center justify-center mb-2">
-                  <Shield className="w-6 h-6 text-orange-600 dark:text-orange-400" />
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-2">
+                  <Shield className="w-6 h-6 text-orange-600" />
                 </div>
-                <span className="text-sm font-medium text-gray-900 dark:text-white">Security</span>
+                <span className="text-sm font-medium text-[var(--text-primary)]">{t('quickActions.security')}</span>
               </button>
             </div>
           </div>

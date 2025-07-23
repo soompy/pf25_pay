@@ -26,7 +26,7 @@ export default function LandingPage() {
   const [currentFeature, setCurrentFeature] = useState(0);
   const [currentMockup, setCurrentMockup] = useState(0);
   const [showConfetti, setShowConfetti] = useState(false);
-  const [showMilestone, setShowMilestone] = useState(true);
+  const [showMilestone] = useState(true);
   const milestoneRef = useRef<HTMLElement | null>(null);
 
   const features = [
