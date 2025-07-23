@@ -44,8 +44,8 @@ export function DashboardSidebar({ children }: SidebarProps) {
       label: t('title'),
       icon: Home,
       href: '/dashboard',
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-50 dark:bg-blue-900/20'
+      color: 'text-green-600',
+      bgColor: 'bg-green-50 dark:bg-green-900/20'
     },
     {
       id: 'cards',

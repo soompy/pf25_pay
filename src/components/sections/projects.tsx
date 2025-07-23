@@ -76,7 +76,7 @@ export function ProjectsSection() {
               className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
             >
               <div className="aspect-video bg-gray-200 relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                <div className="absolute inset-0 bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center">
                   <span className="text-white text-lg font-semibold">
                     {project.title}
                   </span>
@@ -95,7 +95,7 @@ export function ProjectsSection() {
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full"
+                      className="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full"
                     >
                       {tech}
                     </span>
@@ -108,7 +108,7 @@ export function ProjectsSection() {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center text-blue-600 hover:text-blue-800 transition-colors"
+                      className="flex items-center text-green-600 hover:text-green-800 transition-colors"
                     >
                       <ExternalLink size={16} className="mr-1" />
                       Live Demo

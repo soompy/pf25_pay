@@ -147,7 +147,7 @@ export default function TransactionsPage() {
     switch (type) {
       case 'send': return <ArrowUpRight className="w-4 h-4 text-red-500" />;
       case 'receive': return <ArrowDownRight className="w-4 h-4 text-green-500" />;
-      case 'request': return <DollarSign className="w-4 h-4 text-blue-500" />;
+      case 'request': return <DollarSign className="w-4 h-4 text-green-500" />;
       case 'refund': return <RefreshCw className="w-4 h-4 text-purple-500" />;
       default: return <DollarSign className="w-4 h-4 text-gray-500" />;
     }
@@ -190,7 +190,7 @@ export default function TransactionsPage() {
   if (authState !== 'authenticated' || !user) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-green-600"></div>
       </div>
     );
   }
@@ -360,7 +360,7 @@ export default function TransactionsPage() {
             >
               {isLoading ? (
                 <div className="flex items-center justify-center py-12">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
                 </div>
               ) : filteredTransactions.length === 0 ? (
                 <div className="bg-[var(--bg-primary)] rounded-xl border border-[var(--border-primary)] p-12 text-center">
@@ -477,7 +477,7 @@ export default function TransactionsPage() {
             >
               {isLoading ? (
                 <div className="flex items-center justify-center py-12">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
                 </div>
               ) : filteredRequests.length === 0 ? (
                 <div className="bg-[var(--bg-primary)] rounded-xl border border-[var(--border-primary)] p-12 text-center">

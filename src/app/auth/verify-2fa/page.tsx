@@ -130,7 +130,7 @@ export default function Verify2FAPage() {
                 value={digit}
                 onChange={(e) => handleCodeChange(index, e.target.value)}
                 onKeyDown={(e) => handleKeyDown(index, e)}
-                className="w-12 h-12 text-center text-lg font-semibold border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                className="w-12 h-12 text-center text-lg font-semibold border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
                 whileFocus={{ scale: 1.05 }}
               />
             ))}
@@ -144,7 +144,7 @@ export default function Verify2FAPage() {
             id="trustDevice"
             checked={trustDevice}
             onChange={(e) => setTrustDevice(e.target.checked)}
-            className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
+            className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500 dark:border-gray-600 dark:bg-gray-700"
           />
           <label htmlFor="trustDevice" className="ml-2 text-sm text-gray-600 dark:text-gray-400">
             이 기기를 30일간 신뢰
@@ -157,7 +157,7 @@ export default function Verify2FAPage() {
           disabled={!isCodeComplete || isLoading}
           whileHover={{ scale: !isCodeComplete || isLoading ? 1 : 1.02 }}
           whileTap={{ scale: !isCodeComplete || isLoading ? 1 : 0.98 }}
-          className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 dark:disabled:bg-gray-600 text-white font-medium py-2.5 px-4 rounded-lg transition-colors flex items-center justify-center"
+          className="w-full bg-green-600 hover:bg-green-700 disabled:bg-gray-400 dark:disabled:bg-gray-600 text-white font-medium py-2.5 px-4 rounded-lg transition-colors flex items-center justify-center"
         >
           {isLoading ? (
             <>
@@ -171,11 +171,11 @@ export default function Verify2FAPage() {
       </form>
 
       {/* Help Text */}
-      <div className="mt-6 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-        <p className="text-sm text-blue-800 dark:text-blue-300">
+      <div className="mt-6 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+        <p className="text-sm text-green-800 dark:text-green-300">
           <strong>데모용 코드:</strong> 123456
         </p>
-        <p className="text-xs text-blue-600 dark:text-blue-400 mt-1">
+        <p className="text-xs text-green-600 dark:text-green-400 mt-1">
           실제 서비스에서는 Google Authenticator, Authy 등의 앱을 사용합니다
         </p>
       </div>
@@ -184,7 +184,7 @@ export default function Verify2FAPage() {
       <div className="mt-4 text-center">
         <button
           type="button"
-          className="text-sm text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
+          className="text-sm text-green-600 hover:text-green-500 dark:text-green-400 dark:hover:text-green-300 transition-colors"
         >
           코드를 받지 못하셨나요? 다시 보내기
         </button>

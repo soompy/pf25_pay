@@ -176,7 +176,7 @@ export default function RequestMoneyPage() {
   if (authState !== 'authenticated' || !user) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-green-600"></div>
       </div>
     );
   }
@@ -212,7 +212,7 @@ export default function RequestMoneyPage() {
           {/* Progress Bar */}
           <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
             <div 
-              className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+              className="bg-green-600 h-2 rounded-full transition-all duration-300"
               style={{ 
                 width: step === 'form' ? '33%' : 
                        step === 'preview' ? '66%' : '100%' 
@@ -251,7 +251,7 @@ export default function RequestMoneyPage() {
                         onClick={() => handleRecipientTypeChange(type)}
                         className={`flex flex-col items-center p-3 rounded-lg border transition-colors ${
                           recipientType === type
-                            ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400'
+                            ? 'border-green-500 bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400'
                             : 'border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400'
                         }`}
                       >
@@ -270,7 +270,7 @@ export default function RequestMoneyPage() {
                           value={contactSearch}
                           onChange={(e) => setContactSearch(e.target.value)}
                           onFocus={() => setShowContactSearch(true)}
-                          className="w-full px-4 py-3 pl-10 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                          className="w-full px-4 py-3 pl-10 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                           placeholder="Search contacts..."
                         />
                         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -308,8 +308,8 @@ export default function RequestMoneyPage() {
                                     className="w-10 h-10 rounded-full object-cover"
                                   />
                                 ) : (
-                                  <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/20 rounded-full flex items-center justify-center">
-                                    <User className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                                  <div className="w-10 h-10 bg-green-100 dark:bg-green-900/20 rounded-full flex items-center justify-center">
+                                    <User className="w-5 h-5 text-green-600 dark:text-green-400" />
                                   </div>
                                 )}
                                 <div className="flex-1 text-left">
@@ -330,7 +330,7 @@ export default function RequestMoneyPage() {
 
                       {/* Selected Contact Display */}
                       {selectedContact && (
-                        <div className="flex items-center space-x-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                        <div className="flex items-center space-x-3 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
                           {selectedContact.avatar ? (
                             <Image 
                               src={selectedContact.avatar} 
@@ -340,8 +340,8 @@ export default function RequestMoneyPage() {
                               className="w-10 h-10 rounded-full object-cover"
                             />
                           ) : (
-                            <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/20 rounded-full flex items-center justify-center">
-                              <User className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                            <div className="w-10 h-10 bg-green-100 dark:bg-green-900/20 rounded-full flex items-center justify-center">
+                              <User className="w-5 h-5 text-green-600 dark:text-green-400" />
                             </div>
                           )}
                           <div className="flex-1">
@@ -371,7 +371,7 @@ export default function RequestMoneyPage() {
                       <input
                         {...register('recipient')}
                         type={recipientType === 'email' ? 'email' : 'tel'}
-                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                         placeholder={
                           recipientType === 'email' ? 'Enter email address' : 'Enter phone number'
                         }
@@ -401,7 +401,7 @@ export default function RequestMoneyPage() {
                           {...register('amount', { valueAsNumber: true })}
                           type="number"
                           step="0.01"
-                          className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                          className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                           placeholder="0.00"
                         />
                       </div>
@@ -420,7 +420,7 @@ export default function RequestMoneyPage() {
                         <textarea
                           {...register('description')}
                           rows={3}
-                          className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white resize-none"
+                          className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white resize-none"
                           placeholder="e.g., Dinner split, Rent contribution, Event tickets"
                         />
                       </div>
@@ -438,7 +438,7 @@ export default function RequestMoneyPage() {
                         <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                         <select
                           {...register('expiresInDays', { valueAsNumber: true })}
-                          className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                          className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                         >
                           <option value={1}>1 day</option>
                           <option value={3}>3 days</option>
@@ -461,7 +461,7 @@ export default function RequestMoneyPage() {
                     <input
                       {...register('sendNotification')}
                       type="checkbox"
-                      className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
+                      className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500 dark:border-gray-600 dark:bg-gray-700"
                     />
                     <span className="ml-2 text-sm text-gray-700 dark:text-gray-300">
                       Send notification to recipient
@@ -476,7 +476,7 @@ export default function RequestMoneyPage() {
                 <button
                   type="submit"
                   disabled={!amount || isLoading}
-                  className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center"
+                  className="w-full bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center"
                 >
                   <DollarSign className="w-4 h-4 mr-2" />
                   Preview Request
@@ -499,15 +499,15 @@ export default function RequestMoneyPage() {
                   </h2>
 
                   {/* Request Preview */}
-                  <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-6 mb-6">
+                  <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-6 mb-6">
                     <div className="text-center">
-                      <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <DollarSign className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+                      <div className="w-16 h-16 bg-green-100 dark:bg-green-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <DollarSign className="w-8 h-8 text-green-600 dark:text-green-400" />
                       </div>
                       <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                         Payment Request
                       </h3>
-                      <p className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+                      <p className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
                         ${getValues('amount')?.toFixed(2)}
                       </p>
                       <p className="text-gray-600 dark:text-gray-400 mb-4">
@@ -574,7 +574,7 @@ export default function RequestMoneyPage() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center"
+                  className="w-full bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center"
                 >
                   {isLoading ? (
                     <>

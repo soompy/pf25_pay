@@ -56,8 +56,8 @@ export function FloatingActionButton() {
       label: 'My Cards',
       href: '/cards',
       icon: CreditCard,
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/30'
+      color: 'text-green-600',
+      bgColor: 'bg-green-50 dark:bg-green-900/20 hover:bg-green-100 dark:hover:bg-green-900/30'
     }
   ];
 

@@ -41,7 +41,7 @@ export function Navigation() {
 
   // Quick action items for authenticated users
   const quickActions = [
-    { id: 'send', label: nav.send, href: '/send', icon: Send, color: 'blue' },
+    { id: 'send', label: nav.send, href: '/send', icon: Send, color: 'green' },
     { id: 'request', label: nav.request, href: '/request', icon: DollarSign, color: 'green' },
     { id: 'scan', label: nav.scan, href: '/scan', icon: QrCode, color: 'purple' },
     { id: 'cards', label: nav.cards, href: '/cards', icon: CreditCard, color: 'orange' },

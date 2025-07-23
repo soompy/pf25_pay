@@ -33,7 +33,7 @@ export default function DashboardPage() {
   if (state !== 'authenticated' || !user) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-green-600"></div>
       </div>
     );
   }
@@ -176,14 +176,14 @@ export default function DashboardPage() {
                     transition={{ delay: 0.6 + index * 0.1 }}
                     className="relative"
                   >
-                    <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-6 text-white relative overflow-hidden">
+                    <div className="bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl p-6 text-white relative overflow-hidden">
                       <div className="flex justify-between items-start mb-8">
                         <div>
-                          <p className="text-blue-100 text-sm">{card.name}</p>
+                          <p className="text-green-100 text-sm">{card.name}</p>
                           <p className="text-xl font-bold">${card.balance.toLocaleString()}</p>
                         </div>
                         <div className="text-right">
-                          <p className="text-blue-100 text-xs">{card.type}</p>
+                          <p className="text-green-100 text-xs">{card.type}</p>
                           {card.isDefault && (
                             <span className="inline-block bg-white/20 text-xs px-2 py-1 rounded-full mt-1">
                               {t('cards.defaultCard')}
@@ -194,7 +194,7 @@ export default function DashboardPage() {
                       
                       <div className="flex justify-between items-end">
                         <div>
-                          <p className="text-blue-100 text-xs mb-1">{t('cards.cardNumber')}</p>
+                          <p className="text-green-100 text-xs mb-1">{t('cards.cardNumber')}</p>
                           <p className="font-mono text-lg">•••• •••• •••• {card.last4}</p>
                         </div>
                         <div className="flex space-x-2">
