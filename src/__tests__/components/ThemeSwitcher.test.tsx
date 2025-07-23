@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { ThemeSwitcher } from '@/components/ui/molecules/ThemeSwitcher';
 import { ThemeProvider } from '@/contexts/ThemeContext';
@@ -7,10 +7,10 @@ import { ThemeProvider } from '@/contexts/ThemeContext';
 // Mock framer-motion to avoid animation issues in tests
 jest.mock('framer-motion', () => ({
   motion: {
-    div: ({ children, initial, animate, exit, transition, ...props }: any) => <div {...props}>{children}</div>,
-    button: ({ children, whileHover, whileTap, ...props }: any) => <button {...props}>{children}</button>,
+    div: ({ children, ...props }: React.PropsWithChildren<React.HTMLAttributes<HTMLDivElement>>) => <div {...props}>{children}</div>,
+    button: ({ children, ...props }: React.PropsWithChildren<React.ButtonHTMLAttributes<HTMLButtonElement>>) => <button {...props}>{children}</button>,
   },
-  AnimatePresence: ({ children }: any) => <>{children}</>,
+  AnimatePresence: ({ children }: { children: React.ReactNode }) => <>{children}</>,
 }));
 
 const ThemeSwitcherWrapper = ({ children }: { children: React.ReactNode }) => (
