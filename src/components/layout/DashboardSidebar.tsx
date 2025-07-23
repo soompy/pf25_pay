@@ -17,7 +17,6 @@ import {
   X,
   Wallet,
   History,
-  HelpCircle,
   ChevronLeft,
   ChevronRight
 } from 'lucide-react';
@@ -96,14 +95,6 @@ export function DashboardSidebar({ children }: SidebarProps) {
       label: 'Settings',
       icon: Settings,
       href: '/settings',
-      color: 'text-gray-600',
-      bgColor: 'bg-gray-50 dark:bg-gray-900/20'
-    },
-    {
-      id: 'help',
-      label: 'Help & Support',
-      icon: HelpCircle,
-      href: '/help',
       color: 'text-gray-600',
       bgColor: 'bg-gray-50 dark:bg-gray-900/20'
     },
