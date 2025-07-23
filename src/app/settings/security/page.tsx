@@ -151,8 +151,8 @@ export default function SecuritySettingsPage() {
       <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
         <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
           <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/20 rounded-lg flex items-center justify-center">
-              <Lock className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+            <div className="w-8 h-8 bg-green-100 dark:bg-green-900/20 rounded-lg flex items-center justify-center">
+              <Lock className="w-4 h-4 text-green-600 dark:text-green-400" />
             </div>
             <div>
               <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
@@ -271,7 +271,7 @@ export default function SecuritySettingsPage() {
             <button
               type="submit"
               disabled={passwordChangeStatus === 'changing'}
-              className="flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white rounded-lg transition-colors"
+              className="flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white rounded-lg transition-colors"
             >
               {passwordChangeStatus === 'changing' ? (
                 <>
@@ -397,13 +397,13 @@ export default function SecuritySettingsPage() {
             <div className="space-y-6">
               {twoFactorStep === 'idle' && (
                 <div className="space-y-4">
-                  <div className="flex items-start space-x-3 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-                    <Smartphone className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5" />
+                  <div className="flex items-start space-x-3 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                    <Smartphone className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5" />
                     <div>
-                      <p className="font-medium text-blue-800 dark:text-blue-300">
+                      <p className="font-medium text-green-800 dark:text-green-300">
                         Secure your account with 2FA
                       </p>
-                      <p className="text-sm text-blue-600 dark:text-blue-400 mt-1">
+                      <p className="text-sm text-green-600 dark:text-green-400 mt-1">
                         Use an authenticator app to generate verification codes
                       </p>
                     </div>
@@ -412,7 +412,7 @@ export default function SecuritySettingsPage() {
                   <button
                     onClick={handleEnable2FA}
                     disabled={isLoading}
-                    className="flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white rounded-lg transition-colors"
+                    className="flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white rounded-lg transition-colors"
                   >
                     {isLoading ? (
                       <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -465,7 +465,7 @@ export default function SecuritySettingsPage() {
                     </div>
                     <button
                       onClick={downloadBackupCodes}
-                      className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
+                      className="flex items-center text-sm text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300"
                     >
                       <Download className="w-4 h-4 mr-1" />
                       Download Backup Codes
@@ -488,7 +488,7 @@ export default function SecuritySettingsPage() {
                       <button
                         onClick={handleVerify2FA}
                         disabled={verificationCode.length !== 6 || twoFactorStep === 'setup'}
-                        className="px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white rounded-lg transition-colors"
+                        className="px-4 py-2 bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white rounded-lg transition-colors"
                       >
                         {twoFactorStep === 'setup' ? (
                           <Loader2 className="w-4 h-4 animate-spin" />

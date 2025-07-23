@@ -106,7 +106,7 @@ export default function ProfileSettingsPage() {
             {!isEditing && (
               <button
                 onClick={() => setIsEditing(true)}
-                className="flex items-center px-4 py-2 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors"
+                className="flex items-center px-4 py-2 text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20 rounded-lg transition-colors"
               >
                 <User className="w-4 h-4 mr-2" />
                 Edit Profile
@@ -132,7 +132,7 @@ export default function ProfileSettingsPage() {
                     className="w-20 h-20 rounded-full object-cover"
                   />
                 ) : (
-                  <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center">
+                  <div className="w-20 h-20 bg-green-600 rounded-full flex items-center justify-center">
                     <User className="w-8 h-8 text-white" />
                   </div>
                 )}
@@ -307,7 +307,7 @@ export default function ProfileSettingsPage() {
               <button
                 type="submit"
                 disabled={!isDirty || isLoading}
-                className="flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white rounded-lg transition-colors"
+                className="flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white rounded-lg transition-colors"
               >
                 {saveStatus === 'saving' ? (
                   <>

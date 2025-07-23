@@ -35,7 +35,7 @@ export default function SettingsLayout({ children }: SettingsLayoutProps) {
   if (state !== 'authenticated' || !user) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-green-600"></div>
       </div>
     );
   }
@@ -81,8 +81,8 @@ export default function SettingsLayout({ children }: SettingsLayoutProps) {
           className="mb-8"
         >
           <div className="flex items-center space-x-3 mb-2">
-            <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/20 rounded-lg flex items-center justify-center">
-              <SettingsIcon className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+            <div className="w-8 h-8 bg-green-100 dark:bg-green-900/20 rounded-lg flex items-center justify-center">
+              <SettingsIcon className="w-4 h-4 text-green-600 dark:text-green-400" />
             </div>
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Settings</h1>
           </div>
@@ -127,40 +127,40 @@ export default function SettingsLayout({ children }: SettingsLayoutProps) {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={`block p-4 rounded-lg transition-all ${
                       isActive
-                        ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300'
+                        ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 text-green-700 dark:text-green-300'
                         : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
                     } border`}
                   >
                     <div className="flex items-start space-x-3">
                       <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
                         isActive
-                          ? 'bg-blue-100 dark:bg-blue-800/50'
+                          ? 'bg-green-100 dark:bg-green-800/50'
                           : 'bg-gray-100 dark:bg-gray-700'
                       }`}>
                         <Icon className={`w-5 h-5 ${
                           isActive
-                            ? 'text-blue-600 dark:text-blue-400'
+                            ? 'text-green-600 dark:text-green-400'
                             : 'text-gray-600 dark:text-gray-400'
                         }`} />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className={`font-medium ${
                           isActive
-                            ? 'text-blue-700 dark:text-blue-300'
+                            ? 'text-green-700 dark:text-green-300'
                             : 'text-gray-900 dark:text-white'
                         }`}>
                           {item.label}
                         </p>
                         <p className={`text-sm ${
                           isActive
-                            ? 'text-blue-600 dark:text-blue-400'
+                            ? 'text-green-600 dark:text-green-400'
                             : 'text-gray-500 dark:text-gray-400'
                         }`}>
                           {item.description}
                         </p>
                       </div>
                       {isActive && (
-                        <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full"></div>
+                        <div className="w-2 h-2 bg-green-600 dark:bg-green-400 rounded-full"></div>
                       )}
                     </div>
                   </Link>
@@ -185,7 +185,7 @@ export default function SettingsLayout({ children }: SettingsLayoutProps) {
                     className="w-12 h-12 rounded-full object-cover"
                   />
                 ) : (
-                  <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+                  <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center">
                     <User className="w-6 h-6 text-white" />
                   </div>
                 )}
