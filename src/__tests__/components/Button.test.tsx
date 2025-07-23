@@ -20,16 +20,16 @@ describe('Button', () => {
 
   it('renders with different variants', () => {
     const { rerender } = render(<Button variant="default">Button</Button>);
-    expect(screen.getByRole('button')).toHaveClass('bg-blue-600');
+    expect(screen.getByRole('button')).toHaveClass('bg-[var(--color-primary-600)]');
 
     rerender(<Button variant="destructive">Button</Button>);
-    expect(screen.getByRole('button')).toHaveClass('bg-red-600');
+    expect(screen.getByRole('button')).toHaveClass('bg-[var(--color-error)]');
 
     rerender(<Button variant="outline">Button</Button>);
     expect(screen.getByRole('button')).toHaveClass('border');
 
     rerender(<Button variant="ghost">Button</Button>);
-    expect(screen.getByRole('button')).toHaveClass('text-gray-700');
+    expect(screen.getByRole('button')).toHaveClass('text-[var(--text-primary)]');
   });
 
   it('renders with different sizes', () => {
