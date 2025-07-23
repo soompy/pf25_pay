@@ -13,7 +13,6 @@ import {
   Mail, 
   Phone, 
   Calendar,
-  Bell,
   Share,
   Copy,
   CheckCircle,
@@ -23,7 +22,6 @@ import {
   Search,
   X,
   QrCode,
-  Clock,
   MessageSquare
 } from 'lucide-react';
 import { useAuthStore } from '@/store/auth';
@@ -49,7 +47,6 @@ export default function RequestMoneyPage() {
     requestMoney, 
     searchContacts,
     generateQRCode,
-    state: paymentState, 
     isLoading, 
     error,
     currentRequest,
@@ -73,7 +70,7 @@ export default function RequestMoneyPage() {
     getValues,
     reset
   } = useForm<RequestMoneyFormData>({
-    resolver: zodResolver(requestMoneySchema) as any,
+    resolver: zodResolver(requestMoneySchema),
     defaultValues: {
       recipientType: 'contact',
       currency: 'USD',
@@ -84,7 +81,6 @@ export default function RequestMoneyPage() {
 
   const recipientType = watch('recipientType');
   const amount = watch('amount');
-  const expiresInDays = watch('expiresInDays');
 
   // Redirect if not authenticated
   useEffect(() => {
@@ -132,7 +128,7 @@ export default function RequestMoneyPage() {
         setShareUrl(url);
         
         setStep('success');
-      } catch (error) {
+      } catch {
         // Error handled by store
       }
     }
@@ -168,7 +164,7 @@ export default function RequestMoneyPage() {
           text: `${user?.name} is requesting $${currentRequest.amount.toFixed(2)} for ${currentRequest.description}`,
           url: shareUrl,
         });
-      } catch (error) {
+      } catch {
         // Fallback to clipboard
         copyToClipboard(shareUrl);
       }
@@ -225,7 +221,7 @@ export default function RequestMoneyPage() {
           </div>
         </motion.div>
 
-        <form onSubmit={handleSubmit(onSubmit as any)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <AnimatePresence mode="wait">
             {/* Step 1: Form */}
             {step === 'form' && (
@@ -417,7 +413,7 @@ export default function RequestMoneyPage() {
                     {/* Description */}
                     <div>
                       <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        What's this for?
+                        What&apos;s this for?
                       </label>
                       <div className="relative">
                         <MessageSquare className="absolute left-3 top-3 w-4 h-4 text-gray-400" />

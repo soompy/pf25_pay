@@ -12,7 +12,6 @@ import {
   User, 
   Mail, 
   Phone, 
-  CreditCard,
   Clock,
   Repeat,
   Eye,
@@ -25,7 +24,6 @@ import {
   Search,
   X,
   DollarSign,
-  Calendar,
   Lock
 } from 'lucide-react';
 import { useAuthStore } from '@/store/auth';
@@ -55,7 +53,7 @@ export default function SendMoneyPage() {
     contacts, 
     sendMoney, 
     searchContacts,
-    state: paymentState, 
+ 
     isLoading, 
     error,
     currentTransaction,
@@ -79,7 +77,7 @@ export default function SendMoneyPage() {
     getValues,
     reset
   } = useForm<SendMoneyFormData>({
-    resolver: zodResolver(sendMoneySchema) as any,
+    resolver: zodResolver(sendMoneySchema),
     defaultValues: {
       recipientType: 'contact',
       currency: 'USD',
@@ -140,7 +138,7 @@ export default function SendMoneyPage() {
       try {
         await sendMoney(data);
         setStep('success');
-      } catch (error) {
+      } catch {
         // Error handled by store
       }
     }
@@ -213,7 +211,7 @@ export default function SendMoneyPage() {
           </div>
         </motion.div>
 
-        <form onSubmit={handleSubmit(onSubmit as any)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <AnimatePresence mode="wait">
             {/* Step 1: Form */}
             {step === 'form' && (
@@ -430,7 +428,7 @@ export default function SendMoneyPage() {
                   {/* Description */}
                   <div className="mt-4">
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      What's this for?
+                      What&apos;s this for?
                     </label>
                     <input
                       {...register('description')}
@@ -697,7 +695,7 @@ export default function SendMoneyPage() {
                     {/* Payment Summary */}
                     <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
                       <div className="text-center">
-                        <p className="text-sm text-gray-600 dark:text-gray-400">You're sending</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">You&apos;re sending</p>
                         <p className="text-2xl font-bold text-gray-900 dark:text-white">
                           ${totalAmount.toFixed(2)}
                         </p>

@@ -88,12 +88,12 @@ export default function DangerZoneSettingsPage() {
       
       setExportStatus('completed');
       setTimeout(() => setExportStatus('idle'), 3000);
-    } catch (error) {
+    } catch {
       setExportStatus('idle');
     }
   };
 
-  const onDeleteSubmit = async (data: DeleteAccountFormData) => {
+  const onDeleteSubmit = async () => {
     setDeleteStep('processing');
     try {
       // Mock account deletion
@@ -105,7 +105,7 @@ export default function DangerZoneSettingsPage() {
         logout();
         router.push('/');
       }, 2000);
-    } catch (error) {
+    } catch {
       setDeleteStep('confirm');
     }
   };
@@ -290,7 +290,7 @@ export default function DangerZoneSettingsPage() {
                   {/* Confirmation Text */}
                   <div>
                     <label htmlFor="confirmText" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      Type "DELETE MY ACCOUNT" to confirm
+                      Type &quot;DELETE MY ACCOUNT&quot; to confirm
                     </label>
                     <input
                       {...register('confirmText')}
