@@ -3,6 +3,7 @@ import { homepage } from './homepage';
 import { auth } from './auth';
 import { dashboard } from './dashboard';
 import { settings } from './settings';
+import { cards } from './cards';
 
 export const ko = {
   common,
@@ -10,4 +11,5 @@ export const ko = {
   auth,
   dashboard,
   settings,
+  cards,
 };
