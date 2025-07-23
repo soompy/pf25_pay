@@ -21,6 +21,8 @@ import {
 } from 'lucide-react';
 import { useAuthStore } from '@/store/auth';
 import { usePaymentStore } from '@/store/payment';
+import { ThemeSwitcher } from '@/components/ui/molecules/ThemeSwitcher';
+import { LanguageSwitcher } from '@/components/ui/molecules/LanguageSwitcher';
 import type { Card } from '@/types/payment';
 
 const addCardSchema = z.object({
@@ -159,6 +161,12 @@ export default function CardsPage() {
               </p>
             </div>
             <div className="flex items-center space-x-3">
+              {/* Language and Theme Switchers */}
+              <div className="flex items-center space-x-2">
+                <LanguageSwitcher variant="inline" size="sm" />
+                <ThemeSwitcher variant="dropdown" size="sm" />
+              </div>
+              
               <button
                 onClick={() => setShowBalances(!showBalances)}
                 className="flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"

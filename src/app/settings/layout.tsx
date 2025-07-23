@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { useAuthStore } from '@/store/auth';
 import { LanguageSwitcher } from '@/components/ui/molecules/LanguageSwitcher';
+import { ThemeSwitcher } from '@/components/ui/molecules/ThemeSwitcher';
 import { useTranslation } from '@/hooks/useTranslation';
 
 interface SettingsLayoutProps {
@@ -100,7 +101,10 @@ export default function SettingsLayout({ children }: SettingsLayoutProps) {
                 {t?.('title') || 'Settings'}
               </h1>
             </div>
-            <LanguageSwitcher variant="inline" size="sm" />
+            <div className="flex items-center space-x-2">
+              <LanguageSwitcher variant="inline" size="sm" />
+              <ThemeSwitcher variant="dropdown" size="sm" />
+            </div>
           </div>
           <p className="text-gray-600 dark:text-gray-400">
             {t?.('description') || 'Manage your account settings and preferences'}

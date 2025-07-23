@@ -28,6 +28,8 @@ import {
 } from 'lucide-react';
 import { useAuthStore } from '@/store/auth';
 import { usePaymentStore } from '@/store/payment';
+import { ThemeSwitcher } from '@/components/ui/molecules/ThemeSwitcher';
+import { LanguageSwitcher } from '@/components/ui/molecules/LanguageSwitcher';
 import type { Contact } from '@/types/payment';
 
 const sendMoneySchema = z.object({
@@ -178,23 +180,31 @@ export default function SendMoneyPage() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <div className="flex items-center space-x-3 mb-4">
-            <button
-              onClick={handleBack}
-              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
-            >
-              <ArrowLeft className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-            </button>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-                Send Money
-              </h1>
-              <p className="text-gray-600 dark:text-gray-400">
-                {step === 'form' && 'Enter payment details'}
-                {step === 'review' && 'Review your payment'}
-                {step === 'confirm' && 'Confirm payment'}
-                {step === 'success' && 'Payment sent successfully'}
-              </p>
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center space-x-3">
+              <button
+                onClick={handleBack}
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+              >
+                <ArrowLeft className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+              </button>
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+                  Send Money
+                </h1>
+                <p className="text-gray-600 dark:text-gray-400">
+                  {step === 'form' && 'Enter payment details'}
+                  {step === 'review' && 'Review your payment'}
+                  {step === 'confirm' && 'Confirm payment'}
+                  {step === 'success' && 'Payment sent successfully'}
+                </p>
+              </div>
+            </div>
+            
+            {/* Language and Theme Switchers */}
+            <div className="flex items-center space-x-2">
+              <LanguageSwitcher variant="inline" size="sm" />
+              <ThemeSwitcher variant="dropdown" size="sm" />
             </div>
           </div>
 

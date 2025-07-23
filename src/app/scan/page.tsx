@@ -17,6 +17,8 @@ import {
 } from 'lucide-react';
 import { useAuthStore } from '@/store/auth';
 import { usePaymentStore } from '@/store/payment';
+import { ThemeSwitcher } from '@/components/ui/molecules/ThemeSwitcher';
+import { LanguageSwitcher } from '@/components/ui/molecules/LanguageSwitcher';
 
 type ScanResult = {
   type: 'payment_request' | 'user_profile' | 'contact';
@@ -219,6 +221,12 @@ export default function QRScanPage() {
           </h1>
           
           <div className="flex items-center space-x-2">
+            {/* Language and Theme Switchers */}
+            <div className="flex items-center space-x-1 mr-2">
+              <LanguageSwitcher variant="inline" size="sm" className="text-white" />
+              <ThemeSwitcher variant="dropdown" size="sm" />
+            </div>
+            
             <button
               onClick={toggleFlash}
               className="p-2 text-white hover:bg-white/20 rounded-lg transition-colors"
