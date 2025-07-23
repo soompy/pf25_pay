@@ -12,9 +12,12 @@ import {
   Bell, 
   Trash2, 
   ChevronRight,
-  Settings as SettingsIcon 
+  Settings as SettingsIcon,
+  Home
 } from 'lucide-react';
 import { useAuthStore } from '@/store/auth';
+import { LanguageSwitcher } from '@/components/ui/molecules/LanguageSwitcher';
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface SettingsLayoutProps {
   children: React.ReactNode;
@@ -25,6 +28,7 @@ export default function SettingsLayout({ children }: SettingsLayoutProps) {
   const router = useRouter();
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t } = useTranslation('settings');
 
   useEffect(() => {
     if (state !== 'authenticated' || !user) {
@@ -42,32 +46,39 @@ export default function SettingsLayout({ children }: SettingsLayoutProps) {
 
   const settingsNavItems = [
     {
+      id: 'home',
+      label: t?.('nav.home') || 'Home',
+      href: '/dashboard',
+      icon: Home,
+      description: t?.('nav.homeDesc') || 'Go to dashboard'
+    },
+    {
       id: 'profile',
-      label: 'Profile',
+      label: t?.('nav.profile') || 'Profile',
       href: '/settings',
       icon: User,
-      description: 'Manage your personal information'
+      description: t?.('nav.profileDesc') || 'Manage your personal information'
     },
     {
       id: 'security',
-      label: 'Security',
+      label: t?.('nav.security') || 'Security',
       href: '/settings/security',
       icon: Shield,
-      description: 'Password, 2FA, and security settings'
+      description: t?.('nav.securityDesc') || 'Password, 2FA, and security settings'
     },
     {
       id: 'notifications',
-      label: 'Notifications',
+      label: t?.('nav.notifications') || 'Notifications',
       href: '/settings/notifications',
       icon: Bell,
-      description: 'Email and push notification preferences'
+      description: t?.('nav.notificationsDesc') || 'Email and push notification preferences'
     },
     {
       id: 'danger',
-      label: 'Danger Zone',
+      label: t?.('nav.danger') || 'Danger Zone',
       href: '/settings/danger',
       icon: Trash2,
-      description: 'Delete account and data management'
+      description: t?.('nav.dangerDesc') || 'Delete account and data management'
     }
   ];
 
@@ -80,14 +91,19 @@ export default function SettingsLayout({ children }: SettingsLayoutProps) {
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <div className="flex items-center space-x-3 mb-2">
-            <div className="w-8 h-8 bg-green-100 dark:bg-green-900/20 rounded-lg flex items-center justify-center">
-              <SettingsIcon className="w-4 h-4 text-green-600 dark:text-green-400" />
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 bg-green-100 dark:bg-green-900/20 rounded-lg flex items-center justify-center">
+                <SettingsIcon className="w-4 h-4 text-green-600 dark:text-green-400" />
+              </div>
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+                {t?.('title') || 'Settings'}
+              </h1>
             </div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Settings</h1>
+            <LanguageSwitcher variant="inline" size="sm" />
           </div>
           <p className="text-gray-600 dark:text-gray-400">
-            Manage your account settings and preferences
+            {t?.('description') || 'Manage your account settings and preferences'}
           </p>
         </motion.div>
 
