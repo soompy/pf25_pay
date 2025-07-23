@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -8,16 +8,11 @@ import {
   ArrowLeft, 
   Flashlight, 
   FlashlightOff,
-  RotateCcw,
   Upload,
   X,
-  CheckCircle,
   AlertCircle,
   DollarSign,
   User,
-  Calendar,
-  Shield,
-  QrCode,
   Zap
 } from 'lucide-react';
 import { useAuthStore } from '@/store/auth';
@@ -38,7 +33,7 @@ type ScanResult = {
 
 export default function QRScanPage() {
   const { user, state: authState } = useAuthStore();
-  const { parseQRCode, sendMoney, isLoading, clearError } = usePaymentStore();
+  const { isLoading, clearError } = usePaymentStore();
   const router = useRouter();
   
   const [scanResult, setScanResult] = useState<ScanResult | null>(null);
@@ -99,7 +94,7 @@ export default function QRScanPage() {
   }, [authState]);
 
   // Mock QR code scanning (in real app, would use a QR code library)
-  const scanQRCode = () => {
+  const scanQRCode = useCallback(() => {
     if (!isScanning) return;
 
     // Mock scan results for demo
@@ -128,7 +123,7 @@ export default function QRScanPage() {
     const randomResult = mockResults[Math.floor(Math.random() * mockResults.length)];
     setScanResult(randomResult);
     setIsScanning(false);
-  };
+  }, [isScanning]);
 
   // Simulate scanning every 3 seconds for demo
   useEffect(() => {
@@ -136,7 +131,7 @@ export default function QRScanPage() {
       const interval = setInterval(scanQRCode, 3000);
       return () => clearInterval(interval);
     }
-  }, [isScanning, hasPermission]);
+  }, [isScanning, hasPermission, scanQRCode]);
 
   const toggleFlash = async () => {
     if (cameraStream) {
@@ -146,7 +141,7 @@ export default function QRScanPage() {
         
         if ('torch' in capabilities) {
           await track.applyConstraints({
-            advanced: [{ torch: !flashEnabled } as any]
+            advanced: [{ torch: !flashEnabled } as MediaTrackConstraints]
           });
           setFlashEnabled(!flashEnabled);
         }
@@ -186,7 +181,7 @@ export default function QRScanPage() {
       
       setShowProcessing(false);
       router.push('/transactions?success=payment_sent');
-    } catch (error) {
+    } catch {
       setShowProcessing(false);
       setError('결제 처리 중 오류가 발생했습니다.');
     }
@@ -338,12 +333,12 @@ export default function QRScanPage() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
           >
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-8 text-center max-w-sm mx-4">
+            <div className="bg-[var(--bg-primary)] rounded-xl p-8 text-center max-w-sm mx-4">
               <div className="w-16 h-16 border-4 border-green-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+              <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">
                 처리 중...
               </h3>
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-[var(--text-secondary)]">
                 QR 코드를 분석하고 있습니다
               </p>
             </div>
@@ -358,15 +353,15 @@ export default function QRScanPage() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
-            className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 rounded-t-xl p-6 z-50"
+            className="fixed bottom-0 left-0 right-0 bg-[var(--bg-primary)] rounded-t-xl p-6 z-50"
           >
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+              <h3 className="text-lg font-semibold text-[var(--text-primary)]">
                 스캔 완료
               </h3>
               <button
                 onClick={restartScan}
-                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                className="p-2 hover:bg-[var(--bg-tertiary)] rounded-lg transition-colors"
               >
                 <X className="w-5 h-5 text-gray-500" />
               </button>

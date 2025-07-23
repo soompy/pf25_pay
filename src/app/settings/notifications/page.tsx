@@ -167,7 +167,7 @@ export default function NotificationsSettingsPage() {
     );
   };
 
-  const updateGlobalSetting = (key: string, value: any) => {
+  const updateGlobalSetting = (key: string, value: boolean | string) => {
     setGlobalSettings(prev => ({
       ...prev,
       [key]: value
@@ -191,7 +191,7 @@ export default function NotificationsSettingsPage() {
       await new Promise(resolve => setTimeout(resolve, 2000));
       setSaveStatus('saved');
       setTimeout(() => setSaveStatus('idle'), 2000);
-    } catch (error) {
+    } catch {
       setSaveStatus('idle');
     }
   };

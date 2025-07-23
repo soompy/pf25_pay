@@ -168,10 +168,10 @@ export function ThemeSwitcher({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 z-50"
+            className="absolute right-0 mt-2 w-80 bg-[var(--bg-primary)] rounded-xl shadow-xl border border-[var(--border-primary)] z-50"
           >
             <div className="p-4">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-4">
                 테마 선택
               </h3>
 
@@ -187,25 +187,25 @@ export function ThemeSwitcher({
                       onClick={() => handleThemeChange(themeOption.id)}
                       className={`w-full flex items-center justify-between p-3 rounded-lg border-2 transition-all ${
                         theme === themeOption.id
-                          ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
-                          : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
+                          ? 'border-[var(--color-primary-500)] bg-[var(--color-primary-50)]'
+                          : 'border-[var(--border-primary)] hover:border-[var(--border-secondary)]'
                       }`}
                     >
                       <div className="flex items-center space-x-3">
                         <div className={`w-8 h-8 rounded-lg border-2 ${themeOption.preview}`} />
                         <div className="text-left">
-                          <p className="font-medium text-gray-900 dark:text-white">
+                          <p className="font-medium text-[var(--text-primary)]">
                             {themeOption.name}
                           </p>
-                          <p className="text-xs text-gray-500 dark:text-gray-400">
+                          <p className="text-xs text-[var(--text-secondary)]">
                             {themeOption.description}
                           </p>
                         </div>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <Icon className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+                        <Icon className="w-4 h-4 text-[var(--text-secondary)]" />
                         {theme === themeOption.id && (
-                          <Check className="w-4 h-4 text-primary-600 dark:text-primary-400" />
+                          <Check className="w-4 h-4 text-[var(--color-primary-600)]" />
                         )}
                       </div>
                     </motion.button>
@@ -215,9 +215,9 @@ export function ThemeSwitcher({
 
               {/* 커스터마이저 */}
               {showCustomizer && (
-                <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
+                <div className="border-t border-[var(--border-primary)] pt-4">
                   <div className="flex items-center justify-between mb-3">
-                    <h4 className="font-medium text-gray-900 dark:text-white">
+                    <h4 className="font-medium text-[var(--text-primary)]">
                       커스텀 테마
                     </h4>
                     <button
@@ -260,13 +260,13 @@ export function ThemeSwitcher({
                             type="color"
                             value={customColor}
                             onChange={(e) => setCustomColor(e.target.value)}
-                            className="w-8 h-8 rounded border border-gray-300 dark:border-gray-600"
+                            className="w-8 h-8 rounded border border-[var(--border-primary)]"
                           />
                           <input
                             type="text"
                             value={customColor}
                             onChange={(e) => setCustomColor(e.target.value)}
-                            className="flex-1 px-2 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                            className="flex-1 px-2 py-1 text-sm border border-[var(--border-primary)] rounded bg-[var(--bg-primary)] text-[var(--text-primary)]"
                             placeholder="#22c55e"
                           />
                         </div>

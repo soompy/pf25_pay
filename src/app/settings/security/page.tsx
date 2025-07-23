@@ -38,13 +38,13 @@ const passwordChangeSchema = z.object({
 type PasswordChangeFormData = z.infer<typeof passwordChangeSchema>;
 
 export default function SecuritySettingsPage() {
-  const { user, enableTwoFactor, disableTwoFactor, isLoading, error } = useAuthStore();
+  const { user, enableTwoFactor, disableTwoFactor, isLoading } = useAuthStore();
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [passwordChangeStatus, setPasswordChangeStatus] = useState<'idle' | 'changing' | 'success' | 'error'>('idle');
   const [twoFactorStep, setTwoFactorStep] = useState<'idle' | 'setup' | 'verify' | 'disable'>('idle');
-  const [qrCodeUrl, setQrCodeUrl] = useState<string>('');
+  const [, setQrCodeUrl] = useState<string>('');
   const [backupCodes, setBackupCodes] = useState<string[]>([]);
   const [verificationCode, setVerificationCode] = useState('');
 
@@ -66,7 +66,7 @@ export default function SecuritySettingsPage() {
     { test: /(?=.*\d)/.test(newPassword || ''), label: '숫자 포함' },
   ];
 
-  const onPasswordSubmit = async (data: PasswordChangeFormData) => {
+  const onPasswordSubmit = async () => {
     setPasswordChangeStatus('changing');
     try {
       // Mock password change
@@ -74,7 +74,7 @@ export default function SecuritySettingsPage() {
       setPasswordChangeStatus('success');
       reset();
       setTimeout(() => setPasswordChangeStatus('idle'), 3000);
-    } catch (error) {
+    } catch {
       setPasswordChangeStatus('error');
       setTimeout(() => setPasswordChangeStatus('idle'), 3000);
     }
@@ -96,7 +96,7 @@ export default function SecuritySettingsPage() {
         'jkl789mno012',
         'pqr345stu678'
       ]);
-    } catch (error) {
+    } catch {
       setTwoFactorStep('idle');
     }
   };
@@ -110,7 +110,7 @@ export default function SecuritySettingsPage() {
       await new Promise(resolve => setTimeout(resolve, 1000));
       setTwoFactorStep('idle');
       setVerificationCode('');
-    } catch (error) {
+    } catch {
       setTwoFactorStep('setup');
     }
   };
@@ -121,7 +121,7 @@ export default function SecuritySettingsPage() {
       await disableTwoFactor(verificationCode);
       setTwoFactorStep('idle');
       setVerificationCode('');
-    } catch (error) {
+    } catch {
       setTwoFactorStep('idle');
     }
   };

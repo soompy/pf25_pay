@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Button, Input } from '@/components/ui';
+import { Button } from '@/components/ui';
 import { ThemeSwitcher } from '../molecules/ThemeSwitcher';
 import { useStyleOverride, useButtonStyles, useCardStyles } from '@/hooks/useStyleOverride';
 import { ThemeProvider } from '@/contexts/ThemeContext';
@@ -12,7 +12,6 @@ import { Palette, Sparkles, Code2, Eye } from 'lucide-react';
  */
 export function CustomizationDemo() {
   const [customButtonColor, setCustomButtonColor] = useState('#22c55e');
-  const [showCode, setShowCode] = useState(false);
 
   // 1. 기본 Button 컴포넌트 사용
   const basicButton = <Button>기본 버튼</Button>;

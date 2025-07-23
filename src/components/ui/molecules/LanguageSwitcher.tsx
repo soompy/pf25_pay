@@ -18,12 +18,12 @@ export function LanguageSwitcher({
   showLabel = false 
 }: LanguageSwitcherProps) {
   const { language, setLanguage } = useLanguage();
-  const { t, translations } = useCommonTranslation();
+  const { translations } = useCommonTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
   const languages = [
-    { code: 'ko', name: '한국어', flag: '🇰🇷' },
-    { code: 'en', name: 'English', flag: '🇺🇸' },
+    { code: 'ko', name: '한국어', shortName: '한국어' },
+    { code: 'en', name: 'English', shortName: 'EN' },
   ] as const;
 
   const currentLanguage = languages.find(lang => lang.code === language);
@@ -61,7 +61,7 @@ export function LanguageSwitcher({
             `}
           >
             <span className="flex items-center space-x-1">
-              <span>{lang.flag}</span>
+              <span className="font-semibold">{lang.shortName}</span>
               {showLabel && <span>{lang.name}</span>}
             </span>
           </button>
@@ -142,7 +142,7 @@ export function LanguageSwitcher({
                     `}
                   >
                     <div className="flex items-center space-x-3">
-                      <span className="text-xl">{lang.flag}</span>
+                      <span className="text-sm font-bold bg-[var(--color-primary-100)] text-[var(--color-primary-700)] px-2 py-1 rounded">{lang.shortName}</span>
                       <span className="font-medium">{lang.name}</span>
                     </div>
                     
@@ -156,7 +156,7 @@ export function LanguageSwitcher({
               {/* Footer */}
               <div className="px-4 py-3 border-t border-[var(--border-primary)] bg-[var(--bg-secondary)]">
                 <p className="text-xs text-[var(--text-tertiary)]">
-                  {translations.language.korean} / {translations.language.english}
+한국어 / EN
                 </p>
               </div>
             </motion.div>

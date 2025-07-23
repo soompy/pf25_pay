@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 
 interface ConfettiParticle {
   x: number;
@@ -27,7 +27,6 @@ interface CanvasConfettiProps {
 export function CanvasConfetti({ 
   active, 
   duration = 5000, 
-  particleCount = 200,
   containerRef
 }: CanvasConfettiProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -36,82 +35,30 @@ export function CanvasConfetti({
   const startTimeRef = useRef<number>(0);
   const fireworksCreated = useRef<boolean>(false);
 
-  const colors = [
-    '#FFD700', '#FF6347', '#FF69B4', '#00CED1', '#32CD32',
-    '#FF4500', '#DA70D6', '#00FA9A', '#FFB6C1', '#87CEEB'
-  ];
+  // const colors = [
+  //   '#FFD700', '#FF6347', '#FF69B4', '#00CED1', '#32CD32',
+  //   '#FF4500', '#DA70D6', '#00FA9A', '#FFB6C1', '#87CEEB'
+  // ];
 
-  const fireworkColors = [
-    ['#FFD700', '#FFA500', '#FF4500'], // 황금색 폭죽
-    ['#FF69B4', '#FF1493', '#DC143C'], // 핑크색 폭죽
-    ['#00CED1', '#1E90FF', '#0000FF'], // 파란색 폭죽
-    ['#32CD32', '#00FF00', '#228B22'], // 초록색 폭죽
-    ['#DA70D6', '#9932CC', '#8B008B']  // 보라색 폭죽
-  ];
 
-  const getContainerBounds = () => {
-    if (containerRef?.current) {
-      const rect = containerRef.current.getBoundingClientRect();
-      return {
-        x: rect.left,
-        y: rect.top,
-        width: rect.width,
-        height: rect.height
-      };
-    }
-    return {
-      x: 0,
-      y: 0,
-      width: window.innerWidth,
-      height: window.innerHeight
-    };
-  };
-
-  const createFireworkBurst = (x: number, y: number, colorPalette: string[]) => {
-    const particles: ConfettiParticle[] = [];
-    const particleCount = 20; // 고정 개수
-    
-    for (let i = 0; i < particleCount; i++) {
-      const angle = (Math.PI * 2 * i) / particleCount;
-      const speed = 5 + Math.random() * 3;
-      
-      particles.push({
-        x,
-        y,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed,
-        color: colorPalette[i % colorPalette.length],
-        size: 2 + Math.random() * 3,
-        rotation: 0,
-        rotationSpeed: (Math.random() - 0.5) * 10,
-        gravity: 0.1,
-        alpha: 1,
-        fade: 0.005,
-        trail: []
-      });
-    }
-    
-    return particles;
-  };
-
-  const createParticle = (): ConfettiParticle => {
-    const bounds = getContainerBounds();
-
-    return {
-      x: bounds.x + Math.random() * bounds.width,
-      y: bounds.y - 10,
-      vx: (Math.random() - 0.5) * 8,
-      vy: Math.random() * 3 + 2,
-      color: colors[Math.floor(Math.random() * colors.length)],
-      size: Math.random() * 6 + 3,
-      rotation: Math.random() * 360,
-      rotationSpeed: (Math.random() - 0.5) * 6,
-      gravity: 0.3 + Math.random() * 0.2,
-      alpha: 1,
-      fade: 0.01,
-      trail: []
-    };
-  };
+  // const createParticle = (): ConfettiParticle => {
+  //   const bounds = getContainerBounds();
+  //
+  //   return {
+  //     x: bounds.x + Math.random() * bounds.width,
+  //     y: bounds.y - 10,
+  //     vx: (Math.random() - 0.5) * 8,
+  //     vy: Math.random() * 3 + 2,
+  //     color: colors[Math.floor(Math.random() * colors.length)],
+  //     size: Math.random() * 6 + 3,
+  //     rotation: Math.random() * 360,
+  //     rotationSpeed: (Math.random() - 0.5) * 6,
+  //     gravity: 0.3 + Math.random() * 0.2,
+  //     alpha: 1,
+  //     fade: 0.01,
+  //     trail: []
+  //   };
+  // };
 
   const updateParticle = (particle: ConfettiParticle) => {
     particle.x += particle.vx;
@@ -135,7 +82,60 @@ export function CanvasConfetti({
     ctx.restore();
   };
 
-  const animate = (timestamp: number) => {
+  const animate = useCallback((timestamp: number) => {
+    const fireworkColors = [
+      ['#FFD700', '#FFA500', '#FF4500'], // 황금색 폭죽
+      ['#FF69B4', '#FF1493', '#DC143C'], // 핑크색 폭죽
+      ['#00CED1', '#1E90FF', '#0000FF'], // 파란색 폭죽
+      ['#32CD32', '#00FF00', '#228B22'], // 초록색 폭죽
+      ['#DA70D6', '#9932CC', '#8B008B']  // 보라색 폭죽
+    ];
+
+    const getContainerBounds = () => {
+      if (containerRef?.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        return {
+          x: rect.left,
+          y: rect.top,
+          width: rect.width,
+          height: rect.height
+        };
+      }
+      return {
+        x: 0,
+        y: 0,
+        width: window.innerWidth,
+        height: window.innerHeight
+      };
+    };
+
+    const createFireworkBurst = (x: number, y: number, colorPalette: string[]) => {
+      const particles: ConfettiParticle[] = [];
+      const particleCount = 20;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const angle = (Math.PI * 2 * i) / particleCount;
+        const speed = 5 + Math.random() * 3;
+        
+        particles.push({
+          x,
+          y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          color: colorPalette[i % colorPalette.length],
+          size: 2 + Math.random() * 3,
+          rotation: 0,
+          rotationSpeed: (Math.random() - 0.5) * 10,
+          gravity: 0.1,
+          alpha: 1,
+          fade: 0.005,
+          trail: []
+        });
+      }
+      
+      return particles;
+    };
+
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext('2d');
     if (!canvas || !ctx) return;
@@ -196,7 +196,7 @@ export function CanvasConfetti({
     if (particlesRef.current.length > 0 || elapsed < duration) {
       animationRef.current = requestAnimationFrame(animate);
     }
-  };
+  }, [duration, containerRef]);
 
   const resizeCanvas = () => {
     const canvas = canvasRef.current;
@@ -231,7 +231,7 @@ export function CanvasConfetti({
         cancelAnimationFrame(animationRef.current);
       }
     }
-  }, [active]);
+  }, [active, animate]);
 
   if (!active) return null;
 

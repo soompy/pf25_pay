@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Input } from '../components/ui/atoms/Input';
-import { Mail, Search, Eye, EyeOff, User, Lock } from 'lucide-react';
+import { Mail, Search, Eye, User, Lock } from 'lucide-react';
 
 const meta: Meta<typeof Input> = {
   title: 'SafePay/Input',
