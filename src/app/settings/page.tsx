@@ -125,7 +125,7 @@ export default function ProfileSettingsPage() {
               <div className="relative">
                 {previewImage || user.avatar ? (
                   <Image
-                    src={previewImage || user.avatar}
+                    src={previewImage || user.avatar || '/default-avatar.png'}
                     alt={user.name}
                     width={80}
                     height={80}

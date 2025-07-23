@@ -31,9 +31,9 @@ export function CanvasConfetti({
   containerRef
 }: CanvasConfettiProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number>(0);
   const particlesRef = useRef<ConfettiParticle[]>([]);
-  const startTimeRef = useRef<number>();
+  const startTimeRef = useRef<number>(0);
   const fireworksCreated = useRef<boolean>(false);
 
   const colors = [
@@ -209,7 +209,7 @@ export function CanvasConfetti({
   useEffect(() => {
     if (active) {
       resizeCanvas();
-      startTimeRef.current = undefined;
+      startTimeRef.current = 0;
       particlesRef.current = [];
       fireworksCreated.current = false; // 리셋
       animationRef.current = requestAnimationFrame(animate);
