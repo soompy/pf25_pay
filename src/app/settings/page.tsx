@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import Image from 'next/image';
 import { 
   User, 
   Camera, 
@@ -123,9 +124,11 @@ export default function ProfileSettingsPage() {
             <div className="flex items-center space-x-6">
               <div className="relative">
                 {previewImage || user.avatar ? (
-                  <img
+                  <Image
                     src={previewImage || user.avatar}
                     alt={user.name}
+                    width={80}
+                    height={80}
                     className="w-20 h-20 rounded-full object-cover"
                   />
                 ) : (

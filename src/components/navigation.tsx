@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { 
   Menu, 
   X, 
@@ -105,7 +106,7 @@ export function Navigation() {
                   }
                 `}
               >
-                {translations.language.korean}
+한국어
               </button>
               <span className="text-[var(--text-tertiary)]">|</span>
               <button
@@ -145,11 +146,15 @@ export function Navigation() {
                   className="flex items-center space-x-3 p-2 rounded-lg hover:bg-[var(--bg-tertiary)] transition-colors"
                 >
                   {user.avatar ? (
-                    <img 
-                      src={user.avatar} 
-                      alt={user.name}
-                      className="w-8 h-8 rounded-full ring-2 ring-[var(--color-primary-200)]"
-                    />
+                    <div className="w-8 h-8 relative">
+                      <Image 
+                        src={user.avatar} 
+                        alt={user.name}
+                        fill
+                        sizes="32px"
+                        className="rounded-full ring-2 ring-[var(--color-primary-200)] object-cover"
+                      />
+                    </div>
                   ) : (
                     <div className="w-8 h-8 bg-gradient-to-br from-[var(--color-primary-500)] to-[var(--color-primary-600)] rounded-full flex items-center justify-center ring-2 ring-[var(--color-primary-200)]">
                       <User className="w-4 h-4 text-[var(--text-inverse)]" />
@@ -175,11 +180,15 @@ export function Navigation() {
                       <div className="px-6 py-4 bg-gradient-to-r from-[var(--color-primary-50)] to-[var(--bg-accent)] border-b border-[var(--border-primary)]">
                         <div className="flex items-center space-x-3">
                           {user.avatar ? (
-                            <img 
-                              src={user.avatar} 
-                              alt={user.name}
-                              className="w-12 h-12 rounded-full ring-2 ring-[var(--bg-primary)]"
-                            />
+                            <div className="w-12 h-12 relative">
+                              <Image 
+                                src={user.avatar} 
+                                alt={user.name}
+                                fill
+                                sizes="48px"
+                                className="rounded-full ring-2 ring-[var(--bg-primary)] object-cover"
+                              />
+                            </div>
                           ) : (
                             <div className="w-12 h-12 bg-gradient-to-br from-[var(--color-primary-500)] to-[var(--color-primary-600)] rounded-full flex items-center justify-center ring-2 ring-[var(--bg-primary)]">
                               <User className="w-6 h-6 text-[var(--text-inverse)]" />
@@ -198,15 +207,15 @@ export function Navigation() {
                         <div className="grid grid-cols-3 gap-4 text-center">
                           <div>
                             <p className="text-lg font-semibold text-[var(--text-primary)]">$2,341</p>
-                            <p className="text-xs text-[var(--text-secondary)]">This Month</p>
+                            <p className="text-xs text-[var(--text-secondary)]">{translations.userMenu.thisMonth}</p>
                           </div>
                           <div>
                             <p className="text-lg font-semibold text-[var(--text-primary)]">47</p>
-                            <p className="text-xs text-[var(--text-secondary)]">Transactions</p>
+                            <p className="text-xs text-[var(--text-secondary)]">{translations.userMenu.transactions}</p>
                           </div>
                           <div>
                             <p className="text-lg font-semibold text-[var(--text-primary)]">3</p>
-                            <p className="text-xs text-[var(--text-secondary)]">Active Cards</p>
+                            <p className="text-xs text-[var(--text-secondary)]">{translations.userMenu.activeCards}</p>
                           </div>
                         </div>
                       </div>
@@ -220,8 +229,8 @@ export function Navigation() {
                         >
                           <TrendingUp className="w-5 h-5 mr-3 text-[var(--color-primary-500)]" />
                           <div>
-                            <p className="font-medium">Dashboard</p>
-                            <p className="text-xs text-[var(--text-secondary)]">Overview & Analytics</p>
+                            <p className="font-medium">{nav.dashboard}</p>
+                            <p className="text-xs text-[var(--text-secondary)]">{translations.userMenu.dashboardDesc}</p>
                           </div>
                         </Link>
 
@@ -232,8 +241,8 @@ export function Navigation() {
                         >
                           <History className="w-5 h-5 mr-3 text-[var(--color-primary-500)]" />
                           <div>
-                            <p className="font-medium">Transaction History</p>
-                            <p className="text-xs text-[var(--text-secondary)]">View all payments</p>
+                            <p className="font-medium">{nav.transactions}</p>
+                            <p className="text-xs text-[var(--text-secondary)]">{translations.userMenu.transactionsDesc}</p>
                           </div>
                         </Link>
 
@@ -244,8 +253,8 @@ export function Navigation() {
                         >
                           <Wallet className="w-5 h-5 mr-3 text-[var(--color-purple-500)]" />
                           <div>
-                            <p className="font-medium">My Cards</p>
-                            <p className="text-xs text-[var(--text-secondary)]">Manage payment methods</p>
+                            <p className="font-medium">{nav.cards}</p>
+                            <p className="text-xs text-[var(--text-secondary)]">{translations.userMenu.cardsDesc}</p>
                           </div>
                         </Link>
 
@@ -256,8 +265,8 @@ export function Navigation() {
                         >
                           <Settings className="w-5 h-5 mr-3 text-[var(--color-orange-500)]" />
                           <div>
-                            <p className="font-medium">Account Settings</p>
-                            <p className="text-xs text-[var(--text-secondary)]">Privacy & Security</p>
+                            <p className="font-medium">{nav.settings}</p>
+                            <p className="text-xs text-[var(--text-secondary)]">{translations.userMenu.settingsDesc}</p>
                           </div>
                         </Link>
                       </div>
@@ -269,7 +278,7 @@ export function Navigation() {
                           className="flex items-center w-full px-3 py-2 text-[var(--color-error)] hover:bg-[var(--bg-tertiary)] rounded-lg transition-colors"
                         >
                           <LogOut className="w-4 h-4 mr-3" />
-                          <span className="font-medium">Sign Out</span>
+                          <span className="font-medium">{nav.signOut}</span>
                         </button>
                       </div>
                     </motion.div>
@@ -369,7 +378,7 @@ export function Navigation() {
                           }
                         `}
                       >
-                        {translations.language.korean}
+        한국어
                       </button>
                       <button
                         onClick={() => setLanguage('en')}
@@ -398,11 +407,15 @@ export function Navigation() {
                     {/* User Info */}
                     <div className="flex items-center px-4 py-3 bg-gradient-to-r from-[var(--color-primary-50)] to-[var(--bg-accent)] mx-4 rounded-lg mb-4">
                       {user.avatar ? (
-                        <img 
-                          src={user.avatar} 
-                          alt={user.name}
-                          className="w-10 h-10 rounded-full mr-3 ring-2 ring-[var(--color-primary-200)]"
-                        />
+                        <div className="w-10 h-10 relative mr-3">
+                          <Image 
+                            src={user.avatar} 
+                            alt={user.name}
+                            fill
+                            sizes="40px"
+                            className="rounded-full ring-2 ring-[var(--color-primary-200)] object-cover"
+                          />
+                        </div>
                       ) : (
                         <div className="w-10 h-10 bg-gradient-to-br from-[var(--color-primary-500)] to-[var(--color-primary-600)] rounded-full flex items-center justify-center mr-3 ring-2 ring-[var(--color-primary-200)]">
                           <User className="w-5 h-5 text-[var(--text-inverse)]" />
@@ -419,15 +432,15 @@ export function Navigation() {
                     <div className="grid grid-cols-3 gap-4 px-4 mb-4">
                       <div className="text-center p-3 bg-[var(--bg-tertiary)] rounded-lg">
                         <p className="text-lg font-semibold text-[var(--text-primary)]">$2,341</p>
-                        <p className="text-xs text-[var(--text-secondary)]">This Month</p>
+                        <p className="text-xs text-[var(--text-secondary)]">{translations.userMenu.thisMonth}</p>
                       </div>
                       <div className="text-center p-3 bg-[var(--bg-tertiary)] rounded-lg">
                         <p className="text-lg font-semibold text-[var(--text-primary)]">47</p>
-                        <p className="text-xs text-[var(--text-secondary)]">Transactions</p>
+                        <p className="text-xs text-[var(--text-secondary)]">{translations.userMenu.transactions}</p>
                       </div>
                       <div className="text-center p-3 bg-[var(--bg-tertiary)] rounded-lg">
                         <p className="text-lg font-semibold text-[var(--text-primary)]">3</p>
-                        <p className="text-xs text-[var(--text-secondary)]">Active Cards</p>
+                        <p className="text-xs text-[var(--text-secondary)]">{translations.userMenu.activeCards}</p>
                       </div>
                     </div>
 
@@ -440,8 +453,8 @@ export function Navigation() {
                       >
                         <Settings className="w-5 h-5 mr-3 text-[var(--color-orange-500)]" />
                         <div>
-                          <p className="font-medium">Account Settings</p>
-                          <p className="text-xs text-[var(--text-secondary)]">Privacy & Security</p>
+                          <p className="font-medium">{nav.settings}</p>
+                          <p className="text-xs text-[var(--text-secondary)]">{translations.userMenu.settingsDesc}</p>
                         </div>
                       </Link>
                       
@@ -453,7 +466,7 @@ export function Navigation() {
                         className="flex items-center w-full px-4 py-3 text-[var(--color-error)] hover:bg-[var(--bg-tertiary)] transition-colors"
                       >
                         <LogOut className="w-5 h-5 mr-3" />
-                        <span className="font-medium">Sign Out</span>
+                        <span className="font-medium">{nav.signOut}</span>
                       </button>
                     </div>
                   </div>

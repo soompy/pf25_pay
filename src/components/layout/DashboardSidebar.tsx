@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { 
   Home, 
   CreditCard, 
@@ -159,10 +160,12 @@ export function DashboardSidebar({ children }: SidebarProps) {
       <div className="p-4 border-b border-[var(--border-primary)]">
         <div className={`flex items-center space-x-3 ${isCollapsed ? 'justify-center' : ''}`}>
           {user?.avatar ? (
-            <img 
+            <Image 
               src={user.avatar} 
               alt={user.name}
-              className="w-10 h-10 rounded-full ring-2 ring-[var(--color-primary-200)]"
+              width={40}
+              height={40}
+              className="w-10 h-10 rounded-full object-cover ring-2 ring-[var(--color-primary-200)]"
             />
           ) : (
             <div className="w-10 h-10 bg-gradient-to-br from-[var(--color-primary-500)] to-[var(--color-primary-600)] rounded-full flex items-center justify-center ring-2 ring-[var(--color-primary-200)]">

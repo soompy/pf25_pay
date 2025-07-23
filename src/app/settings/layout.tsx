@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { 
   User, 
   Shield, 
@@ -176,10 +177,12 @@ export default function SettingsLayout({ children }: SettingsLayoutProps) {
             >
               <div className="flex items-center space-x-3">
                 {user.avatar ? (
-                  <img 
+                  <Image 
                     src={user.avatar} 
                     alt={user.name}
-                    className="w-12 h-12 rounded-full"
+                    width={48}
+                    height={48}
+                    className="w-12 h-12 rounded-full object-cover"
                   />
                 ) : (
                   <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
