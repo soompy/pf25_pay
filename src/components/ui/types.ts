@@ -113,17 +113,17 @@ export interface PaginationProps extends BaseProps {
 }
 
 // Data Table Types
-export interface Column<T = any> {
+export interface Column<T = Record<string, unknown>> {
   key: string;
   title: string;
   dataIndex?: keyof T;
-  render?: (value: any, record: T, index: number) => React.ReactNode;
+  render?: (value: unknown, record: T, index: number) => React.ReactNode;
   sortable?: boolean;
   width?: string | number;
   align?: 'left' | 'center' | 'right';
 }
 
-export interface DataTableProps<T = any> extends BaseProps {
+export interface DataTableProps<T = Record<string, unknown>> extends BaseProps {
   data: T[];
   columns: Column<T>[];
   loading?: boolean;

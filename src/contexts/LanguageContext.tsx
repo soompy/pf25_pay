@@ -7,7 +7,7 @@ interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   t: (key: string, params?: Record<string, string | number>) => string;
-  getTranslations: (section: keyof typeof translations.ko) => any;
+  getTranslations: (section: keyof typeof translations.ko) => Record<string, unknown>;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);

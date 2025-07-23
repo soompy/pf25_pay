@@ -12,7 +12,7 @@ import { useTranslation } from '@/hooks/useTranslation';
 import { Eye, EyeOff, Loader2, Check, X } from 'lucide-react';
 
 // We'll create the schema dynamically with translations
-const createRegisterSchema = (t: any) => z.object({
+const createRegisterSchema = (t: (key: string, params?: Record<string, string | number>) => string) => z.object({
   name: z.string().min(2, t('validation.nameRequired')),
   email: z.string().email(t('validation.emailInvalid')),
   password: z.string()

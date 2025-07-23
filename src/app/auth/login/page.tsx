@@ -12,7 +12,7 @@ import { useTranslation } from '@/hooks/useTranslation';
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
 
 // We'll create the schema dynamically with translations
-const createLoginSchema = (t: any) => z.object({
+const createLoginSchema = (t: (key: string, params?: Record<string, string | number>) => string) => z.object({
   email: z.string().email(t('validation.emailInvalid')),
   password: z.string().min(6, t('validation.passwordTooShort')),
   rememberMe: z.boolean().optional(),

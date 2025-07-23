@@ -14,6 +14,6 @@ export type TranslationKey = keyof typeof ko.common |
                             `dashboard.${keyof typeof ko.dashboard}`;
 
 // Helper function to get nested translation value
-export function getNestedTranslation(obj: any, path: string): string {
+export function getNestedTranslation(obj: Record<string, unknown>, path: string): string {
   return path.split('.').reduce((current, key) => current?.[key], obj) || path;
 }

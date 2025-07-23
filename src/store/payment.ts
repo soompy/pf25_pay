@@ -583,7 +583,7 @@ export const usePaymentStore = create<PaymentStore>()(
       },
       
       // Load initial data
-      getTransactions: async (filters) => {
+      getTransactions: async () => {
         set({ isLoading: true, error: null });
         
         try {
@@ -743,7 +743,7 @@ export const usePaymentStore = create<PaymentStore>()(
         try {
           const decoded = JSON.parse(atob(qrData));
           return decoded as QRCodeData;
-        } catch (error) {
+        } catch {
           return null;
         }
       },
@@ -802,6 +802,6 @@ export const usePaymentStore = create<PaymentStore>()(
 if (typeof window !== 'undefined') {
   const store = usePaymentStore.getState();
   if (store.cards.length === 0) {
-    (store as any).init?.();
+    (store as { init?: () => void }).init?.();
   }
 }

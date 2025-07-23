@@ -125,17 +125,17 @@ const mockAuthAPI = {
     };
   },
   
-  async requestPasswordReset(email: string): Promise<void> {
+  async requestPasswordReset(): Promise<void> {
     await new Promise(resolve => setTimeout(resolve, 1000));
     // Mock success - in real app, this would send an email
   },
   
-  async resetPassword(token: string, password: string): Promise<void> {
+  async resetPassword(): Promise<void> {
     await new Promise(resolve => setTimeout(resolve, 1000));
     // Mock success
   },
   
-  async refreshSession(refreshToken: string): Promise<AuthSession> {
+  async refreshSession(): Promise<AuthSession> {
     await new Promise(resolve => setTimeout(resolve, 500));
     
     // Mock refresh logic
@@ -302,7 +302,7 @@ export const useAuthStore = create<AuthStore>()(
             user: newSession.user,
             isLoading: false 
           });
-        } catch (error) {
+        } catch {
           // Refresh failed, logout user
           get().logout();
         }
@@ -364,7 +364,7 @@ export const useAuthStore = create<AuthStore>()(
       },
       
       // Disable 2FA
-      disableTwoFactor: async (code: string) => {
+      disableTwoFactor: async () => {
         set({ isLoading: true, error: null });
         
         try {

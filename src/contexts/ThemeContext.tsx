@@ -75,7 +75,7 @@ export function ThemeProvider({ children, defaultTheme = 'light' }: ThemeProvide
       try {
         const parsedColors = JSON.parse(savedCustomColors);
         applyCustomTheme(parsedColors);
-      } catch (error) {
+      } catch {
         console.warn('Failed to parse custom colors from localStorage');
       }
     }
