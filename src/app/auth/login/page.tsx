@@ -8,20 +8,29 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useAuthStore } from '@/store/auth';
+import { useTranslation } from '@/hooks/useTranslation';
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
 
-const loginSchema = z.object({
-  email: z.string().email('유효한 이메일을 입력하세요'),
-  password: z.string().min(6, '비밀번호는 최소 6자 이상이어야 합니다'),
+// We'll create the schema dynamically with translations
+const createLoginSchema = (t: any) => z.object({
+  email: z.string().email(t('validation.emailInvalid')),
+  password: z.string().min(6, t('validation.passwordTooShort')),
   rememberMe: z.boolean().optional(),
 });
 
-type LoginFormData = z.infer<typeof loginSchema>;
+type LoginFormData = {
+  email: string;
+  password: string;
+  rememberMe?: boolean;
+};
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const { login, isLoading, error, state } = useAuthStore();
+  const { t } = useTranslation('auth');
   const router = useRouter();
+
+  const loginSchema = createLoginSchema(t);
 
   const {
     register,
@@ -50,10 +59,10 @@ export default function LoginPage() {
     >
       <div className="mb-6">
         <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-          로그인
+          {t('login.title')}
         </h2>
         <p className="text-gray-600 dark:text-gray-400 text-sm">
-          계정에 안전하게 로그인하세요
+          {t('login.subtitle')}
         </p>
       </div>
 
@@ -71,13 +80,13 @@ export default function LoginPage() {
         {/* Email Field */}
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            이메일
+            {t('login.email')}
           </label>
           <input
             {...register('email')}
             type="email"
             id="email"
-            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
+            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
             placeholder="your@email.com"
           />
           {errors.email && (
@@ -88,14 +97,14 @@ export default function LoginPage() {
         {/* Password Field */}
         <div>
           <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            비밀번호
+            {t('login.password')}
           </label>
           <div className="relative">
             <input
               {...register('password')}
               type={showPassword ? 'text' : 'password'}
               id="password"
-              className="w-full px-3 py-2 pr-10 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
+              className="w-full px-3 py-2 pr-10 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
               placeholder="••••••••"
             />
             <button
@@ -117,15 +126,15 @@ export default function LoginPage() {
             <input
               {...register('rememberMe')}
               type="checkbox"
-              className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
+              className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500 dark:border-gray-600 dark:bg-gray-700"
             />
-            <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">로그인 상태 유지</span>
+            <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">{t('login.rememberMe')}</span>
           </label>
           <Link
             href="/auth/reset-password"
-            className="text-sm text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
+            className="text-sm text-green-600 hover:text-green-500 dark:text-green-400 dark:hover:text-green-300 transition-colors"
           >
-            비밀번호 찾기
+            {t('login.forgotPassword')}
           </Link>
         </div>
 
@@ -135,37 +144,37 @@ export default function LoginPage() {
           disabled={isLoading}
           whileHover={{ scale: isLoading ? 1 : 1.02 }}
           whileTap={{ scale: isLoading ? 1 : 0.98 }}
-          className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-medium py-2.5 px-4 rounded-lg transition-colors flex items-center justify-center"
+          className="w-full bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white font-medium py-2.5 px-4 rounded-lg transition-colors flex items-center justify-center"
         >
           {isLoading ? (
             <>
               <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-              로그인 중...
+              {t('common.loading') || '로그인 중...'}
             </>
           ) : (
-            '로그인'
+            t('login.loginButton')
           )}
         </motion.button>
       </form>
 
       {/* Demo Credentials */}
       <div className="mt-6 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-        <p className="text-xs text-gray-600 dark:text-gray-400 mb-2 font-medium">데모 계정:</p>
+        <p className="text-xs text-gray-600 dark:text-gray-400 mb-2 font-medium">{t('login.demoAccount') || '데모 계정:'}:</p>
         <div className="text-xs text-gray-500 dark:text-gray-400 space-y-1">
-          <div>일반: demo@safepay.com / password123</div>
-          <div>2FA: test2fa@example.com / password123</div>
+          <div>{t('login.demoNormal') || '일반:'} demo@safepay.com / password123</div>
+          <div>{t('login.demo2FA') || '2FA:'} test2fa@example.com / password123</div>
         </div>
       </div>
 
       {/* Sign Up Link */}
       <div className="mt-6 text-center">
         <p className="text-sm text-gray-600 dark:text-gray-400">
-          계정이 없으신가요?{' '}
+          {t('login.noAccount')}{' '}
           <Link
             href="/auth/register"
-            className="text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 font-medium transition-colors"
+            className="text-green-600 hover:text-green-500 dark:text-green-400 dark:hover:text-green-300 font-medium transition-colors"
           >
-            회원가입
+            {t('login.signupLink')}
           </Link>
         </p>
       </div>

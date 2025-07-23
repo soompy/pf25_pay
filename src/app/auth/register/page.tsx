@@ -8,30 +8,41 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useAuthStore } from '@/store/auth';
+import { useTranslation } from '@/hooks/useTranslation';
 import { Eye, EyeOff, Loader2, Check, X } from 'lucide-react';
 
-const registerSchema = z.object({
-  name: z.string().min(2, '이름은 최소 2자 이상이어야 합니다'),
-  email: z.string().email('유효한 이메일을 입력하세요'),
+// We'll create the schema dynamically with translations
+const createRegisterSchema = (t: any) => z.object({
+  name: z.string().min(2, t('validation.nameRequired')),
+  email: z.string().email(t('validation.emailInvalid')),
   password: z.string()
-    .min(8, '비밀번호는 최소 8자 이상이어야 합니다')
-    .regex(/(?=.*[a-z])/, '소문자를 포함해야 합니다')
-    .regex(/(?=.*[A-Z])/, '대문자를 포함해야 합니다')
-    .regex(/(?=.*\d)/, '숫자를 포함해야 합니다'),
+    .min(8, t('validation.passwordTooShort'))
+    .regex(/(?=.*[a-z])/, t('validation.passwordLowercase') || '소문자를 포함해야 합니다')
+    .regex(/(?=.*[A-Z])/, t('validation.passwordUppercase') || '대문자를 포함해야 합니다')
+    .regex(/(?=.*\d)/, t('validation.passwordNumber') || '숫자를 포함해야 합니다'),
   confirmPassword: z.string(),
-  acceptTerms: z.boolean().refine(val => val, '이용약관에 동의해야 합니다'),
+  acceptTerms: z.boolean().refine(val => val, t('validation.termsRequired')),
 }).refine((data) => data.password === data.confirmPassword, {
-  message: '비밀번호가 일치하지 않습니다',
+  message: t('validation.passwordMismatch'),
   path: ['confirmPassword'],
 });
 
-type RegisterFormData = z.infer<typeof registerSchema>;
+type RegisterFormData = {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  acceptTerms: boolean;
+};
 
 export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { register: registerUser, isLoading, error } = useAuthStore();
+  const { t } = useTranslation('auth');
   const router = useRouter();
+
+  const registerSchema = createRegisterSchema(t);
 
   const {
     register,
@@ -45,10 +56,10 @@ export default function RegisterPage() {
   const password = watch('password');
 
   const passwordRequirements = [
-    { test: password?.length >= 8, label: '8자 이상' },
-    { test: /(?=.*[a-z])/.test(password || ''), label: '소문자 포함' },
-    { test: /(?=.*[A-Z])/.test(password || ''), label: '대문자 포함' },
-    { test: /(?=.*\d)/.test(password || ''), label: '숫자 포함' },
+    { test: password?.length >= 8, label: t('validation.password8Chars') || '8자 이상' },
+    { test: /(?=.*[a-z])/.test(password || ''), label: t('validation.passwordLowercase') || '소문자 포함' },
+    { test: /(?=.*[A-Z])/.test(password || ''), label: t('validation.passwordUppercase') || '대문자 포함' },
+    { test: /(?=.*\d)/.test(password || ''), label: t('validation.passwordNumber') || '숫자 포함' },
   ];
 
   const onSubmit = async (data: RegisterFormData) => {
@@ -64,10 +75,10 @@ export default function RegisterPage() {
     >
       <div className="mb-6">
         <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-          회원가입
+          {t('signup.title')}
         </h2>
         <p className="text-gray-600 dark:text-gray-400 text-sm">
-          SafePay 계정을 만들어 안전한 결제를 시작하세요
+          {t('signup.subtitle')}
         </p>
       </div>
 
@@ -85,14 +96,14 @@ export default function RegisterPage() {
         {/* Name Field */}
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            이름
+            {t('signup.name')}
           </label>
           <input
             {...register('name')}
             type="text"
             id="name"
-            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
-            placeholder="홍길동"
+            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
+            placeholder={t('signup.namePlaceholder') || '홍길동'}
           />
           {errors.name && (
             <p className="mt-1 text-xs text-red-600 dark:text-red-400">{errors.name.message}</p>
@@ -102,13 +113,13 @@ export default function RegisterPage() {
         {/* Email Field */}
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            이메일
+            {t('signup.email')}
           </label>
           <input
             {...register('email')}
             type="email"
             id="email"
-            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
+            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
             placeholder="your@email.com"
           />
           {errors.email && (
@@ -119,14 +130,14 @@ export default function RegisterPage() {
         {/* Password Field */}
         <div>
           <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            비밀번호
+            {t('signup.password')}
           </label>
           <div className="relative">
             <input
               {...register('password')}
               type={showPassword ? 'text' : 'password'}
               id="password"
-              className="w-full px-3 py-2 pr-10 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
+              className="w-full px-3 py-2 pr-10 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
               placeholder="••••••••"
             />
             <button
@@ -166,14 +177,14 @@ export default function RegisterPage() {
         {/* Confirm Password Field */}
         <div>
           <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            비밀번호 확인
+            {t('signup.confirmPassword')}
           </label>
           <div className="relative">
             <input
               {...register('confirmPassword')}
               type={showConfirmPassword ? 'text' : 'password'}
               id="confirmPassword"
-              className="w-full px-3 py-2 pr-10 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
+              className="w-full px-3 py-2 pr-10 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-colors"
               placeholder="••••••••"
             />
             <button
@@ -195,13 +206,12 @@ export default function RegisterPage() {
             <input
               {...register('acceptTerms')}
               type="checkbox"
-              className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 mt-0.5"
+              className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500 dark:border-gray-600 dark:bg-gray-700 mt-0.5"
             />
             <span className="text-sm text-gray-600 dark:text-gray-400">
-              <Link href="/terms" className="text-blue-600 hover:text-blue-500 dark:text-blue-400">이용약관</Link>
-              {' '}및{' '}
-              <Link href="/privacy" className="text-blue-600 hover:text-blue-500 dark:text-blue-400">개인정보처리방침</Link>
-              에 동의합니다
+              <Link href="/terms" className="text-green-600 hover:text-green-500 dark:text-green-400">{t('signup.terms.termsOfService')}</Link>
+              {t('signup.terms.and')}
+              <Link href="/privacy" className="text-green-600 hover:text-green-500 dark:text-green-400">{t('signup.terms.privacyPolicy')}</Link>
             </span>
           </label>
           {errors.acceptTerms && (
@@ -215,15 +225,15 @@ export default function RegisterPage() {
           disabled={isLoading}
           whileHover={{ scale: isLoading ? 1 : 1.02 }}
           whileTap={{ scale: isLoading ? 1 : 0.98 }}
-          className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-medium py-2.5 px-4 rounded-lg transition-colors flex items-center justify-center"
+          className="w-full bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white font-medium py-2.5 px-4 rounded-lg transition-colors flex items-center justify-center"
         >
           {isLoading ? (
             <>
               <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-              계정 생성 중...
+              {t('signup.creatingAccount') || '계정 생성 중...'}
             </>
           ) : (
-            '계정 만들기'
+            t('signup.signupButton')
           )}
         </motion.button>
       </form>
@@ -231,12 +241,12 @@ export default function RegisterPage() {
       {/* Sign In Link */}
       <div className="mt-6 text-center">
         <p className="text-sm text-gray-600 dark:text-gray-400">
-          이미 계정이 있으신가요?{' '}
+          {t('signup.hasAccount')}{' '}
           <Link
             href="/auth/login"
-            className="text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 font-medium transition-colors"
+            className="text-green-600 hover:text-green-500 dark:text-green-400 dark:hover:text-green-300 font-medium transition-colors"
           >
-            로그인
+            {t('signup.loginLink')}
           </Link>
         </p>
       </div>
