@@ -26,16 +26,17 @@ import { LanguageSwitcher } from '@/components/ui/molecules/LanguageSwitcher';
 import { useTranslation } from '@/hooks/useTranslation';
 import type { Card } from '@/types/payment';
 
-const addCardSchema = z.object({
-  name: z.string().min(1, 'Card name is required'),
-  cardNumber: z.string().min(16, 'Card number must be at least 16 digits'),
+// Create dynamic schema with translations
+const createAddCardSchema = (t: (key: string) => string) => z.object({
+  name: z.string().min(1, t('validation.cardNameRequired')),
+  cardNumber: z.string().min(16, t('validation.cardNumberMinLength')),
   expiryMonth: z.number().min(1).max(12),
   expiryYear: z.number().min(new Date().getFullYear()).max(2035),
   cvv: z.string().min(3).max(4),
-  balance: z.number().min(0, 'Balance must be positive').optional(),
+  balance: z.number().min(0, t('validation.balancePositive')).optional(),
 });
 
-type AddCardFormData = z.infer<typeof addCardSchema>;
+type AddCardFormData = z.infer<ReturnType<typeof createAddCardSchema>>;
 
 export default function CardsPage() {
   const { user, state: authState } = useAuthStore();
@@ -45,7 +46,8 @@ export default function CardsPage() {
     addCard, 
     deleteCard, 
     setDefaultCard,
-    isLoading
+    isLoading,
+    error
   } = usePaymentStore();
   
   const router = useRouter();
@@ -55,6 +57,8 @@ export default function CardsPage() {
   const [selectedCard, setSelectedCard] = useState<Card | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState<string | null>(null);
 
+  const addCardSchema = createAddCardSchema(t);
+  
   const {
     register,
     handleSubmit,

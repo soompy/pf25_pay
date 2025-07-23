@@ -51,5 +51,12 @@ export const cards = {
     amex: 'American Express',
     discover: 'Discover',
     unknown: 'Unknown'
+  },
+
+  // Validation Messages
+  validation: {
+    cardNameRequired: 'Card name is required',
+    cardNumberMinLength: 'Card number must be at least 16 digits',
+    balancePositive: 'Balance must be positive'
   }
 };

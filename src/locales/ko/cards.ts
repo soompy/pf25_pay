@@ -51,5 +51,12 @@ export const cards = {
     amex: '아메리칸 익스프레스',
     discover: '디스커버',
     unknown: '알 수 없음'
+  },
+
+  // Validation Messages
+  validation: {
+    cardNameRequired: '카드 이름은 필수입니다',
+    cardNumberMinLength: '카드 번호는 최소 16자리여야 합니다',
+    balancePositive: '잔액은 양수여야 합니다'
   }
 };
