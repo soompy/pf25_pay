@@ -82,6 +82,13 @@
 - **반응형 디자인**: 모바일, 태블릿, 데스크톱 최적화
 - **PWA 지원**: 네이티브 앱과 같은 사용자 경험
 
+### ⚡ 성능 최적화
+- **이미지 최적화**: Next.js Image 컴포넌트 기반 자동 최적화
+- **WebP/AVIF 지원**: 현대적 이미지 포맷 자동 변환 (30-50% 용량 감소)
+- **Lazy Loading**: 뷰포트 진입 시 이미지 로딩으로 초기 속도 향상
+- **반응형 이미지**: 디바이스별 최적화된 이미지 크기 제공
+- **CLS 방지**: 레이아웃 이동 없는 부드러운 로딩 경험
+
 ---
 
 ## 🛠 기술 스택
@@ -113,6 +120,13 @@
 - **CSS Variables**: 동적 테마 시스템
 - **Class Variance Authority**: 타입 안전한 variant 시스템
 - **Tailwind Merge**: 클래스 충돌 방지
+
+### Performance & Optimization
+- **Next.js Image**: 자동 이미지 최적화 및 포맷 변환
+- **WebP/AVIF**: 현대적 이미지 포맷 지원
+- **Lazy Loading**: 지연 로딩을 통한 성능 향상
+- **Responsive Images**: 디바이스별 최적화된 이미지 제공
+- **Blur Placeholder**: 부드러운 로딩 경험
 
 ---
 
@@ -399,7 +413,8 @@ import { ThemeSwitcher } from '@/components/ui';
 - **현대적 기술 스택**: Next.js 15, TypeScript, 최신 React 패턴
 - **상태 관리**: Zustand 기반 효율적인 전역 상태 관리
 - **타입 안전성**: 런타임 에러 방지 및 개발 생산성 향상
-- **성능 최적화**: 코드 스플리팅, 이미지 최적화, 메모이제이션
+- **성능 최적화**: Next.js Image 최적화, 코드 스플리팅, 메모이제이션
+- **이미지 최적화**: WebP/AVIF 자동 변환, Lazy Loading, 반응형 이미지
 - **컴포넌트 설계**: Atomic Design 패턴, Compound Component
 
 ### 🎨 설계 및 기획 역량
@@ -422,6 +437,8 @@ import { ThemeSwitcher } from '@/components/ui';
 - **16개 파일, 2,190+ 라인** 규모의 체계적인 코드베이스
 - **6가지 CSS 커스터마이징** 방법으로 높은 확장성
 - **완전한 TypeScript 지원**으로 타입 안전성 확보
+- **11개 이미지 최적화** 완료로 30-50% 성능 향상
+- **Next.js Image 컴포넌트** 기반 현대적 이미지 처리
 - **테스트 및 CI/CD** 파이프라인으로 코드 품질 보장
 
 ---
