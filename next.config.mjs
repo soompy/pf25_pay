@@ -13,15 +13,12 @@ const nextConfig = {
   images: {
     unoptimized: true, // Vercel에서 자동 최적화
   },
-  // 실험적 기능
-  experimental: {
-    // 터보팩 사용
-    turbo: {
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js',
-        },
+  // 터보팩 설정 (Next.js 15)
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
       },
     },
   },
