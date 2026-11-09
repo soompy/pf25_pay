@@ -4,9 +4,9 @@ export const homepage = {
     title: '결제는 간편하고 빠르게',
     subtitle: '새로운 차원의 디지털 결제 플랫폼',
     description: '안전하고 빠른 송금, 스마트한 카드 관리, 혁신적인 결제 경험을 제공하는 차세대 핀테크 솔루션입니다.',
-    tryApp: '앱 체험하기',
-    viewDemo: '데모 보기',
-    demoAccount: '💡 데모 계정: user@example.com / password123',
+    tryDemo: 'Try Payment Demo',
+    noSignIn: '로그인 없이 바로 체험할 수 있어요 (No sign-in required)',
+    demoNotice: 'Demo only. No real payments are processed. 실제 결제는 발생하지 않습니다.',
   },
 
   // Features Section
@@ -28,19 +28,11 @@ export const homepage = {
     description: '안전하고 빠른 송금,\n스마트한 카드 관리,\n혁신적인 결제 경험을 제공하는\n차세대 핀테크 솔루션',
   },
 
-  // Statistics
-  stats: {
-    activeUsers: '활성 사용자',
-    monthlyVolume: '월 거래량',
-    securityRating: '보안 등급',
-    processingSpeed: '처리 속도',
-  },
-
   // CTA Section
   cta: {
     title: '지금 시작해보세요',
     description: 'SafePay와 함께 더 스마트하고 안전한 결제 경험을 시작하세요',
-    startFree: '무료로 시작하기',
+    tryDemo: '결제 데모 체험하기',
     viewGithub: 'GitHub 보기',
   },
 

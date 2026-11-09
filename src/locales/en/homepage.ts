@@ -4,9 +4,9 @@ export const homepage = {
     title: 'Payment Made Simple and Fast',
     subtitle: 'Next-Generation Digital Payment Platform',
     description: 'A next-generation fintech solution providing secure and fast transfers, smart card management, and innovative payment experiences.',
-    tryApp: 'Try the App',
-    viewDemo: 'View Demo',
-    demoAccount: '💡 Demo Account: user@example.com / password123',
+    tryDemo: 'Try Payment Demo',
+    noSignIn: 'No sign-in required',
+    demoNotice: 'Demo only. No real payments are processed.',
   },
 
   // Features Section
@@ -28,19 +28,11 @@ export const homepage = {
     description: 'Secure and fast transfers,\nsmart card management,\ninnovative payment experiences\nnext-generation fintech solution',
   },
 
-  // Statistics
-  stats: {
-    activeUsers: 'Active Users',
-    monthlyVolume: 'Monthly Volume',
-    securityRating: 'Security Rating',
-    processingSpeed: 'Processing Speed',
-  },
-
   // CTA Section
   cta: {
     title: 'Get Started Now',
     description: 'Start a smarter and safer payment experience with SafePay',
-    startFree: 'Start for Free',
+    tryDemo: 'Try Payment Demo',
     viewGithub: 'View GitHub',
   },
 

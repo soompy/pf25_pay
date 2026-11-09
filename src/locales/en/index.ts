@@ -4,6 +4,7 @@ import { auth } from './auth';
 import { dashboard } from './dashboard';
 import { settings } from './settings';
 import { cards } from './cards';
+import { paymentDemo } from './paymentDemo';
 
 export const en = {
   common,
@@ -12,4 +13,5 @@ export const en = {
   dashboard,
   settings,
   cards,
+  paymentDemo,
 };

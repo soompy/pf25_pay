@@ -8,8 +8,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio | Frontend Developer",
-  description: "Frontend Developer Portfolio with React, Next.js, TypeScript",
+  title: "SafePay | Interactive Payment Demo",
+  description: "Try the full SafePay checkout flow without signing in. Demo only — no real payments are processed.",
 };
 
 export default function RootLayout({

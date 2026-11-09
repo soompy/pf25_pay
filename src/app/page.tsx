@@ -56,12 +56,6 @@ export default function LandingPage() {
     },
   ];
 
-  const stats = [
-    { label: t('stats.activeUsers'), value: '10M+' },
-    { label: t('stats.monthlyVolume'), value: '$2.5B' },
-    { label: t('stats.securityRating'), value: 'A+' },
-    { label: t('stats.processingSpeed'), value: '< 3초' },
-  ];
 
   const mockupImages = [
     { src: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=300&h=600&fit=crop&auto=format&q=80', alt: 'Mobile Payment Screen' },
@@ -153,7 +147,7 @@ export default function LandingPage() {
 
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20">
+      <section className="relative pt-32 pb-16 md:pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <motion.div
@@ -191,25 +185,28 @@ export default function LandingPage() {
                 style={{ transformStyle: 'preserve-3d' }}
               >
                 <Button
-                  onClick={() => router.push('/auth/login')}
+                  onClick={() => router.push('/demo')}
                   variant="success"
                   size="lg"
                   fullWidth={true}
                   className="sm:w-auto shadow-lg"
+                  aria-describedby="hero-demo-note"
                 >
-                  {t('hero.tryApp')}
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                  {t('hero.tryDemo')}
+                  <ArrowRight className="w-5 h-5 ml-2" aria-hidden="true" />
                 </Button>
               </motion.div>
             </motion.div>
 
             <motion.div
+              id="hero-demo-note"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.4 }}
-              className="mt-8 text-sm text-gray-300"
+              className="mt-6 space-y-1 text-sm"
             >
-              {t('hero.demoAccount')}
+              <p className="font-medium text-[var(--text-primary)]">{t('hero.noSignIn')}</p>
+              <p className="text-[var(--text-secondary)]">{t('hero.demoNotice')}</p>
             </motion.div>
           </div>
         </div>
@@ -257,36 +254,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-[var(--bg-primary)] border-b border-[var(--border-primary)]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ 
-                  rotateX: 5, 
-                  rotateY: 5, 
-                  scale: 1.05,
-                  transition: { duration: 0.2 }
-                }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center bg-[var(--bg-elevated)] p-6 rounded-xl shadow-lg"
-                style={{ transformStyle: 'preserve-3d' }}
-              >
-                <div className="text-3xl md:text-4xl font-bold text-[var(--color-success)] mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-[var(--text-secondary)] font-medium">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Features Section */}
       <section className="py-20 bg-[var(--bg-secondary)]">
@@ -622,13 +589,13 @@ export default function LandingPage() {
                 style={{ transformStyle: 'preserve-3d' }}
               >
                 <Button
-                  onClick={() => router.push('/auth/login')}
+                  onClick={() => router.push('/demo')}
                   variant="secondary"
                   size="lg"
                   fullWidth={true}
                   className="sm:w-auto bg-[var(--text-inverse)] text-[var(--color-primary-600)] hover:bg-[var(--bg-secondary)] shadow-lg"
                 >
-                  {t('cta.startFree')}
+                  {t('cta.tryDemo')}
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </motion.div>
