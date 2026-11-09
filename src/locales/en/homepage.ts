@@ -51,12 +51,9 @@ export const homepage = {
   // Image Alt Text
   mockup: {
     alt: {
-      mobilePayment: 'Mobile Payment Screen',
-      creditCardPhone: 'Credit Card & Phone',
-      digitalWallet: 'Digital Wallet Interface',
-      bankingDashboard: 'Banking App Dashboard',
-      qrPayment: 'QR Code Payment',
-      contactlessPayment: 'Contactless Payment',
+      splashGreen: 'SafePay logo screen (green)',
+      splashLight: 'SafePay logo screen (light)',
+      splashDark: 'SafePay logo screen (dark)',
     },
   },
 };

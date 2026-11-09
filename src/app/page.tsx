@@ -57,13 +57,11 @@ export default function LandingPage() {
   ];
 
 
+  // Phone mockup slides: SafePay logo screens (public/mockups)
   const mockupImages = [
-    { src: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=300&h=600&fit=crop&auto=format&q=80', alt: 'Mobile Payment Screen' },
-    { src: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=300&h=600&fit=crop&auto=format&q=80', alt: 'Credit Card & Phone' },
-    { src: 'https://images.unsplash.com/photo-1605792657660-596af9009ccd?w=300&h=600&fit=crop&auto=format&q=80', alt: 'Digital Wallet Interface' },
-    { src: 'https://images.unsplash.com/photo-1634733988138-bf2c3a2a13fa?w=300&h=600&fit=crop&auto=format&q=80', alt: 'Banking App Dashboard' },
-    { src: 'https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=300&h=600&fit=crop&auto=format&q=80', alt: 'QR Code Payment' },
-    { src: 'https://images.unsplash.com/photo-1579621970588-a35d0e7ab9b6?w=300&h=600&fit=crop&auto=format&q=80', alt: 'Contactless Payment' },
+    { src: '/mockups/safepay-splash-green.svg', alt: t('mockup.alt.splashGreen') },
+    { src: '/mockups/safepay-splash-light.svg', alt: t('mockup.alt.splashLight') },
+    { src: '/mockups/safepay-splash-dark.svg', alt: t('mockup.alt.splashDark') },
   ];
 
   useEffect(() => {
@@ -444,12 +442,8 @@ export default function LandingPage() {
                             fill
                             sizes="(max-width: 768px) 300px, (max-width: 1200px) 400px, 500px"
                             className="w-full h-full object-cover rounded-[2rem] bg-[var(--bg-secondary)]"
-                            priority={index === 0} // 첫 번째 이미지는 우선 로딩
-                            placeholder="blur"
-                            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
-                            onError={() => {
-                              // Fallback 처리는 Next.js Image에서 자동으로 처리됨
-                            }}
+                            priority={index === 0}
+                            unoptimized
                           />
                         </motion.div>
                       ))}
@@ -462,7 +456,7 @@ export default function LandingPage() {
                           key={index}
                           className={`w-2 h-2 rounded-full transition-all duration-300 ${
                             currentMockup === index
-                              ? 'bg-[var(--color-success)] w-6'
+                              ? 'bg-[var(--color-success)] w-6 ring-2 ring-white/80'
                               : 'bg-[var(--text-tertiary)]'
                           }`}
                         />

@@ -51,12 +51,9 @@ export const homepage = {
   // Image Alt Text
   mockup: {
     alt: {
-      mobilePayment: '모바일 결제 화면',
-      creditCardPhone: '신용카드 & 휴대폰',
-      digitalWallet: '디지털 지갑 인터페이스',
-      bankingDashboard: '뱅킹 앱 대시보드',
-      qrPayment: 'QR 코드 결제',
-      contactlessPayment: '비접촉 결제',
+      splashGreen: 'SafePay 로고 화면 (초록 배경)',
+      splashLight: 'SafePay 로고 화면 (밝은 배경)',
+      splashDark: 'SafePay 로고 화면 (어두운 배경)',
     },
   },
 };
