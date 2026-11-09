@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { ThemeSwitcher } from '../components/ui/molecules/ThemeSwitcher';
 import { ThemeProvider } from '../contexts/ThemeContext';
 import React from 'react';

@@ -1,13 +1,13 @@
 'use client';
 
 import { useLanguage } from '@/contexts/LanguageContext';
-import { translations } from '@/locales';
+import type { TranslationSection } from '@/locales';
 
 /**
  * Hook for getting translations for a specific page/section
  * Usage: const { t, translations: pageTranslations } = useTranslation('homepage');
  */
-export function useTranslation(section: keyof typeof translations.ko) {
+export function useTranslation<S extends TranslationSection>(section: S) {
   const { language, t: globalT, getTranslations } = useLanguage();
   
   const pageTranslations = getTranslations(section);

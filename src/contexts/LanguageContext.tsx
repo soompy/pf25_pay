@@ -1,13 +1,19 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { translations, Language, getNestedTranslation } from '@/locales';
+import {
+  translations,
+  Language,
+  getNestedTranslation,
+  TranslationSection,
+  SectionTranslations,
+} from '@/locales';
 
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   t: (key: string, params?: Record<string, string | number>) => string;
-  getTranslations: (section: keyof typeof translations.ko) => Record<string, unknown>;
+  getTranslations: <S extends TranslationSection>(section: S) => SectionTranslations<S>;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -30,8 +36,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   }, [language]);
 
   // Get translations for a specific section
-  const getTranslations = (section: keyof typeof translations.ko) => {
-    return translations[language][section];
+  // Every language pack shares the Korean pack's shape, so results are typed against it.
+  const getTranslations = <S extends TranslationSection>(section: S): SectionTranslations<S> => {
+    return translations[language][section] as SectionTranslations<S>;
   };
 
   // Main translation function with nested key support and interpolation
@@ -41,7 +48,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     // Check if key contains section prefix (e.g., "homepage.hero.title")
     if (key.includes('.')) {
       const [section, ...keyPath] = key.split('.');
-      const sectionTranslations = translations[language][section as keyof typeof translations.ko];
+      const sectionTranslations = translations[language][section as TranslationSection];
       
       if (sectionTranslations) {
         translation = getNestedTranslation(sectionTranslations, keyPath.join('.'));

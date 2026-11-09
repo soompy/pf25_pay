@@ -46,7 +46,9 @@ const sendMoneySchema = z.object({
   requestTwoFactor: z.boolean().optional().default(false),
 });
 
-type SendMoneyFormData = z.infer<typeof sendMoneySchema>;
+// Fields with .default() are optional on input but always set after parsing.
+type SendMoneyFormDataInput = z.input<typeof sendMoneySchema>;
+type SendMoneyFormData = z.output<typeof sendMoneySchema>;
 
 export default function SendMoneyPage() {
   const { user, state: authState } = useAuthStore();
@@ -78,7 +80,7 @@ export default function SendMoneyPage() {
     setValue,
     getValues,
     reset
-  } = useForm<SendMoneyFormData>({
+  } = useForm<SendMoneyFormDataInput, unknown, SendMoneyFormData>({
     resolver: zodResolver(sendMoneySchema),
     defaultValues: {
       recipientType: 'contact',

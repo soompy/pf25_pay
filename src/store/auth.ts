@@ -125,17 +125,17 @@ const mockAuthAPI = {
     };
   },
   
-  async requestPasswordReset(): Promise<void> {
+  async requestPasswordReset(_email: string): Promise<void> {
     await new Promise(resolve => setTimeout(resolve, 1000));
     // Mock success - in real app, this would send an email
   },
   
-  async resetPassword(): Promise<void> {
+  async resetPassword(_token: string, _password: string): Promise<void> {
     await new Promise(resolve => setTimeout(resolve, 1000));
     // Mock success
   },
   
-  async refreshSession(): Promise<AuthSession> {
+  async refreshSession(_refreshToken: string): Promise<AuthSession> {
     await new Promise(resolve => setTimeout(resolve, 500));
     
     // Mock refresh logic

@@ -38,7 +38,9 @@ const requestMoneySchema = z.object({
   sendNotification: z.boolean().optional().default(true),
 });
 
-type RequestMoneyFormData = z.infer<typeof requestMoneySchema>;
+// Fields with .default() are optional on input but always set after parsing.
+type RequestMoneyFormDataInput = z.input<typeof requestMoneySchema>;
+type RequestMoneyFormData = z.output<typeof requestMoneySchema>;
 
 export default function RequestMoneyPage() {
   const { user, state: authState } = useAuthStore();
@@ -69,7 +71,7 @@ export default function RequestMoneyPage() {
     setValue,
     getValues,
     reset
-  } = useForm<RequestMoneyFormData>({
+  } = useForm<RequestMoneyFormDataInput, unknown, RequestMoneyFormData>({
     resolver: zodResolver(requestMoneySchema),
     defaultValues: {
       recipientType: 'contact',
@@ -548,7 +550,7 @@ export default function RequestMoneyPage() {
                     <div className="flex justify-between">
                       <span className="text-gray-600 dark:text-gray-400">Expires</span>
                       <span className="font-medium text-gray-900 dark:text-white">
-                        {new Date(Date.now() + getValues('expiresInDays') * 24 * 60 * 60 * 1000).toLocaleDateString()}
+                        {new Date(Date.now() + (getValues('expiresInDays') ?? 7) * 24 * 60 * 60 * 1000).toLocaleDateString()}
                       </span>
                     </div>
 
