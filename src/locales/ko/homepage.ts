@@ -44,8 +44,8 @@ export const homepage = {
 
   // Milestone Section
   milestone: {
-    title: '사용자 1000만명 돌파!',
-    subtitle: '더 안전하고 빠른 결제 서비스로 보답하겠습니다',
+    title: '성공도, 실패도 미리 경험해 보세요',
+    subtitle: '테스트 결제수단으로 승인·거절·재시도까지 모든 결제 흐름을 확인할 수 있어요',
   },
 
   // Image Alt Text

@@ -44,8 +44,8 @@ export const homepage = {
 
   // Milestone Section
   milestone: {
-    title: '10 Million Users Milestone Reached!',
-    subtitle: 'We will continue to provide safer and faster payment services',
+    title: 'Try success and failure before it counts',
+    subtitle: 'Use test payment methods to walk through every flow — approval, decline, and retry',
   },
 
   // Image Alt Text

@@ -539,13 +539,13 @@ export default function LandingPage() {
               </motion.div>
               
               <motion.h3 
-                className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-2"
+                className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-2 break-keep text-balance"
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ duration: 0.8, repeat: Infinity, repeatDelay: 1 }}
               >
                 {t('milestone.title')}
               </motion.h3>
-              <p className="text-lg text-gray-600 dark:text-gray-300 mb-4">
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-4 break-keep text-balance max-w-xl mx-auto">
                 {t('milestone.subtitle')}
               </p>
 
